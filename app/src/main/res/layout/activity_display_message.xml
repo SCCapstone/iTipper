@@ -12,8 +12,9 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:text="TextView"
-        android:textAppearance="@style/TextAppearance.AppCompat.Body2"
-        android:textColor="#B80000"
+        android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+        android:textColor="#880101"
+        android:textSize="30sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />

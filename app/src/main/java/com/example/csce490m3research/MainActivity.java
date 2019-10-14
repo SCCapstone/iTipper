@@ -15,10 +15,12 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
     }
+    // redirects to google maps on button press
     public void sendMessage(View view) {
         // Do something in response to button
         // create new intent object (Context, Class) this activity is subclass of context. Class is where system delivers Intent
-        Intent intent = new Intent(this, DisplayMessageActivity.class);
+        //Intent intent = new Intent(this, DisplayMessageActivity.class);
+        Intent intent = new Intent(this, MapsActivity.class);
         // this finds the plain text named editText
         EditText editText = (EditText) findViewById(R.id.editText);
         // retrieve text that was entered
