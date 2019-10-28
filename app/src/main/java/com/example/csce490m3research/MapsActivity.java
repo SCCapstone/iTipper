@@ -1,3 +1,4 @@
+// MapsActivity, Coded by John Esco
 package com.example.csce490m3research;
 
 import androidx.annotation.NonNull;
