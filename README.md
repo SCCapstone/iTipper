@@ -77,3 +77,11 @@ Run the app on an emulator as follows:
 4. Click **Run**. <br/>
 
     Android Studio installs the app on the AVD and starts the emulator. You now see "Hello, World!" displayed in the app.
+
+## Authors
+
+ * [@TylerPChambers (Tyler Chambers)](https://github.com/TylerPChambers)
+ * [@AzianEquation (John Esco)](https://github.com/AzianEquation)
+ * [@christine1312 (Christine Burris)](https://github.com/christine1312)
+ * [@paolomilan (Paolo Milan)](https://github.com/paolomilan)
+ * [@42kevinzheng (Kevin Zheng)](https://github.com/42kevinzheng)
