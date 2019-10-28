@@ -1,4 +1,4 @@
-// coded by John Esco
+// coded by John Esco, iTipper
 package com.example.csce490m3research;
 
 import androidx.appcompat.app.AppCompatActivity;
