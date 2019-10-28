@@ -3,3 +3,4 @@ The main activity asks the user to input a decription for the device's current l
 This activity shows the device's current location pinned on the map and labeled with the user input
 
 Testing a merge conflict
+Testing a merge conflict x2
