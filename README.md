@@ -85,5 +85,3 @@ Run the app on an emulator as follows:
  * [@christine1312 (Christine Burris)](https://github.com/christine1312)
  * [@paolomilan (Paolo Milan)](https://github.com/paolomilan)
  * [@42kevinzheng (Kevin Zheng)](https://github.com/42kevinzheng)
-
- Testing merge commit.
