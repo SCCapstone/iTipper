@@ -3,4 +3,6 @@
     <string name="edit_message">Describe your location &#8230;</string>
     <string name="button_send">Gmap</string>
     <string name="title_activity_maps">Map</string>
+    <string name="enter_tip">Enter a tip</string>
+    <string name="record_tip">Record</string>
 </resources>

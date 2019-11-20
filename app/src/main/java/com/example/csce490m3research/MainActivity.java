@@ -1,4 +1,5 @@
 // coded by John Esco, iTipper
+// Modified by @paolomilan
 package com.example.csce490m3research;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -27,6 +28,13 @@ public class MainActivity extends AppCompatActivity {
         // retrieve text that was entered
         String message = editText.getText().toString();
         // put extra add the value of EditText to the intent. Intent can carry data types as key/val pairs called extras
+        intent.putExtra(EXTRA_MESSAGE,message);
+        startActivity(intent);
+    }
+    public void EnterTipScreenActivity(View view) {
+        Intent intent = new Intent(this, EnterTipScreenActivity.class);
+        EditText editText = (EditText) findViewById(R.id.editText);
+        String message = editText.getText().toString();
         intent.putExtra(EXTRA_MESSAGE,message);
         startActivity(intent);
     }
