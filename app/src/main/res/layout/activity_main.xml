@@ -33,13 +33,13 @@
         android:ems="10"
         android:hint="@string/edit_message"
         android:inputType="textPersonName"
-        app:layout_constraintEnd_toStartOf="@+id/button2"
+        app:layout_constraintEnd_toStartOf="@+id/button"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
-        android:id="@+id/button2"
+        android:id="@+id/button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
@@ -51,6 +51,39 @@
         app:layout_constraintBaseline_toBaselineOf="@+id/editText"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/editText" />
+
+    <EditText
+        android:id="@+id/editText1"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="140dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginRight="16dp"
+        android:ems="10"
+
+        android:hint="@string/destination_message"
+        android:inputType="textPersonName"
+        app:layout_constraintEnd_toStartOf="@+id/button1"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/button1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginRight="16dp"
+        android:onClick="openMap"
+        android:text="@string/button_search"
+        app:layout_constraintBaseline_toBaselineOf="@+id/editText1"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/editText1" />
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>
     <!--
     <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"

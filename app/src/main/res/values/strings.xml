@@ -1,6 +1,8 @@
 <resources>
     <string name="app_name">iTipper</string>
     <string name="edit_message">Describe your location &#8230;</string>
-    <string name="button_send">Gmap</string>
+    <string name="destination_message">Enter a new location &#8230;</string>
+    <string name="button_send">Current</string>
+    <string name="button_search">GMap</string>
     <string name="title_activity_maps">Map</string>
 </resources>
