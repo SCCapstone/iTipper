@@ -69,7 +69,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         mMap = googleMap;
         // Get the Intent that started this activity and extract the string
         Intent intent = getIntent();
-        final String message = intent.getStringExtra(MainActivity.EXTRA_MESSAGE);
+        final String message = intent.getStringExtra(MapsDialogueActivity.EXTRA_MESSAGE);
 
         if (intent.getIntExtra("Place Number",0) == 0 ){
             // Zoom into users location
