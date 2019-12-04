@@ -3,7 +3,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:background="@drawable/gradient">
 
     <ImageView
         android:id="@+id/imageView"
@@ -19,23 +20,25 @@
         app:srcCompat="@drawable/logi" />
 
     <EditText
-        android:id="@+id/Email"
+        android:id="@+id/user"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_centerInParent="true"
         android:layout_marginBottom="352dp"
         android:ems="10"
-        android:inputType="textEmailAddress" />
+        android:inputType="textPersonName"
+        android:hint="Username"/>
 
     <EditText
-        android:id="@+id/Password"
+        android:id="@+id/password"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="273dp"
         android:ems="10"
+        android:hint="Password"
         android:inputType="textPassword" />
 
     <Button
@@ -45,5 +48,5 @@
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="175dp"
-        android:text="Button" />
+        android:text="Login" />
 </RelativeLayout>
