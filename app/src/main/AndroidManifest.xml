@@ -33,16 +33,16 @@
             android:label="@string/title_activity_maps">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.example.csce490m3research.MainActivity" />
+                android:value="com.example.csce490m3research.TipScreenActivity" />
         </activity>
         <activity
             android:name=".DisplayMessageActivity"
-            android:parentActivityName=".MainActivity">
+            android:parentActivityName=".TipScreenActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".MainActivity" />
+                android:value=".TipScreenActivity" />
         </activity>
-        <activity android:name=".MainActivity">
+        <activity android:name=".TipScreenActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
