@@ -22,7 +22,7 @@ public class MainMenuActivity extends AppCompatActivity {
 
     // Called when user taps "Graph" button
     public void graphDisplay(View view) {
-        Intent gotoGraphDisplay = new Intent(this, DisplayGraphActivity.class);
+        Intent gotoGraphDisplay = new Intent(this, ChooseGraphActivity.class);
         startActivity(gotoGraphDisplay);
     }
 }

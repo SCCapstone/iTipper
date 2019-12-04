@@ -6,4 +6,6 @@
     <string name="go_to_graph_display_button">Go to graph display screen</string>
     <string name="go_to_map_display_button">Go to maps dialog screen</string>
     <string name="go_to_tips_entry">Go to tip entry screen</string>
+    <string name="example_graph_button">Go to example graph (default data)</string>
+    <string name="tips_graph_button">Go to graph with tip data</string>
 </resources>

@@ -23,6 +23,22 @@ package="com.example.csce490m3research">
         <intent-filter>
             <action android:name="android.intent.action.MAIN" />
 
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+        <activity android:name=".DisplayTipsGraphActivity"></activity>
+        <activity android:name=".ChooseGraphActivity" />
+        <activity android:name=".DisplayGraphActivity" />
+        <activity android:name=".MainMenuActivity" />
+        <activity android:name=".LoginActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+
             <category android:name="android.intent.category.LAUNCHER" />
         </intent-filter>
     </activity>
@@ -63,5 +79,26 @@ package="com.example.csce490m3research">
     </activity>
     <activity android:name=".MapsDialogueActivity"></activity>
 </application>
+
+</manifest>
+            android:name="com.google.android.geo.API_KEY"
+            android:value="@string/google_maps_key" />
+
+        <activity
+            android:name=".MapsActivity"
+            android:label="@string/title_activity_maps">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.csce490m3research.MapsDialogueActivity" />
+        </activity>
+        <activity
+            android:name=".DisplayMessageActivity"
+            android:parentActivityName=".MapsDialogueActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".MapsDialogueActivity" />
+        </activity>
+        <activity android:name=".MapsDialogueActivity" />
+    </application>
 
 </manifest>

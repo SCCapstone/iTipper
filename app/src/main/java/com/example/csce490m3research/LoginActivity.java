@@ -1,7 +1,12 @@
 package com.example.csce490m3research;
 
+
 import android.app.Activity;
 import android.graphics.Color;
+
+import androidx.appcompat.app.AppCompatActivity;
+
+
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -17,6 +22,8 @@ import android.os.Bundle;
 public class LoginActivity extends Activity {
     Button button;
     EditText username, password;
+
+public class LoginActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,11 +56,13 @@ public class LoginActivity extends Activity {
 
 
 
+        setContentView(R.layout.activity_login);
+    }
 
-
-
-
-
-
-
-
+    // Called when user taps "login" button
+    public void login(View view) {
+        // Send user to main menu screen
+        Intent mainMenu = new Intent(this, MainMenuActivity.class);
+        startActivity(mainMenu);
+    }
+}
