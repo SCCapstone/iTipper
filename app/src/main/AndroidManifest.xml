@@ -15,12 +15,11 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-
-        <activity android:name=".DisplayGraphActivity"></activity>
-
-        <activity android:name=".MainMenuActivity"></activity>
-
-        <activity android:name=".MainActivity" >
+        <activity android:name=".DisplayTipsGraphActivity"></activity>
+        <activity android:name=".ChooseGraphActivity" />
+        <activity android:name=".DisplayGraphActivity" />
+        <activity android:name=".MainMenuActivity" />
+        <activity android:name=".LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -53,7 +52,7 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".MapsDialogueActivity" />
         </activity>
-        <activity android:name=".MapsDialogueActivity"></activity>
+        <activity android:name=".MapsDialogueActivity" />
     </application>
 
 </manifest>
