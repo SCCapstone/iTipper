@@ -49,8 +49,8 @@ public class LoginActivity extends AppCompatActivity {
         });
     }
 
-    public void gotoMainMenu(View view) {
+    /*public void gotoMainMenu(View view) {
         Intent mainMenu = new Intent(this, MapsDialogueActivity.class);
         startActivity(mainMenu);
-    }
+    }*/
 }
