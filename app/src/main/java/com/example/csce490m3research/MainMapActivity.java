@@ -21,7 +21,7 @@ public class MainMapActivity extends AppCompatActivity {
     public void sendMessage(View view) {
 
 
-        Intent intent = new Intent(this, GMapsActivity.class);
+        Intent intent = new Intent(this, MapsActivity.class);
         // this finds the plain text named editText
         EditText editText = (EditText) findViewById(R.id.editText);
         // retrieve text that was entered

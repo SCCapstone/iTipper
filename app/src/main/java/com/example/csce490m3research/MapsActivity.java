@@ -1,4 +1,4 @@
-// GMapsActivity, Coded by John Esco, iTipper
+// MapsActivity, Coded by John Esco, iTipper
 package com.example.csce490m3research;
 
 import androidx.annotation.NonNull;
@@ -21,7 +21,7 @@ import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
-public class GMapsActivity extends FragmentActivity implements OnMapReadyCallback {
+public class MapsActivity extends FragmentActivity implements OnMapReadyCallback {
 
     private GoogleMap mMap;
     LocationManager locationManager;
@@ -74,7 +74,7 @@ public class GMapsActivity extends FragmentActivity implements OnMapReadyCallbac
                 List<Address> addressList = null;
 
                 if (location != null || !location.equals("")) {
-                    Geocoder geocoder = new Geocoder(GMapsActivity.this);
+                    Geocoder geocoder = new Geocoder(MapsActivity.this);
                     try {
                         addressList = geocoder.getFromLocationName(location,1);
                     }
