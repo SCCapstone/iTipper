@@ -21,7 +21,7 @@ public class MainMapActivity extends AppCompatActivity {
     public void sendMessage(View view) {
 
 
-        Intent intent = new Intent(this, MapsActivity.class);
+        Intent intent = new Intent(this, GMapsActivity.class);
         // this finds the plain text named editText
         EditText editText = (EditText) findViewById(R.id.editText);
         // retrieve text that was entered
@@ -35,7 +35,7 @@ public class MainMapActivity extends AppCompatActivity {
 
         // Do something in response to button
         // create new intent object (Context, Class) this activity is subclass of context. Class is where system delivers Intent
-        //Intent intent = new Intent(this, DisplayMessageActivity.class);
+        //Intent intent = new Intent(this, DisplayMessageActivity2.class);
         // this finds the plain text named editText
         EditText editText = (EditText) findViewById(R.id.editText1);
         // retrieve text that was entered
