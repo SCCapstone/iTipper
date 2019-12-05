@@ -40,16 +40,16 @@
             android:label="@string/title_activity_maps">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.example.csce490m3research.MainActivity" />
+                android:value="com.example.csce490m3research.MainMapActivity" />
         </activity>
         <activity
             android:name=".DisplayMessageActivity"
-            android:parentActivityName=".MainActivity">
+            android:parentActivityName=".MainMapActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".MainActivity" />
+                android:value=".MainMapActivity" />
         </activity>
-        <activity android:name=".MainActivity">
+        <activity android:name=".MainMapActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
