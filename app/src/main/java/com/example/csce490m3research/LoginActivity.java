@@ -19,11 +19,9 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 
-public class LoginActivity extends Activity {
+public class LoginActivity extends AppCompatActivity {
     Button button;
     EditText username, password;
-
-public class LoginActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,6 +32,8 @@ public class LoginActivity extends AppCompatActivity {
         username = (EditText) findViewById(R.id.user);
         password = (EditText) findViewById(R.id.password);
 
+        final Intent mainMenu = new Intent(this, MainMenuActivity.class);
+
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -41,28 +41,16 @@ public class LoginActivity extends AppCompatActivity {
                         password.getText().toString().equals("admin")) {
                     Toast.makeText(getApplicationContext(),
                             "Redirecting...", Toast.LENGTH_SHORT).show();
+
+                    startActivity(mainMenu);
+
                 }
             }
         });
     }
-}
 
-
-
-
-
-
-
-
-
-
-        setContentView(R.layout.activity_login);
-    }
-
-    // Called when user taps "login" button
-    public void login(View view) {
-        // Send user to main menu screen
-        Intent mainMenu = new Intent(this, MainMenuActivity.class);
+    public void gotoMainMenu(View view) {
+        Intent mainMenu = new Intent(this, MapsDialogueActivity.class);
         startActivity(mainMenu);
     }
 }
