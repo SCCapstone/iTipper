@@ -15,7 +15,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".DisplayTipsGraphActivity"></activity>
+        <activity android:name=".MapsActivity" />
+        <activity android:name=".MapsDialogActivity" />
+        <activity android:name=".DisplayTipsGraphActivity" />
         <activity android:name=".ChooseGraphActivity" />
         <activity android:name=".DisplayGraphActivity" />
         <activity android:name=".MainMenuActivity" />
@@ -37,7 +39,6 @@
         <meta-data
             android:name="com.google.android.geo.API_KEY"
             android:value="@string/google_maps_key" />
-
     </application>
 
 </manifest>
