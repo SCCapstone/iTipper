@@ -1,10 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:background="@drawable/gradient">
+    android:background="@drawable/gradient"
+    tools:context=".LoginActivity">
+
 
     <ImageView
         android:id="@+id/imageView"
@@ -20,7 +22,7 @@
         app:srcCompat="@drawable/logi" />
 
     <EditText
-        android:id="@+id/user"
+        android:id="@+id/Username"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
@@ -31,7 +33,7 @@
         android:hint="Username"/>
 
     <EditText
-        android:id="@+id/password"
+        android:id="@+id/User_Password"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
@@ -42,11 +44,23 @@
         android:inputType="textPassword" />
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/login_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="175dp"
         android:text="Login" />
+
+    <TextView
+        android:id="@+id/register_account_link"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Create New Acount"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:textColor="@android:color/black"
+        android:textSize="18sp"
+        android:textStyle="bold" />
+
 </RelativeLayout>
