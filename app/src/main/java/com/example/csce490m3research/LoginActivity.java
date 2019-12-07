@@ -30,7 +30,7 @@ public class LoginActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.login);
         mFirebaseAuth = FirebaseAuth.getInstance();
         UserEmail = findViewById(R.id.Username);
         UserPassword = findViewById(R.id.User_Password);
@@ -51,7 +51,7 @@ public class LoginActivity extends AppCompatActivity {
         NeedNewAccountLink.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intSignUp = new Intent(LoginActivity.this, Register.class);
+                Intent intSignUp = new Intent(LoginActivity.this, CreateAccountActivity.class);
                 startActivity(intSignUp);
             }
         });
