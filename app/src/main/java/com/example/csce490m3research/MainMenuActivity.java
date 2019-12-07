@@ -16,7 +16,7 @@ public class MainMenuActivity extends AppCompatActivity {
 
     // Called when user taps "Maps" button
     public void mapDialog(View view) {
-        Intent gotoMapDialog = new Intent(this, MapsDialogueActivity.class);
+        Intent gotoMapDialog = new Intent(this, MapsDialogActivity.class);
         startActivity(gotoMapDialog);
     }
 
@@ -24,5 +24,11 @@ public class MainMenuActivity extends AppCompatActivity {
     public void graphDisplay(View view) {
         Intent gotoGraphDisplay = new Intent(this, ChooseGraphActivity.class);
         startActivity(gotoGraphDisplay);
+    }
+
+    // Called when user taps "Enter tip" button
+    public void enterTips(View view) {
+        Intent gotoTips = new Intent(this, EnterTipScreenActivity.class);
+        startActivity(gotoTips);
     }
 }

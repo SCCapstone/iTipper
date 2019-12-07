@@ -16,6 +16,11 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".CreateAccountActivity"></activity>
+        <activity android:name=".DisplayMessageActivity"></activity>
+        <activity android:name=".EnterTipScreenActivity" />
+        <activity android:name=".TipScreenActivity" />
+        <activity android:name=".MapsActivity" />
+        <activity android:name=".MapsDialogActivity" />
         <activity android:name=".DisplayTipsGraphActivity" />
         <activity android:name=".ChooseGraphActivity" />
         <activity android:name=".DisplayGraphActivity" />
@@ -38,22 +43,6 @@
         <meta-data
             android:name="com.google.android.geo.API_KEY"
             android:value="@string/google_maps_key" />
-
-        <activity
-            android:name=".MapsActivity"
-            android:label="@string/title_activity_maps">
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.example.csce490m3research.MapsDialogueActivity" />
-        </activity>
-        <activity
-            android:name=".DisplayMessageActivity"
-            android:parentActivityName=".MapsDialogueActivity">
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value=".MapsDialogueActivity" />
-        </activity>
-        <activity android:name=".MapsDialogueActivity" />
     </application>
 
 </manifest>
