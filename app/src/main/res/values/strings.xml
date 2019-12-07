@@ -10,6 +10,8 @@
     <string name="tips_graph_button">Go to graph with tip data</string>
     <string name="destination_message">Enter a new location &#8230;</string>
     <string name="button_search">GMap</string>
+    <string name="record_tip">Record tip</string>
+    <string name="enter_tip">Enter tip</string>
 
 </resources>
 

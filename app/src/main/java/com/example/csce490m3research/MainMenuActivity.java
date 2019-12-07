@@ -25,4 +25,10 @@ public class MainMenuActivity extends AppCompatActivity {
         Intent gotoGraphDisplay = new Intent(this, ChooseGraphActivity.class);
         startActivity(gotoGraphDisplay);
     }
+
+    // Called when user taps "Enter tip" button
+    public void enterTips(View view) {
+        Intent gotoTips = new Intent(this, EnterTipScreenActivity.class);
+        startActivity(gotoTips);
+    }
 }

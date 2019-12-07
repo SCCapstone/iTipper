@@ -15,6 +15,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity android:name=".DisplayMessageActivity"></activity>
+        <activity android:name=".EnterTipScreenActivity" />
+        <activity android:name=".TipScreenActivity" />
         <activity android:name=".MapsActivity" />
         <activity android:name=".MapsDialogActivity" />
         <activity android:name=".DisplayTipsGraphActivity" />
