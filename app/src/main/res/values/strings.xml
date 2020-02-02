@@ -12,6 +12,7 @@
     <string name="button_search">GMap</string>
     <string name="record_tip">Record tip</string>
     <string name="enter_tip">Enter tip</string>
+    <string name="choose_graph">Choose which graph to display.</string>
 
 </resources>
 
