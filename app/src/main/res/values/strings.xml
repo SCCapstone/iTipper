@@ -2,6 +2,7 @@
     <string name="app_name">iTipper</string>
     <string name="edit_message">Describe your location &#8230;</string>
     <string name="button_send">Gmap</string>
+    <string name="button_My_Map">Map(internal)</string>
     <string name="title_activity_maps">Map</string>
     <string name="go_to_graph_display_button">Go to graph display screen</string>
     <string name="go_to_map_display_button">Go to maps dialog screen</string>
@@ -13,6 +14,7 @@
     <string name="record_tip">Record tip</string>
     <string name="enter_tip">Enter tip</string>
     <string name="choose_graph">Choose which graph to display.</string>
+    <string name="api_key">AIzaSyCxPhjgrmWrjSFjFMJx-YMNfXiTcq7j4Xg</string>
 
 </resources>
 
