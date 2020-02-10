@@ -81,23 +81,33 @@ Run the app on an emulator as follows:
 # Testing
 
 Unit tests are integrated with JUnit. Instrumented tests are run and supported by Espresso.
-The tests can either be run from inside of Android Studio or from the command line.
+The tests can either be run from inside of Android Studio or from the command line:
 
-# In Android Studio
+### In the Android Studio UI
+
+Open Android Studio. The project can be cloned by clicking File > New > Project from Version Control... > Git
+Enter the project URL ( https://github.com/SCCapstone/iTipper ) in the URL box, then click clone. 
 
 Once the repository is cloned, unit tests can be run from the project directory view. 
 Locate app > java > com (test). Right click, then select "Run 'Tests in 'com''".
 
 For instrumented tests, either connect an Android device or set up an emulator (help with setting up an emulator can be found [here](https://developer.android.com/studio/run/emulator)). Locate app > java > com (androidTest), right click, "Run 'Tests in 'com''".
 
-# From a command line interface
+### From a command line interface
 
-From the project folder (top directory):
+Clone the repository with:
+git clone https://github.com/SCCapstone/iTipper
+
+Then navigate into the top level folder with:
+cd iTipper
+
+If done correctly, an "ls" should show this readme as one of the files in the current directory.
 
 Run unit tests with:
 ./gradlew test
 
-To run instrumented tests, connect an Android device. Then enter:
+To run instrumented tests, connect an Android device via USB. (Help with setting up a device for testing over USB can be found [here](https://developer.android.com/studio/run/device) .)
+Then enter:
 ./gradlew connectedAndroidTest
 
 ## Authors
