@@ -24,3 +24,4 @@ public class ChooseGraphActivity extends AppCompatActivity {
         startActivity(gotoTipsGraph);
     }
 }
+// Testing something
