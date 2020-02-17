@@ -17,15 +17,18 @@ public class EnterTipScreenActivity extends AppCompatActivity {
         setContentView(R.layout.activity_enter_tip_screen);
     }
 
-    /**
-     * Called when the user taps the Send button
-     */
-    public void EnterTipScreenActivity(View view) {
-        Intent intent = new Intent(this, EnterTipScreenActivity.class);
-        EditText editText = (EditText) findViewById(R.id.editText);
+    /** Called when the user taps the Record button */
+    public void record(View view) {
+        // The string entered by the user in the text box
+        EditText editText = findViewById(R.id.tipInputText);
         String message = editText.getText().toString();
-        intent.putExtra(EXTRA_MESSAGE, message);
-        startActivity(intent);
+
+        // Write the tip out to the database
+        try {
+            Tip.writeTipString(message);
+        } catch (InvalidTipException e) {
+            e.printStackTrace();
+        }
 
     }
 }
