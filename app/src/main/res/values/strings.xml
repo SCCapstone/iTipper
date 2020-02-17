@@ -16,5 +16,7 @@
     <string name="choose_graph">Choose which graph to display.</string>
     <string name="api_key">AIzaSyCxPhjgrmWrjSFjFMJx-YMNfXiTcq7j4Xg</string>
 
+    <string name="tip_response_text"></string>
+
 </resources>
 
