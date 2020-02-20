@@ -8,10 +8,6 @@
 
 package com.example.csce490m3research;
 
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-
 import java.time.ZonedDateTime;
 
 public class Tip {
@@ -21,9 +17,7 @@ public class Tip {
     // Constructors
 
     // Only tip value specified. Use the current user and current time.
-    public Tip(double Value)
-            throws InvalidTipException {
-
+    public Tip(double Value) throws InvalidTipException {
         ZonedDateTime Time = ZonedDateTime.now();
         setTime(Time);
 
@@ -31,19 +25,7 @@ public class Tip {
 
     }
 
-    // Constructor if the time isn't specified. Use the current time.
-    public Tip(String UserID, double Value)
-            throws InvalidTipException {
-
-        ZonedDateTime Time = ZonedDateTime.now();
-        setTime(Time);
-
-        setValue(Value);
-    }
-
-    public Tip(String UserID, ZonedDateTime Time, double Value)
-            throws InvalidTipException {
-
+    public Tip(ZonedDateTime Time, double Value) throws InvalidTipException {
         setTime(Time);
 
         setValue(Value);
@@ -69,27 +51,8 @@ public class Tip {
         value = Value;
     }
 
-    // Write tip out to database
-    public void write() {
-        String userID = FirebaseAuth.getInstance().getUid();
-
-        FirebaseDatabase database = FirebaseDatabase.getInstance();
-        DatabaseReference tipsRef =
-                database.getReference("users").child(userID).child("tips");
-
-        // Create a reference to a new tip and set it to the current tip
-        tipsRef.push().setValue(this);
-    }
-
-    // Write a tip out to database. No need to instantiate an object, just give the tip value
-    // as an argument.
-    public static void writeTipString(String tipString)
-            throws InvalidTipException {
-
-        double tipValue = Double.parseDouble(tipString);
-        Tip t = new Tip(tipValue);
-
-        t.write();
+    public String toString() {
+        return time.toString() + " : " + value;
     }
 
 }
