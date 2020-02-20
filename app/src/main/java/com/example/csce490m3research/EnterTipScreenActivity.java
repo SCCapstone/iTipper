@@ -25,8 +25,9 @@ public class EnterTipScreenActivity extends AppCompatActivity {
 
         // Write the tip out to the database
         try {
-            Tip.writeTipString(message);
+            Database.writeTip(message);
         } catch (InvalidTipException e) {
+            //TODO: send an error message to the user that they've entered an invalid tip
             e.printStackTrace();
         }
 
