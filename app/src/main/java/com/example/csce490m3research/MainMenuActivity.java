@@ -16,8 +16,11 @@ public class MainMenuActivity extends AppCompatActivity {
 
     // Called when user taps "Maps" button
     public void mapDialog(View view) {
-        Intent gotoMapDialog = new Intent(this, MapsDialogActivity.class);
-        startActivity(gotoMapDialog);
+        //Intent gotoMapDialog = new Intent(this, MapsDialogActivity.class);
+        //startActivity(gotoMapDialog);
+        Intent intent = new Intent(this, MapsActivity.class);
+        startActivity(intent);
+
     }
 
     // Called when user taps "Graph" button
