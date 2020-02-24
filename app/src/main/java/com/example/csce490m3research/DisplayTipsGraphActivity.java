@@ -1,26 +1,51 @@
 package com.example.csce490m3research;
 
-import androidx.appcompat.app.AppCompatActivity;
-
-import android.os.Bundle;
-
 import android.app.Activity;
-import android.graphics.*;
+import android.graphics.Color;
 import android.os.Bundle;
+import android.util.Log;
 
-import com.androidplot.util.PixelUtils;
+import androidx.annotation.NonNull;
+
+import com.androidplot.xy.CatmullRomInterpolator;
+import com.androidplot.xy.LineAndPointFormatter;
 import com.androidplot.xy.SimpleXYSeries;
+import com.androidplot.xy.XYGraphWidget;
+import com.androidplot.xy.XYPlot;
 import com.androidplot.xy.XYSeries;
-import com.androidplot.xy.*;
+import com.google.android.gms.tasks.Continuation;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
+import com.google.android.gms.tasks.Tasks;
+import com.google.firebase.database.annotations.Nullable;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.EventListener;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.FirebaseFirestoreException;
+import com.google.firebase.firestore.Query;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
 
+import java.lang.reflect.Array;
 import java.text.FieldPosition;
 import java.text.Format;
 import java.text.ParsePosition;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import java.util.Map;
+
+import static androidx.constraintlayout.widget.Constraints.TAG;
 
 public class DisplayTipsGraphActivity extends Activity {
 
+    private List<Tip> tips;
+
     private XYPlot plot;
+
+    private FirebaseFirestore db;
 
     @Override
     public void onCreate(Bundle savedInstanceState)
@@ -31,10 +56,19 @@ public class DisplayTipsGraphActivity extends Activity {
         // initialize our XYPlot reference:
         plot = (XYPlot) findViewById(R.id.plot);
 
-        // create a couple arrays of y-values to plot:
-        final Number[] domainLabels = {1, 2, 3, 6, 7, 8, 9, 10, 13, 14};
-        // TODO: replace this with tips data
-        Number[] series1Numbers = {1, 4, 2, 8, 4, 16, 8, 32, 16, 64};
+        tips = new ArrayList<>();
+        getData();
+
+        // TODO: use tip data, user better domain labels
+        final Number[] domainLabels = new Number[tips.size()];
+        Number[] series1Numbers = new Number[tips.size()];
+
+        // Load the actual values for each tip into the series
+        // Also load domain labels. See todo above
+        for (int i = 0; i < tips.size(); i++) {
+            domainLabels[i] = i;
+            series1Numbers[i] = tips.get(i).getValue();
+        }
 
         // turn the above arrays into XYSeries':
         // (Y_VALS_ONLY means use the element index as the x value)
@@ -46,13 +80,6 @@ public class DisplayTipsGraphActivity extends Activity {
         LineAndPointFormatter series1Format =
                 new LineAndPointFormatter(Color.RED, Color.GREEN, Color.BLUE, null);
 
-
-        // just for fun, add some smoothing to the lines:
-        // see: http://androidplot.com/smooth-curves-and-androidplot/
-        series1Format.setInterpolationParams(
-                new CatmullRomInterpolator.Params(10, CatmullRomInterpolator.Type.Centripetal));
-
-        // add a new series' to the xyplot:
         plot.addSeries(series1, series1Format);
 
         plot.getGraph().getLineLabelStyle(XYGraphWidget.Edge.BOTTOM).setFormat(new Format() {
@@ -67,4 +94,19 @@ public class DisplayTipsGraphActivity extends Activity {
             }
         });
     }
+
+    void getData() {
+        Database d = new Database();
+        d.loadTips();
+
+        List<Tip> data = d.getTips();
+
+        /* TODO: why does the data retrieval happen after the below lines? How to make it wait
+            for the data to arrive from the database? */
+        System.out.println("Tip data retrieved: " + data);
+        if (data != null) {
+            tips.addAll(data);
+        }
+    }
+
 }

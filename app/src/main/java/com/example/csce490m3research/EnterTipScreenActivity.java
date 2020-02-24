@@ -1,31 +1,28 @@
-// Added by @paolomilan
+/** Screen where the user can input tips.
+ *
+ *  Authors: Paolo Milan, Tyler Chambers
+ */
 package com.example.csce490m3research;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
-
-import java.util.ArrayList;
-import java.util.List;
-import static androidx.constraintlayout.widget.Constraints.TAG;
 
 
 public class EnterTipScreenActivity extends AppCompatActivity {
     public static final String EXTRA_MESSAGE = "com.example.myfirstapp.MESSAGE";
 
-    TextView tipsView;
+    TextView responseText;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_enter_tip_screen);
 
-        tipsView = new TextView(this);
+        responseText = (TextView)findViewById(R.id.responseTextView);
     }
 
     /** Called when the user taps the Record button */
@@ -34,27 +31,18 @@ public class EnterTipScreenActivity extends AppCompatActivity {
         EditText editText = findViewById(R.id.tipInputText);
         String message = editText.getText().toString();
 
-        // Write the tip out to the database
         try {
+            Tip tip = new Tip(message);
+            System.out.println(tip + " from user input");
+
             Database.writeTip(message);
+
+            editText.setText("");
+            responseText.setText("Entered tip: " + tip.toString());
+
         } catch (InvalidTipException e) {
-            //TODO: send an error message to the user that they've entered an invalid tip
-            e.printStackTrace();
+            responseText.setText("Error entering tip: " + message);
         }
-
-        tipsView.setText(userTips());
     }
 
-    public String userTips() {
-        String tipsString = "";
-        List<Tip> tips = Database.readTips();
-        Log.i(TAG, "Tips entered: " + tips.size());
-
-        for (Tip t: tips) {
-            tipsString += t.toString();
-        }
-
-        Log.i(TAG, tipsString);
-        return tipsString;
-    }
 }

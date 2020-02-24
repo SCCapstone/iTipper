@@ -1,60 +1,81 @@
-/* Object encapsulating a tip entered by a user.
-   username: identifier for the user. Should match username used by Firebase authentification.
-   time: the date and time that the tip was entered.
-   value: the amount in dollars of the tip.
-
-   Authors: Tyler Chambers
+/** Object encapsulating a tip entered by a user.
+ *    value: the amount in dollars of the tip.
+ *    time: the date and time that the tip was entered.
+ *
+ * Authors: Tyler Chambers
  */
 
 package com.example.csce490m3research;
 
-import java.math.BigDecimal;
-import java.time.ZonedDateTime;
+import com.google.firebase.Timestamp;
+import java.util.HashMap;
+import java.util.Map;
 
 public class Tip {
-    private String time;
-    private String value;
+    double value;
+    Timestamp time;
 
     // Constructors
 
-    // Only tip value specified. Use the current user and current time.
-    public Tip(String Value) throws InvalidTipException {
-        ZonedDateTime Time = ZonedDateTime.now();
-        setTime(Time.toString());
-
-        setValue(Value);
+    public Tip() {
 
     }
 
-    public Tip(String Time, String Value) throws InvalidTipException {
+    // Only tip value specified. Use the current user and current time.
+    public Tip(String value) throws InvalidTipException {
+        Timestamp Time = Timestamp.now();
         setTime(Time);
 
-        setValue(Value);
+        setValue(Double.parseDouble(value));
     }
 
-    public String getTime() {
+    public Tip(double value, Timestamp time) throws InvalidTipException {
+        setValue(value);
+        setTime(time);
+    }
+
+    // Map constructor:
+    // The map should contain keys for value and time.
+    public Tip(Map map) {
+        value = (double) map.get("value");
+        time = (com.google.firebase.Timestamp) map.get("time");
+    }
+
+
+    // Accessors
+    public Timestamp getTime() {
         return time;
     }
 
-    public String getValue() {
+    public double getValue() {
         return value;
     }
 
     // Setters
-    public void setTime(String Time) {
-        time = Time;
+    public void setTime(Timestamp time) {
+        this.time = time;
     }
 
-    public void setValue(String Value) throws InvalidTipException {
-        BigDecimal val = new BigDecimal(Value);
-        if (val.compareTo(BigDecimal.ZERO) <= 0) {
+    public void setValue(double value) throws InvalidTipException {
+        if (value <= 0) {
             throw new InvalidTipException("Tip cannot be less than or equal to 0.00 dollars.");
         }
-        value = Value;
+
+        this.value = value;
+    }
+
+    // Util
+    public Map<String, Object> asMap() {
+        Map<String, Object> tip = new HashMap<>();
+
+        tip.put("value", value);
+        tip.put("time", time);
+
+        return tip;
     }
 
     public String toString() {
-        return time + " : " + value;
+        return time.toDate().toString() + " : " + value;
     }
 
 }

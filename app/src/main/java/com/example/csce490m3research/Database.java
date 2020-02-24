@@ -1,87 +1,146 @@
+/** Static class to handle database operations.
+ *  Should allow writing tip values, reading the tips that have been written
+ *
+ *  Authors: Tyler Chambers
+ */
+
 package com.example.csce490m3research;
 
+import android.graphics.Color;
 import android.util.Log;
 
+import androidx.annotation.NonNull;
+
+import com.androidplot.xy.LineAndPointFormatter;
+import com.androidplot.xy.SimpleXYSeries;
+import com.androidplot.xy.XYSeries;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.database.ChildEventListener;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.Query;
-import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.firestore.CollectionReference;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.FieldValue;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.FirebaseFirestoreSettings;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.LinkedList;
+import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import static androidx.constraintlayout.widget.Constraints.TAG;
 
-/** Static class to handle database operations.
- * Write, read, update.
- */
 public class Database {
 
+    private static FirebaseFirestore mFirestore;
+    private List<Tip> tips;
+
     /** Write a tip out to the database with the current time and signed in user.
-     * @param tipValue
+     * @param tipValue, as a String
      * @throws InvalidTipException: if tipValue <= 0
      */
     public static void writeTip(String tipValue) throws InvalidTipException {
-        DatabaseReference tipsRef = tipsReference();
-
-        // Create a reference to a new tip and set it to the current tip
+        // Tip to be written
         Tip tip = new Tip(tipValue);
-        tipsRef.push().setValue(tip);
+
+        // Find the user in the users collection, then update their tips field
+        /* Currently using a different model for the database below, where tips is
+         * its own collection. */
+         //DocumentReference user = userReference();
+        //user.update("tips", FieldValue.arrayUnion(tip.asMap()));
+
+        // Add an entry to the tips collection with UID, value, timestamp
+        CollectionReference tips = tipsReference();
+        Map<String, Object> data = new HashMap<>();
+
+        data.put("uid", getUID());
+        data.put("value", tip.getValue());
+        data.put("time", tip.getTime());
+
+        tips.add(data);
     }
 
     /** Read tips that the user has input to the database and return as an array.
      */
-    public static List<Tip> readTips() {
-        final List<Tip> tips = new ArrayList<>();
+    public void loadTips() {
+        FirebaseFirestore db = FirebaseFirestore.getInstance();
 
-        DatabaseReference tipsRef = tipsReference();
-        ValueEventListener eventListener = new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                for(DataSnapshot ds : dataSnapshot.getChildren()) {
-                    String time = (String) ds.child("time").getValue();
-                    String value = (String) ds.child("value").getValue();
-                    Tip tip = null;
-                    try {
-                        tip = new Tip(time, value);
-                    } catch (InvalidTipException e) {
-                        e.printStackTrace();
+        // Query the tips collection for each entry where the uid matches the user's
+        // Then, attach a listener that should update the list of tips whenever something changes
+        db.collection("tips")
+                .whereEqualTo("uid", getUID())
+                .get()
+                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        if (task.isSuccessful()) {
+                            List<Tip> listOfTips = new ArrayList<>();
+
+                            // Each document should be a map keyed by "uid", "value", "time"
+                            // So use the map constructor from Tip to make instantiating easier.
+                            for (QueryDocumentSnapshot document : task.getResult()) {
+                                Tip tip = new Tip(document.getData());
+                                Log.d(TAG, document.getId() + " => " + document.getData());
+                                listOfTips.add(tip);
+                            }
+
+                            processData(listOfTips);
+                        } else {
+                            Log.d(TAG, "Error getting documents: ", task.getException());
+                        }
                     }
-                    tips.add(tip);
-                }
-            }
+                });
+    }
 
-            @Override
-            public void onCancelled(DatabaseError databaseError) {}
-        };
-        tipsRef.addListenerForSingleValueEvent(eventListener);
+    // Set tips to parameter
+    public void processData(List<Tip> data) {
+        tips = new ArrayList(data);
+    }
 
-        return tips;
+    public List<Tip> getTips() {
+        return this.tips;
     }
 
     /**
-     * @return DatabaseReference for the signed in user's tips
+     * @return Database reference for the signed in user's document
      */
-    public static DatabaseReference tipsReference() {
-        String userID = getUserID();
+    public static DocumentReference userReference() {
+        String UID = getUID();
 
-        FirebaseDatabase database = FirebaseDatabase.getInstance();
-        DatabaseReference tipsRef =
-                database.getReference("tips").child(userID);
+        mFirestore = FirebaseFirestore.getInstance();
+        FirebaseFirestoreSettings settings = new FirebaseFirestoreSettings.Builder()
+                .setTimestampsInSnapshotsEnabled(true)
+                .build();
+        mFirestore.setFirestoreSettings(settings);
+
+        DocumentReference user = mFirestore
+                .collection("users").document(UID);
+
+        return user;
+    }
+
+    public static CollectionReference tipsReference() {
+        String UID = getUID();
+
+        mFirestore = FirebaseFirestore.getInstance();
+        FirebaseFirestoreSettings settings = new FirebaseFirestoreSettings.Builder()
+                .setTimestampsInSnapshotsEnabled(true)
+                .build();
+        mFirestore.setFirestoreSettings(settings);
+
+        CollectionReference tipsRef = mFirestore
+                .collection("tips");
 
         return tipsRef;
     }
 
     /**
-     * @return String for the currently signed in user
+     * @return FirebaseAuth User ID for the currently signed in user
      */
-    public static String getUserID() {
+    public static String getUID() {
         return FirebaseAuth.getInstance().getUid();
     }
 }

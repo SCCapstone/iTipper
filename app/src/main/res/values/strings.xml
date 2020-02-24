@@ -14,7 +14,7 @@
     <string name="enter_tip">Enter tip</string>
     <string name="choose_graph">Choose which graph to display.</string>
 
-    <string name="tip_response_text"></string>
+    <string name="tip_response_text">Enter a tip.</string>
 
 </resources>
 
