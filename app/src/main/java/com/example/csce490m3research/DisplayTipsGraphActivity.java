@@ -3,6 +3,7 @@ package com.example.csce490m3research;
 import android.app.Activity;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.telecom.Call;
 import android.util.Log;
 
 import androidx.annotation.NonNull;
@@ -56,57 +57,54 @@ public class DisplayTipsGraphActivity extends Activity {
         // initialize our XYPlot reference:
         plot = (XYPlot) findViewById(R.id.plot);
 
-        tips = new ArrayList<>();
         getData();
-
-        // TODO: use tip data, user better domain labels
-        final Number[] domainLabels = new Number[tips.size()];
-        Number[] series1Numbers = new Number[tips.size()];
-
-        // Load the actual values for each tip into the series
-        // Also load domain labels. See todo above
-        for (int i = 0; i < tips.size(); i++) {
-            domainLabels[i] = i;
-            series1Numbers[i] = tips.get(i).getValue();
-        }
-
-        // turn the above arrays into XYSeries':
-        // (Y_VALS_ONLY means use the element index as the x value)
-        XYSeries series1 = new SimpleXYSeries(
-                Arrays.asList(series1Numbers), SimpleXYSeries.ArrayFormat.Y_VALS_ONLY, "Series1");
-
-        // create formatters to use for drawing a series using LineAndPointRenderer
-        // and configure them from xml:
-        LineAndPointFormatter series1Format =
-                new LineAndPointFormatter(Color.RED, Color.GREEN, Color.BLUE, null);
-
-        plot.addSeries(series1, series1Format);
-
-        plot.getGraph().getLineLabelStyle(XYGraphWidget.Edge.BOTTOM).setFormat(new Format() {
-            @Override
-            public StringBuffer format(Object obj, StringBuffer toAppendTo, FieldPosition pos) {
-                int i = Math.round(((Number) obj).floatValue());
-                return toAppendTo.append(domainLabels[i]);
-            }
-            @Override
-            public Object parseObject(String source, ParsePosition pos) {
-                return null;
-            }
-        });
     }
 
     void getData() {
         Database d = new Database();
-        d.loadTips();
 
-        List<Tip> data = d.getTips();
+        d.loadTips(new Callback() {
+            @Override
+            public void onCallback(List<Tip> data) {
+                System.out.println("Callback data: " + data);
+                tips = new ArrayList<>(data);
 
-        /* TODO: why does the data retrieval happen after the below lines? How to make it wait
-            for the data to arrive from the database? */
-        System.out.println("Tip data retrieved: " + data);
-        if (data != null) {
-            tips.addAll(data);
-        }
+                // TODO: use tip data, user better domain labels
+                final Number[] domainLabels = new Number[tips.size()];
+                Number[] series1Numbers = new Number[tips.size()];
+
+                // Load the actual values for each tip into the series
+                // Also load domain labels. See todo above
+                for (int i = 0; i < tips.size(); i++) {
+                    domainLabels[i] = i;
+                    series1Numbers[i] = tips.get(i).getValue();
+                }
+
+                // turn the above arrays into XYSeries':
+                // (Y_VALS_ONLY means use the element index as the x value)
+                XYSeries series1 = new SimpleXYSeries(
+                        Arrays.asList(series1Numbers), SimpleXYSeries.ArrayFormat.Y_VALS_ONLY, "Series1");
+
+                // create formatters to use for drawing a series using LineAndPointRenderer
+                // and configure them from xml:
+                LineAndPointFormatter series1Format =
+                        new LineAndPointFormatter(Color.RED, Color.GREEN, Color.BLUE, null);
+
+                plot.addSeries(series1, series1Format);
+
+                plot.getGraph().getLineLabelStyle(XYGraphWidget.Edge.BOTTOM).setFormat(new Format() {
+                    @Override
+                    public StringBuffer format(Object obj, StringBuffer toAppendTo, FieldPosition pos) {
+                        int i = Math.round(((Number) obj).floatValue());
+                        return toAppendTo.append(domainLabels[i]);
+                    }
+                    @Override
+                    public Object parseObject(String source, ParsePosition pos) {
+                        return null;
+                    }
+                });
+            }
+        });
     }
 
 }

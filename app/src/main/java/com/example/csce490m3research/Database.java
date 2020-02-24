@@ -22,6 +22,7 @@ import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FieldValue;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FirebaseFirestoreSettings;
+import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 
@@ -65,34 +66,24 @@ public class Database {
 
     /** Read tips that the user has input to the database and return as an array.
      */
-    public void loadTips() {
-        FirebaseFirestore db = FirebaseFirestore.getInstance();
+    public void loadTips(final Callback myCallback) {
+        Query tipsRef = FirebaseFirestore.getInstance()
+                .collection("tips")
+                .whereEqualTo("uid", getUID());
 
-        // Query the tips collection for each entry where the uid matches the user's
-        // Then, attach a listener that should update the list of tips whenever something changes
-        db.collection("tips")
-                .whereEqualTo("uid", getUID())
-                .get()
-                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-                    @Override
-                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                        if (task.isSuccessful()) {
-                            List<Tip> listOfTips = new ArrayList<>();
-
-                            // Each document should be a map keyed by "uid", "value", "time"
-                            // So use the map constructor from Tip to make instantiating easier.
-                            for (QueryDocumentSnapshot document : task.getResult()) {
-                                Tip tip = new Tip(document.getData());
-                                Log.d(TAG, document.getId() + " => " + document.getData());
-                                listOfTips.add(tip);
-                            }
-
-                            processData(listOfTips);
-                        } else {
-                            Log.d(TAG, "Error getting documents: ", task.getException());
-                        }
+        tipsRef.get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                if (task.isSuccessful()) {
+                    List<Tip> tipsList = new ArrayList<>();
+                    for (QueryDocumentSnapshot document : task.getResult()) {
+                        Tip tip = new Tip(document.getData());
+                        tipsList.add(tip);
                     }
-                });
+                    myCallback.onCallback(tipsList);
+                }
+            }
+        });
     }
 
     // Set tips to parameter
