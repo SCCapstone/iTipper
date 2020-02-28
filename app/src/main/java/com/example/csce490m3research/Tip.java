@@ -28,6 +28,12 @@ public class Tip {
 
         setValue(Double.parseDouble(value));
     }
+    public Tip(double Value) throws InvalidTipException {
+        Timestamp Time = Timestamp.now();
+        setTime(Time);
+
+        setValue(Value);
+    }
 
     public Tip(double value, Timestamp time) throws InvalidTipException {
         setValue(value);
