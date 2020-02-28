@@ -8,6 +8,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
@@ -18,32 +19,27 @@ public class EnterTipScreenActivity extends AppCompatActivity {
     public static final String EXTRA_MESSAGE = "com.example.myfirstapp.MESSAGE";
 
     TextView responseText;
-    TextView databaseTips;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_enter_tip_screen);
-
+        Button quickTip1 = findViewById(R.id.quicktip1);
+        Button quickTip2 = findViewById(R.id.quicktip2);
+        Button quickTip3 = findViewById(R.id.quicktip3);
+        Button quickTip4 = findViewById(R.id.quicktip4);
+        Button quickTip5 = findViewById(R.id.quicktip5);
         responseText = (TextView)findViewById(R.id.responseTextView);
 
-        Database d = new Database();
-        d.loadTips(new Callback() {
-            @Override
-            public void onCallback(List<Tip> tipList) {
-                databaseTips = (TextView) findViewById(R.id.tipsView);
+        quickTip1.setText("+ $1");
+        quickTip2.setText("+ $2");
+        quickTip3.setText("+ $3");
+        quickTip4.setText("+ $4");
+        quickTip5.setText("+ $5");
 
-                String stringToWrite = "";
-                for (Tip t : tipList) {
-                    stringToWrite += t.toString() + "\n";
-                }
-
-                databaseTips.setText(stringToWrite);
-            }
-        });
     }
 
-    /** Called when the user taps the Record button */
+    /** Called when the user taps the + button */
     public void record(View view) {
         // The string entered by the user in the text box
         EditText editText = findViewById(R.id.tipInputText);
@@ -59,8 +55,28 @@ public class EnterTipScreenActivity extends AppCompatActivity {
             responseText.setText("Entered tip: " + tip.toString());
 
         } catch (InvalidTipException e) {
-            responseText.setText("Error entering tip: " + message
-                    + ". Tip should be greater than zero.");
+            String errorText = "Error entering tip: " + message
+                    + "\n" + "Tip should be greater than zero.";
+            responseText.setText(errorText);
+        }
+    }
+
+    public void quickRecord(View view) {
+        String tipValue = ((Button) view).getText().toString();
+        tipValue = tipValue.substring(tipValue.indexOf('$')+1);
+
+        try {
+            Tip tip = new Tip(tipValue);
+            System.out.println(tip + " from user input");
+
+            Database.writeTip(tip);
+
+            responseText.setText("Entered tip: " + tip.toString());
+
+        } catch (InvalidTipException e) {
+            String errorText = "Error entering tip: " + tipValue
+                    + "\n" + "Tip should be greater than zero.";
+            responseText.setText(errorText);
         }
     }
 

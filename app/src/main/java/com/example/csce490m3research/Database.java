@@ -8,6 +8,7 @@ package com.example.csce490m3research;
 
 import android.graphics.Color;
 import android.util.Log;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 
@@ -37,7 +38,6 @@ import static androidx.constraintlayout.widget.Constraints.TAG;
 public class Database {
 
     private static FirebaseFirestore mFirestore;
-    private List<Tip> tips;
 
     /** Write a tip out to the database with the current time and signed in user.
      * @param tipValue, as a String
@@ -63,13 +63,24 @@ public class Database {
 
         tips.add(data);
     }
+    public static void writeTip(Tip tip) throws InvalidTipException {
+        CollectionReference tips = tipsReference();
+        Map<String, Object> data = new HashMap<>();
+
+        data.put("uid", getUID());
+        data.put("value", tip.getValue());
+        data.put("time", tip.getTime());
+
+        tips.add(data);
+    }
 
     /** Read tips that the user has input to the database and return as an array.
      */
-    public void loadTips(final Callback myCallback) {
+    public static void loadTips(final Callback myCallback) {
         Query tipsRef = FirebaseFirestore.getInstance()
                 .collection("tips")
-                .whereEqualTo("uid", getUID());
+                .whereEqualTo("uid", getUID())
+                .orderBy("time", Query.Direction.ASCENDING);
 
         tipsRef.get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
             @Override
@@ -86,13 +97,17 @@ public class Database {
         });
     }
 
-    // Set tips to parameter
-    public void processData(List<Tip> data) {
-        tips = new ArrayList(data);
-    }
+    public static List<Tip> getTips() {
+        final List<Tip> tips = new ArrayList<>();
 
-    public List<Tip> getTips() {
-        return this.tips;
+        loadTips(new Callback() {
+            @Override
+            public void onCallback(List<Tip> tipList) {
+                tips.addAll(tipList);
+            }
+        });
+
+        return tips;
     }
 
     /**
