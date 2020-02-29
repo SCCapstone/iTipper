@@ -17,13 +17,13 @@ public class ViewTipsActivity extends AppCompatActivity {
         setContentView(R.layout.activity_view_tips);
 
 
-        Database.loadTips(new Callback() {
+        Database.loadTips(new ListCallback() {
             @Override
-            public void onCallback(List<Tip> tipList) {
+            public void onCallback(List tipList) {
                 databaseTips = (TextView) findViewById(R.id.tipsView);
 
                 String stringToWrite = "";
-                for (Tip t : tipList) {
+                for (Object t : tipList) {
                     stringToWrite += t.toString() + "\n";
                 }
 
