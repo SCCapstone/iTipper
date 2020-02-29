@@ -166,6 +166,7 @@ public class EnterTipScreenActivity extends AppCompatActivity {
     public void endShift(View view) {
         Query query = FirebaseFirestore.getInstance()
                 .collection("shifts")
+                .whereEqualTo("uid", Database.getUID())
                 .orderBy("start", Query.Direction.DESCENDING)
                 .limit(1);
 

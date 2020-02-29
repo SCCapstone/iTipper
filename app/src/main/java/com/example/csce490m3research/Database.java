@@ -99,6 +99,7 @@ public class Database {
 
     public static void getMostRecentShift(final ListCallback callback) {
         Query shiftsRef = shiftsReference()
+                .whereEqualTo("uid", getUID())
                 .orderBy("start", Query.Direction.DESCENDING)
                 .limit(1);
 
