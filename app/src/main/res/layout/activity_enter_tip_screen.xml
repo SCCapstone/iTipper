@@ -123,6 +123,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginBottom="16dp"
+        android:onClick="endShift"
         android:text="@string/end_shift_button"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
@@ -138,5 +139,24 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/endShiftButton" />
+
+    <Button
+        android:id="@+id/startShiftButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginBottom="16dp"
+        android:onClick="startShift"
+        android:text="@string/start_shift_button"
+        app:layout_constraintBottom_toTopOf="@+id/endShiftButton"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/shift_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        app:layout_constraintBottom_toBottomOf="@+id/startShiftButton"
+        app:layout_constraintStart_toEndOf="@+id/startShiftButton" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

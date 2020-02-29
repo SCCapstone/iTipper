@@ -59,9 +59,9 @@ public class DisplayTipsGraphActivity extends Activity {
 
         // initialize our XYPlot reference:
 
-        Database.loadTips(new Callback() {
+        Database.loadTips(new ListCallback() {
             @Override
-            public void onCallback(List<Tip> tipsList) {
+            public void onCallback(List tipsList) {
                 plot = findViewById(R.id.plot);
             }
         });

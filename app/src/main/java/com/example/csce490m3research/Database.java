@@ -74,9 +74,9 @@ public class Database {
         tips.add(data);
     }
 
-    /** Read tips that the user has input to the database and return as an array.
+    /** Read tips that the user has input to the database
      */
-    public static void loadTips(final Callback myCallback) {
+    public static void loadTips(final ListCallback callback) {
         Query tipsRef = FirebaseFirestore.getInstance()
                 .collection("tips")
                 .whereEqualTo("uid", getUID())
@@ -91,23 +91,30 @@ public class Database {
                         Tip tip = new Tip(document.getData());
                         tipsList.add(tip);
                     }
-                    myCallback.onCallback(tipsList);
+                    callback.onCallback(tipsList);
                 }
             }
         });
     }
 
-    public static List<Tip> getTips() {
-        final List<Tip> tips = new ArrayList<>();
+    public static void getMostRecentShift(final ListCallback callback) {
+        Query shiftsRef = shiftsReference()
+                .orderBy("start", Query.Direction.DESCENDING)
+                .limit(1);
 
-        loadTips(new Callback() {
+        shiftsRef.get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
             @Override
-            public void onCallback(List<Tip> tipList) {
-                tips.addAll(tipList);
+            public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                if (task.isSuccessful()) {
+                    List<Shift> shiftList = new ArrayList<>(1);
+                    for (QueryDocumentSnapshot document : task.getResult()) {
+                        Shift shift = new Shift(document.getData());
+                        shiftList.add(shift);
+                    }
+                    callback.onCallback(shiftList);
+                }
             }
         });
-
-        return tips;
     }
 
     /**
@@ -129,8 +136,6 @@ public class Database {
     }
 
     public static CollectionReference tipsReference() {
-        String UID = getUID();
-
         mFirestore = FirebaseFirestore.getInstance();
         FirebaseFirestoreSettings settings = new FirebaseFirestoreSettings.Builder()
                 .setTimestampsInSnapshotsEnabled(true)
@@ -142,6 +147,20 @@ public class Database {
 
         return tipsRef;
     }
+
+    public static CollectionReference shiftsReference() {
+        mFirestore = FirebaseFirestore.getInstance();
+        FirebaseFirestoreSettings settings = new FirebaseFirestoreSettings.Builder()
+                .setTimestampsInSnapshotsEnabled(true)
+                .build();
+        mFirestore.setFirestoreSettings(settings);
+
+        CollectionReference shiftsRef = mFirestore
+                .collection("shifts");
+
+        return shiftsRef;
+    }
+
 
     /**
      * @return FirebaseAuth User ID for the currently signed in user
