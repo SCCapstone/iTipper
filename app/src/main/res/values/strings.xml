@@ -2,6 +2,7 @@
     <string name="app_name">iTipper</string>
     <string name="edit_message">Describe your location &#8230;</string>
     <string name="button_send">Gmap</string>
+    <string name="button_My_Map">Map(internal)</string>
     <string name="title_activity_maps">Map</string>
     <string name="go_to_graph_display_button">Go to graph display screen</string>
     <string name="go_to_map_display_button">Go to maps dialog screen</string>
@@ -10,8 +11,25 @@
     <string name="tips_graph_button">Go to graph with tip data</string>
     <string name="destination_message">Enter a new location &#8230;</string>
     <string name="button_search">GMap</string>
-    <string name="record_tip">Record tip</string>
-    <string name="enter_tip">Enter tip</string>
+    <string name="choose_graph">Choose which graph to display.</string>
 
+
+    <string name="view_user_activity_button">View tips you\'ve entered so far</string>
+
+
+    <string name="tip_entry_screen_title">Add a tip</string>
+    <string name="custom_tip_prompt">Custom tip</string>
+    <string name="record_tip">+</string>
+    <string name="enter_tip">Enter tip</string>
+    <string name="tip_response_text"></string>
+    <string name="start_shift_button">Start shift</string>
+    <string name="end_shift_button">End shift</string>
+    <string name="edit_tips_button">Edit tips</string>
+
+
+    <string name="user_activity_title">Your tips:</string>
+
+
+    <string name="api_key">AIzaSyCxPhjgrmWrjSFjFMJx-YMNfXiTcq7j4Xg</string>
 </resources>
 

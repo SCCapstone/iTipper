@@ -18,19 +18,23 @@ public class MapsDialogActivity extends AppCompatActivity {
         setContentView(R.layout.activity_maps_dialog);
     }
     // redirects to google maps on button press
-    /*public void sendMessage(View view) {
+
+    public void sendMessage(View view) {
 
 
         Intent intent = new Intent(this, MapsActivity.class);
         // this finds the plain text named editText
-        EditText editText = (EditText) findViewById(R.id.editText);
+        EditText editText = (EditText) findViewById(R.id.editText1);
         // retrieve text that was entered
         String message = editText.getText().toString();
         // put extra add the value of EditText to the intent. Intent can carry data types as key/val pairs called extras
         intent.putExtra(EXTRA_MESSAGE,message);
         startActivity(intent);
-    }*/
-    // mapped to button1
+    }
+
+
+    // mapped to button1 (opens google maps activity
+
     public void openMap(View view) {
 
         // Do something in response to button
@@ -45,4 +49,5 @@ public class MapsDialogActivity extends AppCompatActivity {
         Intent intent = new Intent(android.content.Intent.ACTION_VIEW, Uri.parse("http://maps.google.com/maps?daddr=" + message));
         startActivity(intent);
     }
+
 }
