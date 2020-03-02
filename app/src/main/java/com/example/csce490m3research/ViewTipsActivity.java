@@ -24,7 +24,15 @@ public class ViewTipsActivity extends AppCompatActivity {
 
                 String stringToWrite = "";
                 for (Object t : tipList) {
+                    // capture value of object toString
+                    String temp = t.toString();
+                    // get index of " : " just before tip
+                    int index = temp.indexOf(" : ");
+                    // shorten temp to just tip value
+                    temp = temp.substring(index + 3);
+                    double tipVal = Double.parseDouble(temp);
                     stringToWrite += t.toString() + "\n";
+                    //stringToWrite += tipVal + "\n";
                 }
 
                 databaseTips.setText(stringToWrite);

@@ -7,6 +7,7 @@ package com.example.csce490m3research;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -78,8 +79,8 @@ public class EnterTipScreenActivity extends AppCompatActivity {
                     // If both the start and end time exist, the last shift was completed
                     if (shift.getStart() != null && shift.getEnd() != null) {
                         shiftInfo = "Your last shift: " +
-                                "\nStarted at: " + shift.getStart().toDate().toString() +
-                                "\nEnded at: " + shift.getEnd().toDate().toString();
+                                "\nStarted at: \n\t" + shift.getStart().toDate().toString() +
+                                "\nEnded at: \n\t" + shift.getEnd().toDate().toString();
 
                         // There's no current shift to end, so disable the end shift button.
                         endShift.setAlpha(.5f);
@@ -184,6 +185,13 @@ public class EnterTipScreenActivity extends AppCompatActivity {
                 }
             }
         });
+    }
+
+    // Allows the user to view tips entered from tip entry activity
+    // Called when user taps "View tips" button
+    public void viewTips(View view) {
+        Intent gotoTipsView = new Intent(this, ViewTipsActivity.class);
+        startActivity(gotoTipsView);
     }
 
 
