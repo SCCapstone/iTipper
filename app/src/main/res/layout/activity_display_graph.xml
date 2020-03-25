@@ -12,15 +12,18 @@
         android:layout_width="match_parent">
 
         <com.androidplot.xy.XYPlot
-            style="@style/APDefacto.Dark"
+            style="@style/APDefacto.Light"
+            ap:backgroundColor="@color/colorPrimary"
+            ap:graphBackgroundColor="@color/colorPrimary"
             android:id="@+id/plot"
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
-            ap:title="A Simple XY Plot"
-            ap:rangeTitle="range"
-            ap:domainTitle="domain"
+            ap:title="Tip History"
+            ap:rangeTitle="Tip Amount"
+            ap:domainTitle="Tip Order"
             ap:lineLabels="left|bottom"
             ap:lineLabelRotationBottom="-45"/>
     </LinearLayout>
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
