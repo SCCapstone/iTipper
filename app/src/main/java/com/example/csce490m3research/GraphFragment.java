@@ -18,7 +18,7 @@ public class GraphFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View v =  inflater.inflate(R.layout.fragment_graph, container, false);
+        View v =  inflater.inflate(R.layout.graph_fragment, container, false);
         return v;
     }
 }
