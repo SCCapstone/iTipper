@@ -8,5 +8,7 @@
         android:layout_height="wrap_content"
         android:text="Home Fragment"/>
 
+<!--    THIS IS WHERE MAIN MENU WILL GO-->
+
 
 </LinearLayout>

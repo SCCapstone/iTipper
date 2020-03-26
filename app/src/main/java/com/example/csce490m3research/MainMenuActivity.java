@@ -26,7 +26,6 @@ import java.util.Map;
 public class MainMenuActivity extends AppCompatActivity {
 
     String UID;
-    BottomNavigationView bottomNavigation;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -71,40 +70,39 @@ public class MainMenuActivity extends AppCompatActivity {
                             selectedFragment = new GraphFragment();
                             break;
                     }
-
                     getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
                             selectedFragment).commit();
                     return true;
                 }
             };
 
-//    // Called when user taps "Maps" button
-//    public void mapDialog(View view) {
-//        //Intent gotoMapDialog = new Intent(this, MapsDialogActivity.class);
-//        //startActivity(gotoMapDialog);
-//        Intent intent = new Intent(this, MapsActivity.class);
-//        startActivity(intent);
-//
-//    }
-//
-//    // Called when user taps "Graph" button
-//    public void graphDisplay(View view) {
-//        //Intent gotoGraphDisplay = new Intent(this, ChooseGraphActivity.class);
-//        //startActivity(gotoGraphDisplay);
-//        // Go directly to graph
-//        Intent gotoTipsGraph = new Intent(this, DisplayTipsGraphActivity.class);
-//        startActivity(gotoTipsGraph);
-//    }
-//
-//    // Called when user taps "Enter tip" button
-//    public void enterTips(View view) {
-//        Intent gotoTips = new Intent(this, EnterTipScreenActivity.class);
-//        startActivity(gotoTips);
-//    }
-//
-//    // Called when user taps "View tips" button
-//    public void viewTips(View view) {
-//        Intent gotoTipsView = new Intent(this, ViewTipsActivity.class);
-//        startActivity(gotoTipsView);
-//    }
+    // Called when user taps "Maps" button
+    public void mapDialog(View view) {
+        //Intent gotoMapDialog = new Intent(this, MapsDialogActivity.class);
+        //startActivity(gotoMapDialog);
+        Intent intent = new Intent(this, MapsActivity.class);
+        startActivity(intent);
+
+    }
+
+    // Called when user taps "Graph" button
+    public void graphDisplay(View view) {
+        //Intent gotoGraphDisplay = new Intent(this, ChooseGraphActivity.class);
+        //startActivity(gotoGraphDisplay);
+        // Go directly to graph
+        Intent gotoTipsGraph = new Intent(this, DisplayTipsGraphActivity.class);
+        startActivity(gotoTipsGraph);
+    }
+
+    // Called when user taps "Enter tip" button
+    public void enterTips(View view) {
+        Intent gotoTips = new Intent(this, EnterTipScreenActivity.class);
+        startActivity(gotoTips);
+    }
+
+    // Called when user taps "View tips" button
+    public void viewTips(View view) {
+        Intent gotoTipsView = new Intent(this, ViewTipsActivity.class);
+        startActivity(gotoTipsView);
+    }
 }
