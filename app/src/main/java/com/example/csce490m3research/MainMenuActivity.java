@@ -73,8 +73,11 @@ public class MainMenuActivity extends AppCompatActivity {
 
     // Called when user taps "Graph" button
     public void graphDisplay(View view) {
-        Intent gotoGraphDisplay = new Intent(this, ChooseGraphActivity.class);
-        startActivity(gotoGraphDisplay);
+        //Intent gotoGraphDisplay = new Intent(this, ChooseGraphActivity.class);
+        //startActivity(gotoGraphDisplay);
+        // Go directly to graph
+        Intent gotoTipsGraph = new Intent(this, DisplayTipsGraphActivity.class);
+        startActivity(gotoTipsGraph);
     }
 
     // Called when user taps "Enter tip" button

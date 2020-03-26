@@ -193,6 +193,10 @@ public class EnterTipScreenActivity extends AppCompatActivity {
         Intent gotoTipsView = new Intent(this, ViewTipsActivity.class);
         startActivity(gotoTipsView);
     }
+    public void viewGraph(View view) {
+        Intent gotoTipsView = new Intent(this, DisplayTipsGraphActivity.class);
+        startActivity(gotoTipsView);
+    }
 
 
 

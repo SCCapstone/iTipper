@@ -26,6 +26,7 @@
     <string name="end_shift_button">End shift</string>
     <string name="edit_tips_button">Edit tips</string>
     <string name="view_tips_button">View tips</string>
+    <string name="view_graph_button">View graph</string>
 
 
     <string name="user_activity_title">Your tips:</string>
