@@ -7,6 +7,7 @@ import java.util.Map;
 
 public class Shift {
     Timestamp start, end;
+    String uid;
 
     public Shift() {
 
@@ -23,6 +24,7 @@ public class Shift {
     public Timestamp getEnd() {
         return end;
     }
+    public String getUid() { return uid; }
 
     public void setStart(Timestamp Start) {
         start = Start;
@@ -30,6 +32,7 @@ public class Shift {
     public void setEnd(Timestamp End) {
         end = End;
     }
+    public void setUid(String Uid) { uid = Uid; }
 
     public String toString() {
         String startPattern = "yyyy/MM/dd hh:mm a";

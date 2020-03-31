@@ -6,6 +6,7 @@
     android:layout_marginStart="8dp"
     android:layout_marginTop="8dp"
     android:layout_marginEnd="8dp"
+    app:cardBackgroundColor="@color/ap_charcoal"
     >
 
     <RelativeLayout
@@ -20,15 +21,24 @@
             android:layout_alignParentStart="true"
             android:ellipsize="end"
             android:maxLines="1"
-            android:text="Tip Value" />
+            android:text="Tip Value"
+            android:textColor="@color/ap_white"/>
 
         <TextView
             android:id="@+id/tip_timestamp_view"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentEnd="true"
             android:layout_marginEnd="0dp"
-            android:text="Date and Time" />
+            android:layout_toStartOf="@+id/edit_tip_button"
+            android:text="Date and Time"
+            android:textColor="@color/ap_white" />
+
+        <Button
+            android:id="@+id/edit_tip_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:drawableRight="@drawable/ic_edit" />
 
     </RelativeLayout>
 

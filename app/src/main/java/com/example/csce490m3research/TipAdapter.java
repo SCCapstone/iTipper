@@ -34,6 +34,10 @@ public class TipAdapter extends FirestoreRecyclerAdapter<Tip, TipAdapter.TipHold
         holder.tipTimestampView.setText(model.getTimestampString());
     }
 
+    public void deleteItem(int position) {
+        getSnapshots().getSnapshot(position).getReference().delete();
+    }
+
     @NonNull
     @Override
     public TipAdapter.TipHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {

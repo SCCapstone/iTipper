@@ -17,7 +17,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".TipsListActivity"></activity>
+        <activity android:name=".TipsListActivity" />
         <activity android:name=".ShiftListActivity" />
         <activity android:name=".ViewTipsActivity" />
         <activity android:name=".CreateAccountActivity" />

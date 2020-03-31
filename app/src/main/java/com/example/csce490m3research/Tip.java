@@ -16,6 +16,7 @@ import java.util.Map;
 public class Tip {
     double value;
     Timestamp time;
+    String uid;
 
     // Constructors
 
@@ -59,6 +60,8 @@ public class Tip {
         return value;
     }
 
+    public String getUid() { return uid; }
+
     // Setters
     public void setTime(Timestamp time) {
         this.time = time;
@@ -71,6 +74,8 @@ public class Tip {
 
         this.value = value;
     }
+
+    public void setUid(String Uid) { uid = Uid; }
 
     // Util
     public Map<String, Object> asMap() {

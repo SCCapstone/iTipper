@@ -6,12 +6,12 @@
     android:layout_marginStart="8dp"
     android:layout_marginTop="8dp"
     android:layout_marginEnd="8dp"
+    app:cardBackgroundColor="@color/ap_charcoal"
     >
 
     <RelativeLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:background="#4C4C4C"
         android:padding="8dp">
 
         <TextView
@@ -24,6 +24,15 @@
             android:maxLines="1"
             android:text="Shift Text"
             android:textColor="#FFEB3B" />
+
+        <Button
+            android:id="@+id/edit_shift_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_marginEnd="0dp"
+            android:layout_toEndOf="@+id/shift_text_view"
+            android:drawableLeft="@drawable/ic_edit" />
 
     </RelativeLayout>
 

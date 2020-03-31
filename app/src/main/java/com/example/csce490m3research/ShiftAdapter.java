@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -12,8 +13,10 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.firebase.ui.firestore.FirestoreRecyclerAdapter;
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
+import com.google.firebase.firestore.DocumentSnapshot;
 
 public class ShiftAdapter extends FirestoreRecyclerAdapter<Shift, ShiftAdapter.ShiftHolder> {
+    private OnItemClickListener listener;
 
     /**
      * Create a new RecyclerView adapter that listens to a Firestore Query.  See {@link
@@ -39,20 +42,38 @@ public class ShiftAdapter extends FirestoreRecyclerAdapter<Shift, ShiftAdapter.S
         return new ShiftHolder(v);
     }
 
+    public void deleteItem(int position) {
+        getSnapshots().getSnapshot(position).getReference().delete();
+    }
+
     class ShiftHolder extends RecyclerView.ViewHolder {
         TextView shiftTextView;
+        Button shiftEditButton;
         Shift shift;
 
         public ShiftHolder(@NonNull View itemView) {
             super(itemView);
             shiftTextView = itemView.findViewById(R.id.shift_text_view);
+            shiftEditButton = itemView.findViewById(R.id.edit_shift_button);
 
+            // Add a listener for when the card holding the shift data is clicked
             itemView.setOnClickListener(new View.OnClickListener() {
-                @Override public void onClick(View v) {
-                    // When the shift view is clicked:
+                @Override
+                public void onClick(View v) {
+                    /* When the shift view is clicked, create an intent to start a
+                       a new activity to view a list of tips, and pass on the data
+                       for the shift that was clicked on so the new activity can query
+                       for tips recorded during that shift.
+                    */
                     Context context = v.getContext();
 
                     Intent gotoTips = new Intent(context, TipsListActivity.class);
+
+                    String path = getSnapshots()
+                            .getSnapshot(getAdapterPosition())
+                            .getReference()
+                            .getPath();
+                    gotoTips.putExtra("path", path);
 
                     gotoTips.putExtra("startSeconds", shift.getStart().getSeconds());
                     gotoTips.putExtra("startNanos", shift.getStart().getNanoseconds());
@@ -64,5 +85,11 @@ public class ShiftAdapter extends FirestoreRecyclerAdapter<Shift, ShiftAdapter.S
                 }
             });
         }
+    }
+    public interface OnItemClickListener {
+        void onItemClick(DocumentSnapshot documentSnapshot, int position);
+    }
+    public void setOnItemClickListener(OnItemClickListener listener) {
+        this.listener = listener;
     }
 }
