@@ -2,7 +2,9 @@ package com.example.csce490m3research;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.net.Uri;
 import android.os.Bundle;
+import android.provider.ContactsContract;
 import android.widget.TextView;
 
 import java.util.List;

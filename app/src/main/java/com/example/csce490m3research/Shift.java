@@ -1,6 +1,8 @@
 package com.example.csce490m3research;
 
 import com.google.firebase.Timestamp;
+
+import java.text.SimpleDateFormat;
 import java.util.Map;
 
 public class Shift {
@@ -30,8 +32,21 @@ public class Shift {
     }
 
     public String toString() {
-        return "Start: " + getStart().toDate().toString() +
-                "\nEnd: " + getEnd().toDate().toString();
+        String startPattern = "yyyy/MM/dd hh:mm a";
+        SimpleDateFormat startFormat = new SimpleDateFormat(startPattern);
 
+        String endPattern = "hh:mm a";
+        SimpleDateFormat endFormat = new SimpleDateFormat(endPattern);
+
+        String ret = startFormat.format(start.toDate());
+
+        if (end != null) {
+            ret += " - " + endFormat.format(end.toDate());
+        } else {
+            // Inform the user that the shift is still being recorded
+            ret += " (Ongoing)";
+        }
+
+        return ret;
     }
 }
