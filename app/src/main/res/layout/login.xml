@@ -30,7 +30,7 @@
         android:layout_marginBottom="352dp"
         android:ems="10"
         android:inputType="textPersonName"
-        android:hint="Username"/>
+        android:hint="Email"/>
 
     <EditText
         android:id="@+id/User_Password"
