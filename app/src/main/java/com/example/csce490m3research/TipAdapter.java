@@ -1,8 +1,11 @@
 package com.example.csce490m3research;
 
+import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -10,6 +13,10 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.firebase.ui.firestore.FirestoreRecyclerAdapter;
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
+import com.google.firebase.Timestamp;
+import com.google.firebase.firestore.DocumentSnapshot;
+
+import java.util.Date;
 
 public class TipAdapter extends FirestoreRecyclerAdapter<Tip, TipAdapter.TipHolder> {
 
@@ -49,11 +56,40 @@ public class TipAdapter extends FirestoreRecyclerAdapter<Tip, TipAdapter.TipHold
     class TipHolder extends RecyclerView.ViewHolder {
         TextView tipValueView;
         TextView tipTimestampView;
+        Button editTipButton;
 
         public TipHolder(@NonNull View itemView) {
             super(itemView);
             tipValueView = itemView.findViewById(R.id.tip_value_view);
             tipTimestampView = itemView.findViewById(R.id.tip_timestamp_view);
+            editTipButton = itemView.findViewById(R.id.edit_tip_button);
+
+            // Add a listener for when the edit button on the card is clicked
+            editTipButton.setOnClickListener(new View.OnClickListener() {
+
+                @Override
+                public void onClick(View v) {
+                    Context context = v.getContext();
+
+                    Intent editTip = new Intent(context, EditTipActivity.class);
+
+                    DocumentSnapshot ds = getSnapshots().getSnapshot(getAdapterPosition());
+                    String path =
+                            ds
+                            .getReference()
+                            .getPath();
+                    editTip.putExtra("path", path);
+
+                    String tipValue = ds.get("value").toString();
+                    editTip.putExtra("value", tipValue);
+
+                    Timestamp timestamp = (Timestamp) ds.get("time");
+                    Date date = timestamp.toDate();
+                    editTip.putExtra("date", date.toString());
+
+                    context.startActivity(editTip);
+                }
+            });
         }
     }
 }

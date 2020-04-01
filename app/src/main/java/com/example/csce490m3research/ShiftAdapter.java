@@ -84,6 +84,23 @@ public class ShiftAdapter extends FirestoreRecyclerAdapter<Shift, ShiftAdapter.S
                     context.startActivity(gotoTips);
                 }
             });
+
+            shiftEditButton.setOnClickListener(new View.OnClickListener() {
+
+                @Override
+                public void onClick(View v) {
+                    Context context = v.getContext();
+
+                    Intent editShift = new Intent(context, EditShiftActivity.class);
+                    String path = getSnapshots()
+                            .getSnapshot(getAdapterPosition())
+                            .getReference()
+                            .getPath();
+                    editShift.putExtra("path", path);
+
+                    context.startActivity(editShift);
+                }
+            });
         }
     }
     public interface OnItemClickListener {
