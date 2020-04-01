@@ -4,6 +4,7 @@
     <string name="button_send">Gmap</string>
     <string name="button_My_Map">Map(internal)</string>
     <string name="title_activity_maps">Map</string>
+
     <string name="go_to_graph_display_button">Go to graph display screen</string>
     <string name="go_to_map_display_button">Go to maps dialog screen</string>
     <string name="go_to_tips_entry">Go to tip entry screen</string>
@@ -15,6 +16,7 @@
 
 
     <string name="view_user_activity_button">View tips you\'ve entered so far</string>
+    <string name="view_shifts_button">View shifts you\'ve recorded so far</string>
 
 
     <string name="tip_entry_screen_title">Add a tip</string>
@@ -31,10 +33,14 @@
 
     <string name="user_activity_title">Your tips:</string>
 
+    <string name="shifts_header">Here are all of the shifts you have recorded so far.</string>
+
 
     <string name="api_key">AIzaSyCxPhjgrmWrjSFjFMJx-YMNfXiTcq7j4Xg</string>
+
+    <string name="title_activity_scrolling">ScrollingActivity</string>
+    <string name="action_settings">Settings</string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
-

@@ -102,7 +102,13 @@ public class MainMenuActivity extends AppCompatActivity {
 
     // Called when user taps "View tips" button
     public void viewTips(View view) {
-        Intent gotoTipsView = new Intent(this, ViewTipsActivity.class);
+        Intent gotoTipsView = new Intent(this, TipsListActivity.class);
+        startActivity(gotoTipsView);
+    }
+
+    // Called when user taps "View shifts" button
+    public void viewShifts(View view) {
+        Intent gotoTipsView = new Intent(this, ShiftListActivity.class);
         startActivity(gotoTipsView);
     }
 }

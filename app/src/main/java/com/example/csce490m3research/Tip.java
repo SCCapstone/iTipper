@@ -8,12 +8,15 @@
 package com.example.csce490m3research;
 
 import com.google.firebase.Timestamp;
+
+import java.text.SimpleDateFormat;
 import java.util.HashMap;
 import java.util.Map;
 
 public class Tip {
     double value;
     Timestamp time;
+    String uid;
 
     // Constructors
 
@@ -57,6 +60,8 @@ public class Tip {
         return value;
     }
 
+    public String getUid() { return uid; }
+
     // Setters
     public void setTime(Timestamp time) {
         this.time = time;
@@ -70,6 +75,8 @@ public class Tip {
         this.value = value;
     }
 
+    public void setUid(String Uid) { uid = Uid; }
+
     // Util
     public Map<String, Object> asMap() {
         Map<String, Object> tip = new HashMap<>();
@@ -80,8 +87,16 @@ public class Tip {
         return tip;
     }
 
+    // Return a human-readable string for the tip's timestamp
+    public String getTimestampString() {
+        String pattern = "yyyy/MM/dd hh:mm a";
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern);
+
+        return simpleDateFormat.format(time.toDate());
+    }
+
     public String toString() {
-        return time.toDate().toString() + " : " + value;
+        return getTimestampString() + " : " + value;
     }
 
 }

@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_marginStart="8dp"
+    android:layout_marginTop="8dp"
+    android:layout_marginEnd="8dp"
+    app:cardBackgroundColor="@color/ap_charcoal"
+    >
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="8dp">
+
+        <TextView
+            android:id="@+id/shift_text_view"
+            style="@style/TextAppearance.AppCompat.Large"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:text="Shift Text"
+            android:textColor="#FFEB3B" />
+
+        <Button
+            android:id="@+id/edit_shift_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_marginEnd="0dp"
+            android:drawableLeft="@drawable/ic_edit" />
+
+    </RelativeLayout>
+
+</androidx.cardview.widget.CardView>
