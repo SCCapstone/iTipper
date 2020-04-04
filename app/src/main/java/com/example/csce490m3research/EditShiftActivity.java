@@ -38,11 +38,27 @@ public class EditShiftActivity extends AppCompatActivity {
             Toast.makeText(this, "Couldn't load shift data.", Toast.LENGTH_LONG);
             startActivity(new Intent(this, ShiftListActivity.class));
         }
+
+        // Initialize and autofill start pickers
         startDatePicker = (DatePicker) findViewById(R.id.startDatePicker);
         startTimePicker = (TimePicker) findViewById(R.id.startTimePicker);
 
+        Date start = new Date(intent.getStringExtra("start"));
+
+        startDatePicker.updateDate(start.getYear()+1900, start.getMonth(), start.getDate());
+        startTimePicker.setHour(start.getHours());
+        startTimePicker.setMinute(start.getMinutes());
+
+        // Initialize and autofill end pickers
         endDatePicker = (DatePicker) findViewById(R.id.endDatePicker);
         endTimePicker = (TimePicker) findViewById(R.id.endTimePicker);
+
+        Date end = new Date(intent.getStringExtra("end"));
+
+        endDatePicker.updateDate(end.getYear()+1900, end.getMonth(), end.getDate());
+        endTimePicker.setHour(end.getHours());
+        endTimePicker.setMinute(end.getMinutes());
+
 
         doneButton = (Button) findViewById(R.id.done_editing_shift_button);
         doneButton.setOnClickListener(new View.OnClickListener() {
@@ -58,14 +74,25 @@ public class EditShiftActivity extends AppCompatActivity {
                 Date endDate = new Date(
                         endDatePicker.getYear() - 1900,
                         endDatePicker.getMonth(),
-                        startDatePicker.getDayOfMonth(),
+                        endDatePicker.getDayOfMonth(),
                         endTimePicker.getHour(),
                         endTimePicker.getMinute()
                 );
                 Timestamp startTimestamp = new Timestamp(startDate);
                 Timestamp endTimestamp = new Timestamp(endDate);
-                db.document(path).update("start", startTimestamp);
-                db.document(path).update("end", endTimestamp);
+
+                // Check to make sure the end time is after the start time.
+                if (endDate.after(startDate)) {
+                    db.document(path).update("start", startTimestamp);
+                    db.document(path).update("end", endTimestamp);
+
+                    Toast.makeText(v.getContext(), "Shift edited!", Toast.LENGTH_SHORT).show();
+                    finish();
+                }
+                else {
+                    String errorText = "End time has to be after start.";
+                    Toast.makeText(v.getContext(), errorText, Toast.LENGTH_LONG).show();
+                }
             }
         });
 

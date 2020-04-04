@@ -1,102 +1,205 @@
-/** Object encapsulating a tip entered by a user.
- *    value: the amount in dollars of the tip.
- *    time: the date and time that the tip was entered.
- *
- * Authors: Tyler Chambers
- */
-
 package com.example.csce490m3research;
 
 import com.google.firebase.Timestamp;
 
 import java.text.SimpleDateFormat;
 import java.util.HashMap;
+import java.util.Locale;
 import java.util.Map;
 
+/** Object encapsulating a tip entered by a user.
+ *    value: the amount in dollars of the tip.
+ *    time: the date and time that the tip was entered.
+ *    uid: the user ID (defined by Firebase Auth) for the user entering the tip
+ * Authors: Tyler Chambers
+ */
 public class Tip {
-    double value;
-    Timestamp time;
-    String uid;
+    /**
+     * The max tip allowed in the Firestore database.
+     */
+    private static final double MAX_TIP = 1024.00;
+
+    /**
+     * The dollar value for the tip.
+     */
+    public double value;
+    /**
+     * The time at which the tip was entered.
+     */
+    public Timestamp time;
+    /**
+     * The user ID, defined by Firebase Auth, for the user the tip is recorded by.
+     */
+    public String uid;
 
     // Constructors
 
+    /**
+     * Empty constructed. Needed for Firestore.
+     */
     public Tip() {
 
     }
 
-    // Only tip value specified. Use the current user and current time.
+    /**
+     * Construct a tip using just the value.
+     * time for the tip will be set to the current time.
+     * uid will be set to the current user's UID.
+     *
+     * @param value The dollar value of the tip, as a String.
+     * @throws InvalidTipException if the tip is less than or equal to 0 or greater than max tip.
+     */
     public Tip(String value) throws InvalidTipException {
         Timestamp Time = Timestamp.now();
         setTime(Time);
 
         setValue(Double.parseDouble(value));
+
+        uid = Database.getUID();
     }
-    public Tip(double Value) throws InvalidTipException {
+
+    /**
+     * Construct a tip using just the value.
+     * time for the tip will be set to the current time.
+     * uid will be set to the current user's UID.
+     *
+     * @param value The dollar value of the tip, as a double.
+     * @throws InvalidTipException if the tip is less than or equal to 0 or greater than max tip.
+     */
+    public Tip(double value) throws InvalidTipException {
         Timestamp Time = Timestamp.now();
         setTime(Time);
 
-        setValue(Value);
+        setValue(value);
+
+        uid = Database.getUID();
     }
 
+    /**
+     * Constructor with the value and time specified.
+     * uid will be set to the current user's UID.
+     * @param value The tip dollar value, as a double.
+     * @param time Time that the tip was recorded, as a firebase Timestamp.
+     * @throws InvalidTipException if the tip is less than or equal to 0 or greater than max tip.
+     */
     public Tip(double value, Timestamp time) throws InvalidTipException {
         setValue(value);
         setTime(time);
+        uid = Database.getUID();
     }
 
-    // Map constructor:
-    // The map should contain keys for value and time.
+    /**
+     * Construct a tip using a map, which should contain keys for value, time, and uid.
+     * Useful when Firestore data is returned as a map, such as when accessing a document.
+     * @param map A map containing keys for value, time, and uid.
+     */
     public Tip(Map map) {
-        value = (double) map.get("value");
-        time = (com.google.firebase.Timestamp) map.get("time");
+        if (map.containsKey("value")) {
+            value = (double) map.get("value");
+        }
+
+        if (map.containsKey("time")) {
+            time = (com.google.firebase.Timestamp) map.get("time");
+        }
+
+        if (map.containsKey("uid")) {
+            uid = (String) map.get("uid");
+        }
     }
 
 
     // Accessors
+
+    /**
+     *
+     * @return Time that this tip was recorded, as a Firebase Timestamp.
+     */
     public Timestamp getTime() {
         return time;
     }
 
+    /**
+     *
+     * @return Dollar value of the tip as a double.
+     */
     public double getValue() {
         return value;
     }
 
+    /**
+     *
+     * @return UID, as created by Firebase Auth, for the user that recorded this tip.
+     */
     public String getUid() { return uid; }
 
     // Setters
+
+    /**
+     *
+     * @param time A Firebase Timestamp.
+     */
     public void setTime(Timestamp time) {
         this.time = time;
     }
 
+    /**
+     *
+     * @param value Dollar value as a double.
+     * @throws InvalidTipException if the tip is less than or equal to 0 or greater than max tip.
+     */
     public void setValue(double value) throws InvalidTipException {
-        if (value <= 0) {
-            throw new InvalidTipException("Tip cannot be less than or equal to 0.00 dollars.");
+        if (value <= 0 || value > MAX_TIP) {
+            String exceptionMessage = "Tip cannot be less than or equal to 0.\n" +
+                    "Maximum tip allowed is " + MAX_TIP + ".";
+
+            throw new InvalidTipException(exceptionMessage);
         }
 
-        this.value = value;
+        else {
+            this.value = value;
+        }
     }
 
+    /**
+     *
+     * @param Uid A string generated by Firebase Auth for a UID.
+     */
     public void setUid(String Uid) { uid = Uid; }
 
     // Util
+
+    /**
+     * Return this instance of a tip as a map, where each field can be keyed by its name.
+     * @return Map where tip fields can be keyed by field names.
+     */
     public Map<String, Object> asMap() {
         Map<String, Object> tip = new HashMap<>();
 
         tip.put("value", value);
         tip.put("time", time);
+        tip.put("uid", uid);
 
         return tip;
     }
 
-    // Return a human-readable string for the tip's timestamp
+    /**
+     * Converts the time field for this tip into a human-readable format.
+     * @return time for this tip, in "yyyy/MM/dd hh:mm a" format (a is AM or PM)
+     */
     public String getTimestampString() {
         String pattern = "yyyy/MM/dd hh:mm a";
-        SimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern);
+        Locale locale = Locale.getDefault();
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern, locale);
 
         return simpleDateFormat.format(time.toDate());
     }
 
+    /**
+     *
+     * @return String in [time] : $[value] format.
+     */
     public String toString() {
-        return getTimestampString() + " : " + value;
+        return getTimestampString() + " : $" + value;
     }
 
 }

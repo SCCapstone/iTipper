@@ -50,10 +50,7 @@ public class EditTipActivity extends AppCompatActivity {
 
         // Initialize the date and time picker, too
         Date date = new Date(intent.getStringExtra("date"));
-        System.out.println(date);
-        System.out.println(date.getYear());
-        System.out.println(date.getMonth());
-        System.out.println(date.getDate());
+
         tipDatePicker.updateDate(date.getYear()+1900, date.getMonth(), date.getDate());
         tipTimePicker.setHour(date.getHours());
         tipTimePicker.setMinute(date.getMinutes());
@@ -76,12 +73,15 @@ public class EditTipActivity extends AppCompatActivity {
                     if (!tipEditValue.getText().toString().isEmpty()) {
                         Tip tip = new Tip(tipEditValue.getText().toString());
                         db.document(path).update("value", tip.getValue());
+
+                        Toast.makeText(v.getContext(), "Tip edited!", Toast.LENGTH_SHORT).show();
+                        finish();
                     }
                     db.document(path).update("time", tipTimestamp);
                 } catch (InvalidTipException e) {
                     e.printStackTrace();
+                    Toast.makeText(v.getContext(), e.getMessage(), Toast.LENGTH_LONG).show();
                 }
-                Toast.makeText(v.getContext(), "Tip edited!", Toast.LENGTH_SHORT).show();
             }
         });
     }

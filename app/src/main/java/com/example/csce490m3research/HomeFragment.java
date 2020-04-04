@@ -13,7 +13,6 @@ import android.view.ViewGroup;
 import android.widget.Button;
 
 public class HomeFragment extends Fragment {
-    private Button viewUserActivityButton;
 
     @Nullable
     @Override
@@ -25,15 +24,24 @@ public class HomeFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        /** Add a listener to the "View your activity" to go to the ShiftLiftActivity
-         * when clicked
-         */
-        viewUserActivityButton = (Button) getView().findViewById(R.id.view_activity_button);
+        /* Add a listener to the "View your activity" button to go to
+         * ShiftLiftActivity when clicked. */
+        Button viewUserActivityButton = (Button) getView().findViewById(R.id.view_activity_button);
         viewUserActivityButton.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(getContext(), ShiftListActivity.class));
+            }
+        });
+
+        /* Add a listener to the "View all your tips" button to go to
+         * TipsListActivity when clicked. */
+        Button viewAllTipsButton = (Button) getView().findViewById(R.id.view_all_tips_button);
+        viewAllTipsButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getContext(), TipsListActivity.class));
             }
         });
     }
