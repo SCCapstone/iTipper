@@ -70,7 +70,7 @@ public class EnterTipScreenActivity extends AppCompatActivity {
                     // If the shift's end time is null, a shift is still running
                     if (shift.getEnd() == null && shift.getStart() != null) {
                         shiftInfo = "Current shift started at: " +
-                                "\n" + shift.getStart().toDate().toString();
+                                "\n" + shift.toString();
 
                         // Don't let the user start a new shift if one is running
                         startShift.setAlpha(.5f);
@@ -78,9 +78,8 @@ public class EnterTipScreenActivity extends AppCompatActivity {
                     }
                     // If both the start and end time exist, the last shift was completed
                     if (shift.getStart() != null && shift.getEnd() != null) {
-                        shiftInfo = "Your last shift: " +
-                                "\nStarted at: \n\t" + shift.getStart().toDate().toString() +
-                                "\nEnded at: \n\t" + shift.getEnd().toDate().toString();
+                        shiftInfo = "Your last shift:\n" +
+                                shift.toString();
 
                         // There's no current shift to end, so disable the end shift button.
                         endShift.setAlpha(.5f);
@@ -115,8 +114,7 @@ public class EnterTipScreenActivity extends AppCompatActivity {
             responseText.setText("Entered tip: " + tip.toString());
 
         } catch (InvalidTipException e) {
-            String errorText = "Error entering tip: " + message
-                    + "\n" + "Tip should be greater than zero.";
+            String errorText = e.getMessage();
             responseText.setText(errorText);
         }
     }

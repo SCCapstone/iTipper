@@ -51,6 +51,9 @@ public class MainMenuActivity extends AppCompatActivity {
         loginTimeStamp.put("last_login", time);
 
         userDoc.set(loginTimeStamp, SetOptions.merge());
+
+        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
+                new HomeFragment()).commit();
     }
 
     private BottomNavigationView.OnNavigationItemSelectedListener navListener =

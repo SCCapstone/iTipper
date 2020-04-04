@@ -74,10 +74,7 @@ public class TipAdapter extends FirestoreRecyclerAdapter<Tip, TipAdapter.TipHold
                     Intent editTip = new Intent(context, EditTipActivity.class);
 
                     DocumentSnapshot ds = getSnapshots().getSnapshot(getAdapterPosition());
-                    String path =
-                            ds
-                            .getReference()
-                            .getPath();
+                    String path = ds.getReference().getPath();
                     editTip.putExtra("path", path);
 
                     String tipValue = ds.get("value").toString();

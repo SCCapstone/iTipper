@@ -13,7 +13,10 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.firebase.ui.firestore.FirestoreRecyclerAdapter;
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
+import com.google.firebase.Timestamp;
 import com.google.firebase.firestore.DocumentSnapshot;
+
+import java.util.Date;
 
 public class ShiftAdapter extends FirestoreRecyclerAdapter<Shift, ShiftAdapter.ShiftHolder> {
     private OnItemClickListener listener;
@@ -48,13 +51,13 @@ public class ShiftAdapter extends FirestoreRecyclerAdapter<Shift, ShiftAdapter.S
 
     class ShiftHolder extends RecyclerView.ViewHolder {
         TextView shiftTextView;
-        Button shiftEditButton;
+        Button editShiftButton;
         Shift shift;
 
         public ShiftHolder(@NonNull View itemView) {
             super(itemView);
             shiftTextView = itemView.findViewById(R.id.shift_text_view);
-            shiftEditButton = itemView.findViewById(R.id.edit_shift_button);
+            editShiftButton = itemView.findViewById(R.id.edit_shift_button);
 
             // Add a listener for when the card holding the shift data is clicked
             itemView.setOnClickListener(new View.OnClickListener() {
@@ -85,18 +88,27 @@ public class ShiftAdapter extends FirestoreRecyclerAdapter<Shift, ShiftAdapter.S
                 }
             });
 
-            shiftEditButton.setOnClickListener(new View.OnClickListener() {
+            editShiftButton.setOnClickListener(new View.OnClickListener() {
 
                 @Override
                 public void onClick(View v) {
                     Context context = v.getContext();
 
                     Intent editShift = new Intent(context, EditShiftActivity.class);
-                    String path = getSnapshots()
-                            .getSnapshot(getAdapterPosition())
-                            .getReference()
-                            .getPath();
+
+                    DocumentSnapshot ds = getSnapshots().getSnapshot(getAdapterPosition());
+                    String path = ds.getReference().getPath();
                     editShift.putExtra("path", path);
+
+                    Timestamp start = (Timestamp) ds.get("start");
+                    Date startDate = start.toDate();
+                    editShift.putExtra("start", startDate.toString());
+
+                    if (ds.contains("end")) {
+                        Timestamp end = (Timestamp) ds.get("end");
+                        Date endDate = end.toDate();
+                        editShift.putExtra("end", endDate.toString());
+                    }
 
                     context.startActivity(editShift);
                 }

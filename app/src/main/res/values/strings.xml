@@ -43,4 +43,7 @@
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="user_activity_button_text">View your activity</string>
+    <string name="logout_button_text">Logout</string>
+    <string name="view_all_tips_button_text">View all tips you\'ve entered</string>
 </resources>
