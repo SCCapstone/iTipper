@@ -35,13 +35,22 @@ public class HomeFragment extends Fragment {
             }
         });
 
-        /* Add a listener to the "View all your tips" button to go to
-         * TipsListActivity when clicked. */
+        /* "View all your tips" buttons brings user to TipsListActivity. */
         Button viewAllTipsButton = (Button) getView().findViewById(R.id.view_all_tips_button);
         viewAllTipsButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(getContext(), TipsListActivity.class));
+            }
+        });
+
+        /* "Start shift" button brings user to EnterTipScreenActivity. */
+        final Button startShiftButton = (Button) getView().findViewById(R.id.startShift);
+        startShiftButton.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getContext(), EnterTipScreenActivity.class));
             }
         });
     }
