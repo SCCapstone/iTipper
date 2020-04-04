@@ -5,16 +5,16 @@
     android:layout_height="match_parent">
 
     <Button
-        android:id="@+id/startShift"
+        android:id="@+id/goToShiftScreen"
         android:layout_width="195dp"
         android:layout_height="81dp"
         android:layout_alignParentStart="true"
         android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginStart="114dp"
-        android:layout_marginBottom="213dp"
+        android:layout_centerInParent="true"
+        android:layout_marginStart="110dp"
+        android:layout_marginBottom="321dp"
         android:background="#ECB536"
-        android:text="@string/start_shift_button" />
+        android:text="Go to shift screen" />
 
     <TextView
         android:id="@+id/textView3"
