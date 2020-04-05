@@ -188,12 +188,22 @@ public class EnterTipScreenActivity extends AppCompatActivity {
     // Allows the user to view tips entered from tip entry activity
     // Called when user taps "View tips" button
     public void viewTips(View view) {
-        Intent gotoTipsView = new Intent(this, ViewTipsActivity.class);
+        //Intent gotoTipsView = new Intent(this, ViewTipsActivity.class);
+        Intent gotoTipsView = new Intent(this, TipsListActivity.class);
         startActivity(gotoTipsView);
+
     }
     public void viewGraph(View view) {
-        Intent gotoTipsView = new Intent(this, DisplayTipsGraphActivity.class);
-        startActivity(gotoTipsView);
+        Intent gotoTipsGraphView = new Intent(this, DisplayTipsGraphActivity.class);
+        startActivity(gotoTipsGraphView);
+    }
+    public void viewShifts(View view) {
+        Intent gotoShiftsView = new Intent(this, ShiftListActivity.class);
+        startActivity(gotoShiftsView);
+    }
+    public void viewMaps(View view) {
+        Intent gotoMapsView = new Intent(this, MapsActivity.class);
+        startActivity(gotoMapsView);
     }
 
 

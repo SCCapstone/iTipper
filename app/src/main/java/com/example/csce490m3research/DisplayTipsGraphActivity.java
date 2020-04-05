@@ -95,16 +95,19 @@ public class DisplayTipsGraphActivity extends Activity {
                 for (Object t : tipsList) {
                     // capture value of object toString
                     String temp = t.toString();
+                    //Log.d("List Size: ", Integer.toString(listSize));
+                    Log.d("Value " + counter +": ", temp);
                     // get index of " : " just before tip
                     int index = temp.indexOf(" : ");
                     // shorten temp to just tip value
-                    temp = temp.substring(index + 3);
+                    temp = temp.substring(index + 4);
                     double tipVal = Double.parseDouble(temp);
                     // add double to range Array
                     rangeLabels[counter] = tipVal;
                     // increment counter
                     counter++;
                 }
+                /*
                 Log.d("List Size: ", Integer.toString(listSize));
                 Log.d("Value 1: ", rangeLabels[0].toString());
                 Log.d("Value 2: ", rangeLabels[1].toString());
@@ -112,11 +115,12 @@ public class DisplayTipsGraphActivity extends Activity {
                 Log.d("Value 4: ", rangeLabels[3].toString());
                 Log.d("Value 5: ", rangeLabels[4].toString());
                 Log.d("Value 6: ", rangeLabels[5].toString());
+                 */
                 setContentView(R.layout.activity_display_graph);
                 plot = findViewById(R.id.plot);
                 // set bounds to the plot
                 plot.setRangeLowerBoundary(0, BoundaryMode.FIXED);
-                plot.setRangeUpperBoundary(100,BoundaryMode.AUTO);
+                plot.setRangeUpperBoundary(30,BoundaryMode.AUTO);
                 // create a couple arrays of y-values to plot:
                 // (Y_VALS_ONLY means use the element index as the x value)
                 XYSeries series1 = new SimpleXYSeries(
@@ -136,27 +140,7 @@ public class DisplayTipsGraphActivity extends Activity {
                 // add a new series' to the xyplot:
                 //plot.addSeries(series1, series1Format);
                 plot.addSeries(series1, bf);
-                /*
-                plot.getGraph().getLineLabelStyle(XYGraphWidget.Edge.BOTTOM).setFormat(new Format() {
-                    @Override
-                    public StringBuffer format(Object obj, StringBuffer toAppendTo, FieldPosition pos) {
-                        int i = Math.round(((Number) obj).floatValue());
-                        return toAppendTo.append(domainLabels[i]);
-                    }
-                    @Override
-                    public Object parseObject(String source, ParsePosition pos) {
-                        return null;
-                    }
-                });
-
-                 */
-
-
-
             }
         });
-        //printGraph(rangeLabels);
-
-
     }
 }

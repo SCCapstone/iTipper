@@ -14,6 +14,10 @@ import android.location.LocationListener;
 import android.location.LocationManager;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.Button;
+import android.widget.TextView;
+
 import com.google.android.gms.common.api.Status;
 import com.google.android.libraries.places.api.Places;
 import com.google.android.libraries.places.api.model.Place;
@@ -57,6 +61,22 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_maps);
 
+        /*
+        final Button button = findViewById(R.id.markButton);
+        final TextView text = findViewById(R.id.tipTextView);
+        final String message = text.getText().toString();
+        button.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                if (ContextCompat.checkSelfPermission(MapsActivity.this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED){
+                    locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER,0,0,locationListener);
+                    Location lastKnownLocation = locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
+                    centreMapOnLocation(lastKnownLocation,message);
+                }
+            }
+        });
+         */
+
+
         String apiKey = getString(R.string.api_key);
         if (!Places.isInitialized()) {
             Places.initialize(getApplicationContext(), apiKey);
@@ -71,9 +91,11 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         autocompleteFragment.setOnPlaceSelectedListener(new PlaceSelectionListener() {
             @Override
             public void onPlaceSelected(Place place) {
+
                 LatLng userLocation = place.getLatLng();
                 mMap.clear();
                 mMap.addMarker(new MarkerOptions().position(userLocation).title(place.getName().toString()));
+                //mMap.addMarker(new MarkerOptions().position(userLocation).title(message));
                 mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(userLocation,17));
                 //mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(place.getLatLng(), 17.0f));
                 Log.i(TAG, "Place: " + place.getName() + ", ID: " + place.getId() + ", LatLng: " + place.getLatLng());

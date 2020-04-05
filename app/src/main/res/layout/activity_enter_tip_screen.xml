@@ -156,11 +156,11 @@
         android:id="@+id/shift_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginEnd="16dp"
-        app:layout_constraintBottom_toBottomOf="@+id/startShiftButton"
+        android:layout_marginBottom="152dp"
+        app:layout_constraintBottom_toTopOf="@+id/button6"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/startShiftButton" />
+        app:layout_constraintHorizontal_bias="0.501"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <Button
         android:id="@+id/button3"
@@ -173,5 +173,31 @@
         app:layout_constraintEnd_toStartOf="@+id/editTipsButton"
         app:layout_constraintHorizontal_bias="0.576"
         app:layout_constraintStart_toEndOf="@+id/endShiftButton" />
+
+    <Button
+        android:id="@+id/button5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
+        android:onClick="viewShifts"
+        android:text="@string/view_shift"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/button6"
+        tools:text="@string/view_shift" />
+
+    <Button
+        android:id="@+id/button6"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="44dp"
+        android:onClick="viewMaps"
+        android:text="@string/view_map_button"
+        app:layout_constraintBottom_toTopOf="@+id/button3"
+        app:layout_constraintEnd_toStartOf="@+id/button5"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toEndOf="@+id/startShiftButton"
+        app:layout_constraintTop_toTopOf="@+id/startShiftButton"
+        app:layout_constraintVertical_bias="0.0"
+        tools:text="@string/view_map_button" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
