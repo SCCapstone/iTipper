@@ -1,5 +1,4 @@
 package com.example.csce490m3research;
-
 import android.app.Activity;
 //import android.graphics.Color;
 //import android.graphics.DashPathEffect;
@@ -8,9 +7,7 @@ import android.os.Bundle;
 import android.telecom.Call;
 import android.util.Log;
 import java.util.*;
-
 import androidx.annotation.NonNull;
-
 import com.androidplot.util.PixelUtils;
 import com.androidplot.xy.BoundaryMode;
 import com.androidplot.xy.CatmullRomInterpolator;
@@ -88,14 +85,12 @@ public class DisplayTipsGraphActivity extends Activity {
                 for (int i = 0; i < listSize; i++) {
                     domainLabels[i] = i + 1;
                 }
-
-
                 // iterate through list and capture tip values
                 int counter = 0;
                 for (Object t : tipsList) {
                     // capture value of object toString
                     String temp = t.toString();
-                    //Log.d("List Size: ", Integer.toString(listSize));
+                    Log.d("String: ", temp);
                     Log.d("Value " + counter +": ", temp);
                     // get index of " : " just before tip
                     int index = temp.indexOf(" : ");

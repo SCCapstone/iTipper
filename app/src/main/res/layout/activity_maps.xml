@@ -46,11 +46,11 @@ tools:context=".MapsActivity" />
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MapsActivity">
-
+<!--Old
     <include
         layout="@layout/toolbar"
         android:id="@+id/toolbar"/>
-
+-->
     <fragment
         android:id="@+id/autocomplete_fragment"
         android:layout_width="match_parent"

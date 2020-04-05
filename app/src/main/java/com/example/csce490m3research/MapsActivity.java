@@ -2,9 +2,7 @@
 
 package com.example.csce490m3research;
 import androidx.annotation.NonNull;
-import androidx.appcompat.widget.Toolbar;
 import androidx.core.app.ActivityCompat;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.FragmentActivity;
 import android.Manifest;
@@ -35,12 +33,11 @@ import com.google.android.libraries.places.widget.listener.PlaceSelectionListene
 
 import java.util.Arrays;
 
-public class MapsActivity extends AppCompatActivity implements OnMapReadyCallback {
+public class MapsActivity extends FragmentActivity implements OnMapReadyCallback {
     private static final String TAG = "MainActivity";
     private GoogleMap mMap;
     LocationManager locationManager;
     LocationListener locationListener;
-
     public void centreMapOnLocation(Location location, String title){
         LatLng userLocation = new LatLng(location.getLatitude(),location.getLongitude());
         mMap.clear();
@@ -63,13 +60,6 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_maps);
-
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
-        getSupportActionBar().setTitle("Current Location");
-
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-
         /*
         final Button button = findViewById(R.id.markButton);
         final TextView text = findViewById(R.id.tipTextView);
@@ -84,8 +74,6 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
             }
         });
          */
-
-
         String apiKey = getString(R.string.api_key);
         if (!Places.isInitialized()) {
             Places.initialize(getApplicationContext(), apiKey);
@@ -100,7 +88,6 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         autocompleteFragment.setOnPlaceSelectedListener(new PlaceSelectionListener() {
             @Override
             public void onPlaceSelected(Place place) {
-
                 LatLng userLocation = place.getLatLng();
                 mMap.clear();
                 mMap.addMarker(new MarkerOptions().position(userLocation).title(place.getName().toString()));
@@ -116,7 +103,6 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
             }
         });
     }
-
     @Override
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
