@@ -90,6 +90,7 @@ public class  GraphFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View v = inflater.inflate(R.layout.graph_fragment, container, false);
+        getActivity().setTitle("Tips History");
         return v;
     }
     @Override

@@ -13,11 +13,26 @@ import android.view.ViewGroup;
 import android.widget.Button;
 
 public class HomeFragment extends Fragment {
-
+    private Button button;
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        return  inflater.inflate(R.layout.home_fragment, container, false);
+        View homeFragmentView = inflater.inflate(R.layout.home_fragment, container, false);
+        button = homeFragmentView.findViewById(R.id.goToShiftScreen);
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                enterTips(v);
+            }
+        });
+        getActivity().setTitle("Main Menu");
+        return  homeFragmentView;
+    }
+
+    // Called when user taps "Enter tip" button
+    public void enterTips(View view) {
+        Intent gotoTips = new Intent(view.getContext(), EnterTipScreenActivity.class);
+        startActivity(gotoTips);
     }
 
     @Override
@@ -45,7 +60,7 @@ public class HomeFragment extends Fragment {
         });
 
         /* "Start shift" button brings user to EnterTipScreenActivity. */
-        final Button startShiftButton = (Button) getView().findViewById(R.id.startShift);
+        Button startShiftButton = (Button) getView().findViewById(R.id.goToShiftScreen);
         startShiftButton.setOnClickListener(new View.OnClickListener() {
 
             @Override

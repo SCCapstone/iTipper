@@ -13,6 +13,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import androidx.appcompat.widget.Toolbar;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -51,6 +52,12 @@ public class EnterTipScreenActivity extends AppCompatActivity {
 
         responseText = (TextView)findViewById(R.id.responseTextView);
         shiftText = (TextView)findViewById(R.id.shift_text);
+
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setTitle("Shift Screen");
+
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         quickTip1.setText("+ $1");
         quickTip2.setText("+ $2");
