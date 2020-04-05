@@ -59,7 +59,7 @@ public class HomeFragment extends Fragment {
         });
 
         /* "Start shift" button brings user to EnterTipScreenActivity. */
-        final Button startShiftButton = (Button) getView().findViewById(R.id.startShift);
+        Button startShiftButton = (Button) getView().findViewById(R.id.goToShiftScreen);
         startShiftButton.setOnClickListener(new View.OnClickListener() {
 
             @Override

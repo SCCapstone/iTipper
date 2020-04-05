@@ -38,5 +38,7 @@ public class SettingsFragment extends Fragment {
                 startActivity(new Intent(context, LoginActivity.class));
             }
         });
+
+
     }
 }

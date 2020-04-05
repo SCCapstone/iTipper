@@ -24,7 +24,9 @@
         <activity android:name=".ViewTipsActivity" />
         <activity android:name=".CreateAccountActivity" />
         <activity android:name=".DisplayMessageActivity" />
-        <activity android:name=".EnterTipScreenActivity" />
+        <activity android:name=".HomeFragment"/>
+        <activity android:name=".EnterTipScreenActivity"
+            android:parentActivityName=".HomeFragment"/>
         <activity android:name=".TipScreenActivity" />
         <activity android:name=".MapsActivity" />
         <activity android:name=".MapsDialogActivity" />
@@ -50,6 +52,9 @@
         <meta-data
             android:name="com.google.android.geo.API_KEY"
             android:value="@string/google_maps_key" />
+        <meta-data
+            android:name="preloaded_fonts"
+            android:resource="@array/preloaded_fonts" />
     </application>
 
 </manifest>
