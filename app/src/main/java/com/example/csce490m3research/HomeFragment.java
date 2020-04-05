@@ -25,6 +25,7 @@ public class HomeFragment extends Fragment {
                 enterTips(v);
             }
         });
+        getActivity().setTitle("Main Menu");
         return  homeFragmentView;
     }
 

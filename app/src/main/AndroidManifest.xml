@@ -29,7 +29,8 @@
         <activity android:name=".EnterTipScreenActivity"
             android:parentActivityName=".HomeFragment"/>
         <activity android:name=".TipScreenActivity" />
-        <activity android:name=".MapsActivity" />
+        <activity android:name=".MapsActivity"
+            android:parentActivityName=".EnterTipScreenActivity"/>
         <activity android:name=".MapsDialogActivity" />
         <activity android:name=".DisplayTipsGraphActivity" />
         <activity android:name=".ChooseGraphActivity" />

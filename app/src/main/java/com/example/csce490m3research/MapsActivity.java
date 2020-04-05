@@ -2,7 +2,9 @@
 
 package com.example.csce490m3research;
 import androidx.annotation.NonNull;
+import androidx.appcompat.widget.Toolbar;
 import androidx.core.app.ActivityCompat;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.FragmentActivity;
 import android.Manifest;
@@ -33,11 +35,12 @@ import com.google.android.libraries.places.widget.listener.PlaceSelectionListene
 
 import java.util.Arrays;
 
-public class MapsActivity extends FragmentActivity implements OnMapReadyCallback {
+public class MapsActivity extends AppCompatActivity implements OnMapReadyCallback {
     private static final String TAG = "MainActivity";
     private GoogleMap mMap;
     LocationManager locationManager;
     LocationListener locationListener;
+
     public void centreMapOnLocation(Location location, String title){
         LatLng userLocation = new LatLng(location.getLatitude(),location.getLongitude());
         mMap.clear();
@@ -60,6 +63,12 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_maps);
+
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setTitle("Current Location");
+
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         /*
         final Button button = findViewById(R.id.markButton);

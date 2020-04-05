@@ -8,76 +8,75 @@
 
     <Button
         android:id="@+id/goToShiftScreen"
-        android:layout_width="195dp"
-        android:layout_height="81dp"
-        android:layout_marginTop="148dp"
+        android:layout_width="154dp"
+        android:layout_height="80dp"
+        android:layout_marginTop="176dp"
         android:background="#ECB536"
+        android:drawableLeft="@drawable/work"
         android:fontFamily="sans-serif-medium"
-        android:text="Go to shift screen"
+        android:text="Go to shift Dashboard"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/mainMenu" />
-
-    <TextView
-        android:id="@+id/mainMenu"
-        android:layout_width="306dp"
-        android:layout_height="74dp"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentEnd="true"
-        android:layout_marginTop="52dp"
-        android:fontFamily="sans-serif-medium"
-        android:text="Main Menu"
-        android:textAlignment="center"
-        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
-        android:textSize="52dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.495"
+        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/welcomeMessage"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="205dp"
+        android:layout_height="86dp"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
         android:fontFamily="sans-serif-medium"
         android:text="Welcome to iTipper!"
         android:textAlignment="center"
+        android:textSize="32dp"
         app:layout_constraintBottom_toTopOf="@+id/goToShiftScreen"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/mainMenu"
-        app:layout_constraintVertical_bias="0.511" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.666" />
 
     <Button
         android:id="@+id/view_activity_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="154dp"
+        android:layout_height="80dp"
         android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="200dp"
+        android:layout_marginTop="12dp"
+        android:drawableLeft="@drawable/car"
         android:fontFamily="sans-serif-medium"
-        android:text="@string/user_activity_button_text"
+        android:text="View Recent Activity"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/view_all_tips_button"
+        app:layout_constraintVertical_bias="0.0" />
 
     <Button
         android:id="@+id/view_all_tips_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="154dp"
+        android:layout_height="80dp"
         android:layout_above="@+id/view_activity_button"
         android:layout_alignParentEnd="true"
         android:layout_centerHorizontal="true"
+        android:layout_marginTop="12dp"
+        android:drawableLeft="@drawable/dollar_sign"
         android:fontFamily="sans-serif-medium"
-        android:text="@string/view_all_tips_button_text"
-        app:layout_constraintBottom_toTopOf="@+id/view_activity_button"
+        android:text="View past tips"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/goToShiftScreen" />
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="410dp"
+        android:layout_height="192dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/goToShiftScreen"
-        app:layout_constraintVertical_bias="0.316" />
+        app:layout_constraintTop_toBottomOf="@+id/view_activity_button" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
