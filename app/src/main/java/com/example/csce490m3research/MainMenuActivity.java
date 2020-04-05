@@ -66,7 +66,6 @@ public class MainMenuActivity extends AppCompatActivity {
                 @Override
                 public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                     Fragment selectedFragment = null;
-
                     switch (item.getItemId()) {
                         case R.id.nav_home:
                             selectedFragment = new HomeFragment();
@@ -83,7 +82,6 @@ public class MainMenuActivity extends AppCompatActivity {
                     return true;
                 }
             };
-
     // Called when user taps "Maps" button
     public void mapDialog(View view) {
         //Intent gotoMapDialog = new Intent(this, MapsDialogActivity.class);

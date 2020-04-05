@@ -26,6 +26,7 @@ public class LoginActivity extends AppCompatActivity {
     private ProgressDialog loadingBar;
     private FirebaseAuth mFirebaseAuth;
     private TextView NeedNewAccountLink;
+    private TextView RecoverPasswordLink;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,6 +40,7 @@ public class LoginActivity extends AppCompatActivity {
         UserPassword = findViewById(R.id.User_Password);
         btnSignIn = findViewById(R.id.login_button);
         NeedNewAccountLink = findViewById(R.id.register_account_link);
+        RecoverPasswordLink = findViewById(R.id.recover_password_link);
         loadingBar = new ProgressDialog(this);
 
 
@@ -56,6 +58,14 @@ public class LoginActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intSignUp = new Intent(LoginActivity.this, CreateAccountActivity.class);
                 startActivity(intSignUp);
+            }
+        });
+
+        RecoverPasswordLink.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent recoverPassword = new Intent(LoginActivity.this, RecoverPasswordActivity.class);
+                startActivity(recoverPassword);
             }
         });
     }

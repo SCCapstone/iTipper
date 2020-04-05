@@ -29,6 +29,9 @@
     <string name="edit_tips_button">Edit tips</string>
     <string name="view_tips_button">View tips</string>
     <string name="view_graph_button">View graph</string>
+    <string name="mark_tip_button">Mark $</string>
+    <string name="view_shift">Shifts</string>
+    <string name="view_map_button"> View Map</string>
 
 
     <string name="user_activity_title">Your tips:</string>
@@ -46,4 +49,8 @@
     <string name="user_activity_button_text">View your activity</string>
     <string name="logout_button_text">Logout</string>
     <string name="view_all_tips_button_text">View all tips you\'ve entered</string>
+    <string name="password_recovery_header_text">Enter the email you signed up with.</string>
+    <string name="email_hint">Email...</string>
+    <string name="send_email">Send email</string>
+    <string name="forgot_password">Forgot password?</string>
 </resources>
