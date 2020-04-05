@@ -46,23 +46,6 @@ tools:context=".MapsActivity" />
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MapsActivity">
- <!--
-    <fragment
-        android:id="@+id/place_autocomplete_fragment"
-        android:name="com.google.android.libraries.places.compat.ui.PlaceAutocompleteFragment"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
-
-    <fragment xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:map="http://schemas.android.com/apk/res-auto"
-        xmlns:tools="http://schemas.android.com/tools"
-        android:id="@+id/map"
-        android:name="com.google.android.gms.maps.SupportMapFragment"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_below="@id/place_autocomplete_fragment" />
-
--->
     <fragment
         android:id="@+id/autocomplete_fragment"
         android:layout_width="match_parent"
@@ -77,7 +60,33 @@ tools:context=".MapsActivity" />
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_below="@id/autocomplete_fragment" />
+    <!--Old
+        <Button
+            android:id="@+id/markButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginStart="76dp"
+            android:layout_marginEnd="7dp"
+            android:layout_marginBottom="569dp"
+            android:layout_toEndOf="@+id/tipTextView"
+            android:background="#359c5e"
+            android:padding="8dp"
+            android:text="Mark $"
+            android:textColor="@color/colorPrimary" />
 
-</RelativeLayout>
+        <TextView
+            android:id="@+id/tipTextView"
+            android:layout_width="224dp"
+            android:layout_height="63dp"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginStart="22dp"
+            android:layout_marginTop="104dp"
+            android:visibility="visible"
+            tools:text="Enter Tip Amount..." />
+    -->
+    </RelativeLayout>
 
 
