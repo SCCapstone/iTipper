@@ -1,7 +1,12 @@
 # iTipper Android Application
 
 This application is a phone app on the Android OS for targeted at anybody that works for tips. The primary goal of iTipper is for users to be able to record tips on the fly, keep track of how 
-much they are earning and to be able to help users budget better. 
+much they are earning and to be able to help users budget better. For drivers, there is a built in google maps for quickly searching for a location.
+
+# Demo Video
+
+# How to use
+
 
 # Technologies
 In order to build this project you will need to install:
@@ -110,10 +115,10 @@ To run instrumented tests, connect an Android device via USB. (Help with setting
 Then enter:
 ./gradlew connectedAndroidTest
 
-## Authors
+## About the developers
+iTipper is the product of a four member team of seniors at the University of South Carolina. Visit our githubs below and view some of our work
 
  * [@TylerPChambers (Tyler Chambers)](https://github.com/TylerPChambers)
  * [@AzianEquation (John Esco)](https://github.com/AzianEquation)
  * [@christine1312 (Christine Burris)](https://github.com/christine1312)
- * [@paolomilan (Paolo Milan)](https://github.com/paolomilan)
  * [@42kevinzheng (Kevin Zheng)](https://github.com/42kevinzheng)
