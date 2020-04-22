@@ -5,19 +5,29 @@ much they are earning and to be able to help users budget better. For drivers, t
 
 # Demo Video
 [![iTipper Tutorial](https://user-images.githubusercontent.com/47394267/80042154-45f37780-84cc-11ea-80ba-50d4269c5e41.png)](https://www.youtube.com/watch?time_continue=1&v=0fP-TIaoAwA&feature=emb_logo)
-# How to use
+# Images of iTipper
+Main Menu:
 ![](https://user-images.githubusercontent.com/47394267/79916723-30f8e480-83f7-11ea-8947-4de35ac12200.jpg) <br/>
+Graphing of Tips:
 ![](https://user-images.githubusercontent.com/47394267/79916767-42da8780-83f7-11ea-8bfe-19c5a7f57065.jpg) <br/>
+View and Edit Tips (Swipe to delete):
 ![](https://user-images.githubusercontent.com/47394267/79916806-54239400-83f7-11ea-919b-8b8aee810c40.jpg) <br/>
-![](https://user-images.githubusercontent.com/47394267/79917177-fe032080-83f7-11ea-918b-576411e4d3ba.jpg) >br/>
-![](https://user-images.githubusercontent.com/47394267/79916818-5b4aa200-83f7-11ea-8f4b-78e794594d05.jpg) <br/>
-
+Tip Entry and Navigation to Maps, View Tips/Graph:
+![](https://user-images.githubusercontent.com/47394267/79917177-fe032080-83f7-11ea-918b-576411e4d3ba.jpg) <br/>
+Google Maps with SearchView:
+![](https://user-images.githubusercontent.com/47394267/80043269-39245300-84cf-11ea-900e-8b8ac7fd67f2.jpg) <br/>
+The user can get directions to a searched location by clicking the blue arrow in the bottom right. This will automatically open Google Map with the route selected.
 
 # Technologies
-In order to build this project you will need to install:
+The application's APK is available in our repository under "Releases". The APK can be downloaded to any android device for use. <br/>
+In order to build this project and view the code, you will need to install:
 * [Android Studio](https://developer.android.com/studio/) <br/>
 
-# Setting Up
+# Running 
+Once on the target device, the application can be executed like any other app. Navigate to 'iTipper' in the app list and open it.
+To run the app on a computer, with Android Studio, you have one of two choices: Either on a real device or the built-in emulator. Note that the emulator does not currently support AMD64 architecture. Detailed instructions are below.
+
+# Setting Up the Environment (Android Studio)
 To install Android Studio on Windows, proceed as follows:
 
 1. If you downloaded an `.exe` file (recommended), double-click to launch it. <br/>
@@ -42,8 +52,6 @@ That's it.
 
 6. Click **Finish**.
 
-# Running 
-To run the app on your computer you have one of two choices: Either on a real device or an emulator.
 
 ### Run on a real device
 Set up your device as follows:
