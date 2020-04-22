@@ -62,10 +62,10 @@ public class TipAdapter extends FirestoreRecyclerAdapter<Tip, TipAdapter.TipHold
             super(itemView);
             tipValueView = itemView.findViewById(R.id.tip_value_view);
             tipTimestampView = itemView.findViewById(R.id.tip_timestamp_view);
-            editTipButton = itemView.findViewById(R.id.edit_tip_button);
+            //editTipButton = itemView.findViewById(R.id.edit_tip_button);
 
-            // Add a listener for when the edit button on the card is clicked
-            editTipButton.setOnClickListener(new View.OnClickListener() {
+            // Add a listener for when the card is clicked
+            itemView.setOnClickListener(new View.OnClickListener() {
 
                 @Override
                 public void onClick(View v) {

@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".EditTipActivity">
+    tools:context=".EditTipActivity"
+    >
 
     <include
         android:id="@+id/toolbar"
@@ -28,9 +29,10 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
-        android:text="Start"
+        android:text="@string/time_entered"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/toolbar" />
+        app:layout_constraintTop_toBottomOf="@id/toolbar"
+        style="@style/TextAppearance.AppCompat.Medium"/>
 
     <DatePicker
         android:id="@+id/tipDatePicker"
@@ -52,7 +54,7 @@
         android:scaleY="0.6"
         android:timePickerMode="spinner"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/startDatePicker"
+        app:layout_constraintStart_toEndOf="@+id/tipDatePicker"
         app:layout_constraintTop_toTopOf="@+id/tipDatePicker" />
 
     <TextView
@@ -61,9 +63,10 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginTop="8dp"
-        android:text="Edit Value"
+        android:text="@string/edit_value"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tipDatePicker" />
+        app:layout_constraintTop_toBottomOf="@+id/tipDatePicker"
+        style="@style/TextAppearance.AppCompat.Medium"/>
 
     <Button
         android:id="@+id/done_editing_tip_button"
@@ -71,7 +74,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginBottom="16dp"
-        android:text="Done"
+        android:text="@string/done_button"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 

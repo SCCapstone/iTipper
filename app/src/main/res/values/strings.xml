@@ -55,4 +55,9 @@
     <string name="forgot_password">Forgot password?</string>
     <string name="default_button_text">Button</string>
     <string name="custom_tip_hint">Custom tip</string>
+    <string name="default_tip_value_text">$</string>
+    <string name="default_tip_date_text">mm/dd/yyyy hh:mm</string>
+    <string name="time_entered">Time entered</string>
+    <string name="edit_value">Edit Value</string>
+    <string name="done_button">Done</string>
 </resources>
