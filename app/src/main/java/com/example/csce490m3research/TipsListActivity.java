@@ -2,6 +2,7 @@ package com.example.csce490m3research;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -29,6 +30,12 @@ public class TipsListActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tips_list);
         setTitle("Tips (All)");
+
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setTitle("Tip History");
+
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         // Check if the intent was passed shift data, and if so extract it.
         Intent intent = getIntent();

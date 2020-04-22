@@ -2,6 +2,7 @@ package com.example.csce490m3research;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -29,6 +30,12 @@ public class ShiftListActivity extends AppCompatActivity {
         setTitle("Shifts");
 
         setUpRecyclerView();
+
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setTitle("Shift History");
+
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     }
 
     private void setUpRecyclerView() {

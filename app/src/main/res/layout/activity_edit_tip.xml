@@ -6,6 +6,11 @@
     android:layout_height="match_parent"
     tools:context=".EditTipActivity">
 
+    <include
+        android:id="@+id/toolbar"
+        layout="@layout/toolbar"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <EditText
         android:id="@+id/tipEditValue"
         android:layout_width="wrap_content"
@@ -25,7 +30,7 @@
         android:layout_marginTop="16dp"
         android:text="Start"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@id/toolbar" />
 
     <DatePicker
         android:id="@+id/tipDatePicker"

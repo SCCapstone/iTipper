@@ -61,6 +61,7 @@ public class MainMenuActivity extends AppCompatActivity {
                 new HomeFragment()).commit();
     }
 
+    //Handles bottom navigation routing
     private BottomNavigationView.OnNavigationItemSelectedListener navListener =
             new BottomNavigationView.OnNavigationItemSelectedListener() {
                 @Override
@@ -84,8 +85,6 @@ public class MainMenuActivity extends AppCompatActivity {
             };
     // Called when user taps "Maps" button
     public void mapDialog(View view) {
-        //Intent gotoMapDialog = new Intent(this, MapsDialogActivity.class);
-        //startActivity(gotoMapDialog);
         Intent intent = new Intent(this, MapsActivity.class);
         startActivity(intent);
 
@@ -93,8 +92,6 @@ public class MainMenuActivity extends AppCompatActivity {
 
     // Called when user taps "Graph" button
     public void graphDisplay(View view) {
-        //Intent gotoGraphDisplay = new Intent(this, ChooseGraphActivity.class);
-        //startActivity(gotoGraphDisplay);
         // Go directly to graph
         Intent gotoTipsGraph = new Intent(this, DisplayTipsGraphActivity.class);
         startActivity(gotoTipsGraph);

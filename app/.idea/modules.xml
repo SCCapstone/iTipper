@@ -4,6 +4,8 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/../CSCE490M3Research.iml" filepath="$PROJECT_DIR$/../CSCE490M3Research.iml" />
       <module fileurl="file://$PROJECT_DIR$/app.iml" filepath="$PROJECT_DIR$/app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../iTipper-CSCE490M3Research.iml" filepath="$PROJECT_DIR$/../iTipper-CSCE490M3Research.iml" group="CSCE490M3Research" />
+      <module fileurl="file://$PROJECT_DIR$/iTipper-app.iml" filepath="$PROJECT_DIR$/iTipper-app.iml" group="CSCE490M3Research/app" />
     </modules>
   </component>
 </project>
