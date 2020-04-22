@@ -16,6 +16,7 @@ import com.google.firebase.Timestamp;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.Date;
+import java.util.Objects;
 
 public class EditTipActivity extends AppCompatActivity {
     String path;
@@ -33,22 +34,24 @@ public class EditTipActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_tip);
 
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        getSupportActionBar().setTitle("Edit Tip");
+        Objects.requireNonNull(getSupportActionBar()).setTitle("Edit Tip");
 
         Intent intent = getIntent();
 
         if (intent.hasExtra("path")) {
             path = intent.getStringExtra("path");
         } else {
-            Toast.makeText(this, "Couldn't load tip data.", Toast.LENGTH_LONG);
+            Toast.makeText(this, "Couldn't load tip data.", Toast.LENGTH_LONG)
+                .show();
+
             startActivity(new Intent(this, ShiftListActivity.class));
         }
 
-        tipDatePicker = (DatePicker) findViewById(R.id.tipDatePicker);
-        tipTimePicker = (TimePicker) findViewById(R.id.tipTimePicker);
-        tipEditValue = (EditText) findViewById(R.id.tipEditValue);
+        tipDatePicker = findViewById(R.id.tipDatePicker);
+        tipTimePicker = findViewById(R.id.tipTimePicker);
+        tipEditValue = findViewById(R.id.tipEditValue);
 
         // Initialize edit value to whatever the tip is in the database
         tipEditValue.setText(intent.getStringExtra("value"));
@@ -60,34 +63,77 @@ public class EditTipActivity extends AppCompatActivity {
         tipTimePicker.setHour(date.getHours());
         tipTimePicker.setMinute(date.getMinutes());
 
-        doneButton = (Button) findViewById(R.id.done_editing_tip_button);
+        final Date oldDate = getPickerDate();
+        final String oldVal = getTipEditValue();
+
+        doneButton = findViewById(R.id.done_editing_tip_button);
         doneButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Date tipDate = new Date(
-                        tipDatePicker.getYear() - 1900,
-                        tipDatePicker.getMonth(),
-                        tipDatePicker.getDayOfMonth(),
-                        tipTimePicker.getHour(),
-                        tipTimePicker.getMinute()
-                );
-                Timestamp tipTimestamp = new Timestamp(tipDate);
 
-                // Check for valid tip value
+                // Use try to check for valid tip value.
                 try {
                     if (!tipEditValue.getText().toString().isEmpty()) {
-                        Tip tip = new Tip(tipEditValue.getText().toString());
-                        db.document(path).update("value", tip.getValue());
+                        Date newDate = getPickerDate();
+                        Timestamp newTimestamp = new Timestamp(newDate);
+                        String newVal = tipEditValue.getText().toString();
 
-                        Toast.makeText(v.getContext(), "Tip edited!", Toast.LENGTH_SHORT).show();
-                        finish();
+                        /* If nothing has been edited, don't send update request to database
+                           and don't send "Tip edited!" message to user.
+                           Just exit the activity. */
+                        if (newVal.equals(oldVal) && newDate.equals(oldDate)) {
+                            finish();
+                        } else {
+                        /* If either the value or date has changed, send "Tip edited!" message,
+                           but only send update request for fields that changed. */
+                            if (!newVal.equals(oldVal)) {
+                                Tip tip = new Tip(tipEditValue.getText().toString());
+                                db.document(path).update("value", tip.getValue());
+                            }
+                            if (!newDate.equals(oldDate)) {
+                                db.document(path).update("time", newTimestamp);
+                            }
+
+                            // Finally, exit the activity and inform the user data has changed.
+                            Toast.makeText(v.getContext(), "Tip edited!", Toast.LENGTH_SHORT)
+                                    .show();
+                            finish();
+                        }
                     }
-                    db.document(path).update("time", tipTimestamp);
                 } catch (InvalidTipException e) {
                     e.printStackTrace();
                     Toast.makeText(v.getContext(), e.getMessage(), Toast.LENGTH_LONG).show();
+                } catch (NumberFormatException e) {
+                    e.printStackTrace();
+                    String errText =
+                            "You entered something that couldn't be interpreted as a number.";
+                    Toast.makeText(v.getContext(), errText, Toast.LENGTH_LONG).show();
                 }
             }
         });
+    }
+
+    /**
+     * Form a Date from the values currently displayed in the date and time picker.
+     * @return Date corresponding to date and time on each picker on the screen
+     */
+    Date getPickerDate() {
+        Date date = new Date(
+                tipDatePicker.getYear() - 1900,
+                tipDatePicker.getMonth(),
+                tipDatePicker.getDayOfMonth(),
+                tipTimePicker.getHour(),
+                tipTimePicker.getMinute()
+        );
+
+        return date;
+    }
+
+    /**
+     * Grab the string currently in the Edit Value text box.
+     * @return String currently in Edit Value edit text view
+     */
+    String getTipEditValue() {
+        return tipEditValue.getText().toString();
     }
 }
