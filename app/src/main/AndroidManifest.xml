@@ -20,8 +20,10 @@
         <activity android:name=".RecoverPasswordActivity"></activity>
         <activity android:name=".EditTipActivity" />
         <activity android:name=".EditShiftActivity" />
-        <activity android:name=".TipsListActivity" />
-        <activity android:name=".ShiftListActivity" />
+        <activity android:name=".TipsListActivity"
+            android:parentActivityName=".HomeFragment"/>
+        <activity android:name=".ShiftListActivity"
+            android:parentActivityName=".HomeFragment"/>
         <activity android:name=".ViewTipsActivity" />
         <activity android:name=".CreateAccountActivity" />
         <activity android:name=".DisplayMessageActivity" />
