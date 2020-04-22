@@ -4,7 +4,7 @@ This application is a phone app on the Android OS for targeted at anybody that w
 much they are earning and to be able to help users budget better. For drivers, there is a built in google maps for quickly searching for a location.
 
 # Demo Video
-[![iTipper Tutorial](https://user-images.githubusercontent.com/47394267/80042154-45f37780-84cc-11ea-80ba-50d4269c5e41.png)](https://www.youtube.com/watch?time_continue=1&v=0fP-TIaoAwA&feature=emb_logo)
+[[iTipper Tutorial](https://user-images.githubusercontent.com/47394267/80042154-45f37780-84cc-11ea-80ba-50d4269c5e41.png)](https://www.youtube.com/watch?time_continue=1&v=0fP-TIaoAwA&feature=emb_logo)
 # How to use
 ![](https://user-images.githubusercontent.com/47394267/79916723-30f8e480-83f7-11ea-8947-4de35ac12200.jpg) <br/>
 ![](https://user-images.githubusercontent.com/47394267/79916767-42da8780-83f7-11ea-8bfe-19c5a7f57065.jpg) <br/>
