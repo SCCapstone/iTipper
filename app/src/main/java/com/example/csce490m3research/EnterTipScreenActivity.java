@@ -1,7 +1,3 @@
-/** Screen where the user can input tips.
- *
- *  Authors: Paolo Milan, Tyler Chambers
- */
 package com.example.csce490m3research;
 
 import androidx.annotation.NonNull;
@@ -11,9 +7,13 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
+
 import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 
@@ -22,22 +22,29 @@ import com.google.android.gms.tasks.Task;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.Timestamp;
 import com.google.firebase.firestore.CollectionReference;
-import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 
+import org.w3c.dom.Text;
+
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 
-
+/** Screen where the user can input tips.
+ *
+ *  Authors: Paolo Milan, Tyler Chambers
+ */
 public class EnterTipScreenActivity extends AppCompatActivity {
     public static final String EXTRA_MESSAGE = "com.example.myfirstapp.MESSAGE";
 
     TextView responseText;
-    TextView shiftText;
+    TextView toastText;
+    Toast toast;
+    static final int TOAST_TEXT_SIZE = 24;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,12 +61,12 @@ public class EnterTipScreenActivity extends AppCompatActivity {
         final Button startShift = findViewById(R.id.startShiftButton);
         final Button endShift = findViewById(R.id.endShiftButton);
 
-        responseText = (TextView)findViewById(R.id.responseTextView);
-        shiftText = (TextView)findViewById(R.id.shift_text);
+        responseText = findViewById(R.id.responseTextView);
 
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        getSupportActionBar().setTitle("Shift Screen");
+
+        Objects.requireNonNull(getSupportActionBar()).setTitle("Shift Screen");
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
@@ -104,9 +111,10 @@ public class EnterTipScreenActivity extends AppCompatActivity {
                     endShift.setAlpha(.5f);
                     endShift.setClickable(false);
                 }
-                shiftText.setText(shiftInfo);
+                responseText.setText(shiftInfo);
             }
         });
+
     }
 
     /** Called when the user taps the + button */
@@ -115,17 +123,22 @@ public class EnterTipScreenActivity extends AppCompatActivity {
         EditText editText = findViewById(R.id.tipInputText);
         String message = editText.getText().toString();
 
+        // Clear the user's input after the + button has been pushed
+        editText.setText("");
+
         try {
             Tip tip = new Tip(message);
             System.out.println(tip + " from user input");
 
             Database.writeTip(message);
 
-            editText.setText("");
-            responseText.setText("Entered tip: " + tip.toString());
+            displayTip("" + tip.getValue());
 
         } catch (InvalidTipException e) {
             String errorText = e.getMessage();
+            responseText.setText(errorText);
+        } catch (NumberFormatException e) {
+            String errorText = "Error: you put in something that wasn't a number.";
             responseText.setText(errorText);
         }
     }
@@ -140,12 +153,14 @@ public class EnterTipScreenActivity extends AppCompatActivity {
 
             Database.writeTip(tip);
 
-            responseText.setText("Entered tip: " + tip.toString());
+            displayTip(tipValue);
 
         } catch (InvalidTipException e) {
             String errorText = "Error entering tip: " + tipValue
                     + "\n" + "Tip should be greater than zero.";
             responseText.setText(errorText);
+        } catch (NumberFormatException e) {
+            responseText.setText(e.getMessage());
         }
     }
 
@@ -184,7 +199,7 @@ public class EnterTipScreenActivity extends AppCompatActivity {
             @Override
             public void onComplete(@NonNull Task<QuerySnapshot> task) {
                 if (task.isSuccessful()) {
-                    for (QueryDocumentSnapshot document : task.getResult()) {
+                    for (QueryDocumentSnapshot document : Objects.requireNonNull(task.getResult())) {
                         document.getReference().update("end", Timestamp.now());
 
                         // Refresh the activity
@@ -217,6 +232,43 @@ public class EnterTipScreenActivity extends AppCompatActivity {
         startActivity(gotoMapsView);
     }
 
+    /**
+     * Display a temporary message on the screen to communicate to the user that their tip
+     * has been entered.
+     * If there's already a message being display, append the message to that message view.
+     * @param tip The value of the tip added.
+     */
+    public void displayTip(String tip) {
+        // There's no message currently displayed, so just display the message like normal.
+        if (toast == null) {
+            String msg = "Added tip: " + tip;
+            toast = Toast.makeText(this, msg, Toast.LENGTH_SHORT);
+
+            ViewGroup group = (ViewGroup) toast.getView();
+
+            TextView messageTextView = (TextView) group.getChildAt(0);
+            messageTextView.setTextSize(TOAST_TEXT_SIZE);
+
+            toast.show();
+        }
+        // If a message is already displayed, append to that message instead of making a new one.
+        else {
+            String msg = ((TextView) ((LinearLayout) toast.getView()).getChildAt(0))
+                    .getText().toString();
+            msg += ", " + tip;
+
+            toast.cancel();
+
+            toast = Toast.makeText(this, msg, Toast.LENGTH_SHORT);
+
+            ViewGroup group = (ViewGroup) toast.getView();
+
+            TextView messageTextView = (TextView) group.getChildAt(0);
+            messageTextView.setTextSize(TOAST_TEXT_SIZE);
+
+            toast.show();
+        }
+    }
 
 
 }

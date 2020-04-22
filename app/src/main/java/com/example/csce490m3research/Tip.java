@@ -49,7 +49,7 @@ public class Tip {
      * @param value The dollar value of the tip, as a String.
      * @throws InvalidTipException if the tip is less than or equal to 0 or greater than max tip.
      */
-    public Tip(String value) throws InvalidTipException {
+    public Tip(String value) throws InvalidTipException, NumberFormatException {
         Timestamp Time = Timestamp.now();
         setTime(Time);
 

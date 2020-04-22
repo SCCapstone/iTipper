@@ -23,7 +23,7 @@
     <string name="custom_tip_prompt">Custom tip</string>
     <string name="record_tip">+</string>
     <string name="enter_tip">Enter tip</string>
-    <string name="tip_response_text"></string>
+    <string name="tip_response_text"> </string>
     <string name="start_shift_button">Start shift</string>
     <string name="end_shift_button">End shift</string>
     <string name="edit_tips_button">Edit tips</string>
@@ -53,4 +53,6 @@
     <string name="email_hint">Email...</string>
     <string name="send_email">Send email</string>
     <string name="forgot_password">Forgot password?</string>
+    <string name="default_button_text">Button</string>
+    <string name="custom_tip_hint">Custom tip</string>
 </resources>
