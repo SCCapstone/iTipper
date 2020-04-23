@@ -17,6 +17,7 @@ import com.google.firebase.Timestamp;
 import com.google.firebase.firestore.DocumentSnapshot;
 
 import java.util.Date;
+import java.util.Objects;
 
 public class ShiftAdapter extends FirestoreRecyclerAdapter<Shift, ShiftAdapter.ShiftHolder> {
     private OnItemClickListener listener;
@@ -25,9 +26,9 @@ public class ShiftAdapter extends FirestoreRecyclerAdapter<Shift, ShiftAdapter.S
      * Create a new RecyclerView adapter that listens to a Firestore Query.  See {@link
      * FirestoreRecyclerOptions} for configuration options.
      *
-     * @param options
+     * @param options FirestoreRecyclerOptions
      */
-    public ShiftAdapter(@NonNull FirestoreRecyclerOptions<Shift> options) {
+    ShiftAdapter(@NonNull FirestoreRecyclerOptions<Shift> options) {
         super(options);
     }
 
@@ -45,7 +46,7 @@ public class ShiftAdapter extends FirestoreRecyclerAdapter<Shift, ShiftAdapter.S
         return new ShiftHolder(v);
     }
 
-    public void deleteItem(int position) {
+    void deleteItem(int position) {
         getSnapshots().getSnapshot(position).getReference().delete();
     }
 
@@ -54,7 +55,7 @@ public class ShiftAdapter extends FirestoreRecyclerAdapter<Shift, ShiftAdapter.S
         Button editShiftButton;
         Shift shift;
 
-        public ShiftHolder(@NonNull View itemView) {
+        ShiftHolder(@NonNull View itemView) {
             super(itemView);
             shiftTextView = itemView.findViewById(R.id.shift_text_view);
             editShiftButton = itemView.findViewById(R.id.edit_shift_button);
@@ -81,8 +82,10 @@ public class ShiftAdapter extends FirestoreRecyclerAdapter<Shift, ShiftAdapter.S
                     gotoTips.putExtra("startSeconds", shift.getStart().getSeconds());
                     gotoTips.putExtra("startNanos", shift.getStart().getNanoseconds());
 
-                    gotoTips.putExtra("endSeconds", shift.getEnd().getSeconds());
-                    gotoTips.putExtra("endNanos", shift.getEnd().getNanoseconds());
+                    if (shift.getEnd() != null) {
+                        gotoTips.putExtra("endSeconds", shift.getEnd().getSeconds());
+                        gotoTips.putExtra("endNanos", shift.getEnd().getNanoseconds());
+                    }
 
                     context.startActivity(gotoTips);
                 }
@@ -101,12 +104,12 @@ public class ShiftAdapter extends FirestoreRecyclerAdapter<Shift, ShiftAdapter.S
                     editShift.putExtra("path", path);
 
                     Timestamp start = (Timestamp) ds.get("start");
-                    Date startDate = start.toDate();
+                    Date startDate = Objects.requireNonNull(start).toDate();
                     editShift.putExtra("start", startDate.toString());
 
-                    if (ds.contains("end")) {
+                    if (ds.contains("end") && ds.get("end") != null) {
                         Timestamp end = (Timestamp) ds.get("end");
-                        Date endDate = end.toDate();
+                        Date endDate = Objects.requireNonNull(end).toDate();
                         editShift.putExtra("end", endDate.toString());
                     }
 

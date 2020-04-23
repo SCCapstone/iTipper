@@ -1,5 +1,7 @@
 package com.example.csce490m3research;
 
+import com.google.firebase.Timestamp;
+
 import org.junit.Test;
 
 import java.time.ZonedDateTime;
@@ -10,13 +12,14 @@ public class TipUnitTest {
 
     @Test
     public void tipCreatedCorrectly() {
-        ZonedDateTime testTime = ZonedDateTime.now();
-        String testTipValue = "5.00";
+        Timestamp testTime = Timestamp.now();
+        double testTipValue = 5.00;
 
         Tip testTip;
 
         try {
-            testTip = new Tip(testTipValue, testTime);
+            testTip = new Tip(testTipValue);
+            testTip.setTime(testTime);
             assertTrue(testTip.getTime().equals(testTime));
             assertTrue(testTip.getValue() == testTipValue);
         } catch (InvalidTipException e) {
