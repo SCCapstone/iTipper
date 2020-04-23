@@ -19,6 +19,8 @@ public class Tip {
      */
     private static final double MAX_TIP = 1024.00;
 
+    private static final double CENTS = 0.01;
+
     /**
      * The dollar value for the tip.
      */
@@ -30,7 +32,7 @@ public class Tip {
     /**
      * The user ID, defined by Firebase Auth, for the user the tip is recorded by.
      */
-    public String uid;
+    private String uid;
 
     // Constructors
 
@@ -148,8 +150,13 @@ public class Tip {
      * @throws InvalidTipException if the tip is less than or equal to 0 or greater than max tip.
      */
     public void setValue(double value) throws InvalidTipException {
+        // Round off to cents
+        value = value * 100;
+        value = Math.round(value);
+        value = value / 100;
+
         if (value <= 0 || value > MAX_TIP) {
-            String exceptionMessage = "Tip cannot be less than or equal to 0.\n" +
+            String exceptionMessage = "Minimum tip is 1 cent.\n" +
                     "Maximum tip allowed is " + MAX_TIP + ".";
 
             throw new InvalidTipException(exceptionMessage);
@@ -186,7 +193,7 @@ public class Tip {
      * Converts the time field for this tip into a human-readable format.
      * @return time for this tip, in "yyyy/MM/dd hh:mm a" format (a is AM or PM)
      */
-    public String getTimestampString() {
+    String getTimestampString() {
         String pattern = "yyyy/MM/dd hh:mm a";
         Locale locale = Locale.getDefault();
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern, locale);

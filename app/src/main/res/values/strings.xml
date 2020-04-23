@@ -50,7 +50,7 @@
     <string name="logout_button_text">Logout</string>
     <string name="view_all_tips_button_text">View all tips you\'ve entered</string>
     <string name="password_recovery_header_text">Enter the email you signed up with.</string>
-    <string name="email_hint">Email...</string>
+    <string name="email_hint">Email…</string>
     <string name="send_email">Send email</string>
     <string name="forgot_password">Forgot password?</string>
     <string name="default_button_text">Button</string>
@@ -60,4 +60,7 @@
     <string name="time_entered">Time entered</string>
     <string name="edit_value">Edit Value</string>
     <string name="done_button">Done</string>
+    <string name="shift_text">Shift Text</string>
+    <string name="start">Start</string>
+    <string name="end">End</string>
 </resources>

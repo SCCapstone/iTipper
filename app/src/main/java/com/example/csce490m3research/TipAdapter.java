@@ -17,6 +17,7 @@ import com.google.firebase.Timestamp;
 import com.google.firebase.firestore.DocumentSnapshot;
 
 import java.util.Date;
+import java.util.Objects;
 
 public class TipAdapter extends FirestoreRecyclerAdapter<Tip, TipAdapter.TipHolder> {
 
@@ -24,9 +25,9 @@ public class TipAdapter extends FirestoreRecyclerAdapter<Tip, TipAdapter.TipHold
      * Create a new RecyclerView adapter that listens to a Firestore Query.  See {@link
      * FirestoreRecyclerOptions} for configuration options.
      *
-     * @param options
+     * @param options FirestoreRecyclerOptions
      */
-    public TipAdapter(@NonNull FirestoreRecyclerOptions<Tip> options) {
+    TipAdapter(@NonNull FirestoreRecyclerOptions<Tip> options) {
         super(options);
     }
 
@@ -35,13 +36,14 @@ public class TipAdapter extends FirestoreRecyclerAdapter<Tip, TipAdapter.TipHold
         // Convert number value to string
         String tipValue = String.valueOf(model.getValue());
         // Set "Tip Value" field in the card to show the value
-        holder.tipValueView.setText("$" + tipValue);
+        String tipText = "$" + tipValue;
+        holder.tipValueView.setText(tipText);
 
         // Set "Timestamp" field in the card to show the timestamp for the tip
         holder.tipTimestampView.setText(model.getTimestampString());
     }
 
-    public void deleteItem(int position) {
+    void deleteItem(int position) {
         getSnapshots().getSnapshot(position).getReference().delete();
     }
 
@@ -56,13 +58,11 @@ public class TipAdapter extends FirestoreRecyclerAdapter<Tip, TipAdapter.TipHold
     class TipHolder extends RecyclerView.ViewHolder {
         TextView tipValueView;
         TextView tipTimestampView;
-        Button editTipButton;
 
-        public TipHolder(@NonNull View itemView) {
+        TipHolder(@NonNull View itemView) {
             super(itemView);
             tipValueView = itemView.findViewById(R.id.tip_value_view);
             tipTimestampView = itemView.findViewById(R.id.tip_timestamp_view);
-            //editTipButton = itemView.findViewById(R.id.edit_tip_button);
 
             // Add a listener for when the card is clicked
             itemView.setOnClickListener(new View.OnClickListener() {
@@ -77,11 +77,11 @@ public class TipAdapter extends FirestoreRecyclerAdapter<Tip, TipAdapter.TipHold
                     String path = ds.getReference().getPath();
                     editTip.putExtra("path", path);
 
-                    String tipValue = ds.get("value").toString();
+                    String tipValue = Objects.requireNonNull(ds.get("value")).toString();
                     editTip.putExtra("value", tipValue);
 
                     Timestamp timestamp = (Timestamp) ds.get("time");
-                    Date date = timestamp.toDate();
+                    Date date = Objects.requireNonNull(timestamp).toDate();
                     editTip.putExtra("date", date.toString());
 
                     context.startActivity(editTip);

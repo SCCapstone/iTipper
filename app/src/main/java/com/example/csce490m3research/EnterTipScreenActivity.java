@@ -136,10 +136,10 @@ public class EnterTipScreenActivity extends AppCompatActivity {
 
         } catch (InvalidTipException e) {
             String errorText = e.getMessage();
-            responseText.setText(errorText);
+            Toast.makeText(this, errorText, Toast.LENGTH_LONG).show();
         } catch (NumberFormatException e) {
             String errorText = "Error: you put in something that wasn't a number.";
-            responseText.setText(errorText);
+            Toast.makeText(this, errorText, Toast.LENGTH_LONG).show();
         }
     }
 

@@ -64,9 +64,15 @@ public class EditTipActivity extends AppCompatActivity {
         tipTimePicker.setMinute(date.getMinutes());
 
         final Date oldDate = getPickerDate();
-        final String oldVal = getTipEditValue();
+        double oldVal = 0;
+        try {
+            oldVal = new Tip(getTipEditValue()).getValue();
+        } catch (InvalidTipException e) {
+            e.printStackTrace();
+        }
 
         doneButton = findViewById(R.id.done_editing_tip_button);
+        final double finalOldVal = oldVal;
         doneButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -76,17 +82,17 @@ public class EditTipActivity extends AppCompatActivity {
                     if (!tipEditValue.getText().toString().isEmpty()) {
                         Date newDate = getPickerDate();
                         Timestamp newTimestamp = new Timestamp(newDate);
-                        String newVal = tipEditValue.getText().toString();
+                        double newVal = new Tip(tipEditValue.getText().toString()).getValue();
 
                         /* If nothing has been edited, don't send update request to database
                            and don't send "Tip edited!" message to user.
                            Just exit the activity. */
-                        if (newVal.equals(oldVal) && newDate.equals(oldDate)) {
+                        if (newVal == finalOldVal && newDate.equals(oldDate)) {
                             finish();
                         } else {
                         /* If either the value or date has changed, send "Tip edited!" message,
                            but only send update request for fields that changed. */
-                            if (!newVal.equals(oldVal)) {
+                            if (!(newVal == finalOldVal)) {
                                 Tip tip = new Tip(tipEditValue.getText().toString());
                                 db.document(path).update("value", tip.getValue());
                             }
@@ -118,15 +124,14 @@ public class EditTipActivity extends AppCompatActivity {
      * @return Date corresponding to date and time on each picker on the screen
      */
     Date getPickerDate() {
-        Date date = new Date(
+
+        return new Date(
                 tipDatePicker.getYear() - 1900,
                 tipDatePicker.getMonth(),
                 tipDatePicker.getDayOfMonth(),
                 tipTimePicker.getHour(),
                 tipTimePicker.getMinute()
         );
-
-        return date;
     }
 
     /**
