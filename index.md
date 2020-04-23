@@ -1,6 +1,6 @@
 # iTipper Android Application
 
-This application is a phone app on the Android OS for targeted at anybody that works for tips. The primary goal of iTipper is for users to be able to record tips on the fly, keep track of how 
+iTipper is a phone application for the Android OS that is targeted at individuals who work for tips. The primary goal of iTipper is for users to be able to record tips on the fly, keep track of how 
 much they are earning and to be able to help users budget better. For drivers, there is a built in google maps for quickly searching for a location.
 
 # Demo Video
