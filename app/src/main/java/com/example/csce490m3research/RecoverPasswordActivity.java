@@ -15,6 +15,8 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 
+import java.util.Objects;
+
 public class RecoverPasswordActivity extends AppCompatActivity {
     private EditText recoveryEmail;
     private Button sendEmailButton;
@@ -27,8 +29,8 @@ public class RecoverPasswordActivity extends AppCompatActivity {
 
         mAuth = FirebaseAuth.getInstance();
 
-        recoveryEmail = (EditText) findViewById(R.id.recovery_email);
-        sendEmailButton = (Button) findViewById(R.id.send_recovery_email_button);
+        recoveryEmail = findViewById(R.id.recovery_email);
+        sendEmailButton = findViewById(R.id.send_recovery_email_button);
 
         final Context context = this;
 
@@ -37,19 +39,24 @@ public class RecoverPasswordActivity extends AppCompatActivity {
             public void onClick(View v) {
                 String email = recoveryEmail.getText().toString();
 
-                mAuth.sendPasswordResetEmail(email).addOnCompleteListener(new OnCompleteListener<Void>() {
-                    @Override
-                    public void onComplete(@NonNull Task<Void> task) {
-                        if (task.isSuccessful()) {
-                            Toast.makeText(context, "Email sent.", Toast.LENGTH_SHORT).show();
-                            startActivity(new Intent(context, LoginActivity.class));
+                if (email.isEmpty()) {
+                    finish();
+                }
+                else {
+                    mAuth.sendPasswordResetEmail(email).addOnCompleteListener(new OnCompleteListener<Void>() {
+                        @Override
+                        public void onComplete(@NonNull Task<Void> task) {
+                            if (task.isSuccessful()) {
+                                Toast.makeText(context, "Email sent.", Toast.LENGTH_SHORT).show();
+                                startActivity(new Intent(context, LoginActivity.class));
+                            }
+                            else {
+                                String error = Objects.requireNonNull(task.getException()).getMessage();
+                                Toast.makeText(context, error, Toast.LENGTH_LONG).show();
+                            }
                         }
-                        else {
-                            String error = task.getException().getMessage();
-                            Toast.makeText(context, error, Toast.LENGTH_LONG).show();
-                        }
-                    }
-                });
+                    });
+                }
             }
         });
     }
