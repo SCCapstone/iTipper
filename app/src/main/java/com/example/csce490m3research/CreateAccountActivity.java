@@ -69,24 +69,24 @@ public class CreateAccountActivity extends AppCompatActivity
 
         if(TextUtils.isEmpty(email))
         {
-            Toast.makeText( this, "Please write your email...", Toast.LENGTH_SHORT ).show();
+            Toast.makeText( this, "Please enter an email", Toast.LENGTH_SHORT ).show();
         }
         else if(TextUtils.isEmpty(password))
         {
-            Toast.makeText( this, "Please write your password...", Toast.LENGTH_SHORT ).show();
+            Toast.makeText( this, "Please enter a password", Toast.LENGTH_SHORT ).show();
         }
         else if(TextUtils.isEmpty(confirmPassword))
         {
-            Toast.makeText( this, "Please confirm your password...", Toast.LENGTH_SHORT ).show();
+            Toast.makeText( this, "Please confirm a your password.", Toast.LENGTH_SHORT ).show();
         }
         else if(!password.equals(confirmPassword))
         {
-            Toast.makeText(this, "your password do not match with your confirm password...",Toast.LENGTH_SHORT ).show();
+            Toast.makeText(this, "Passwords do not match!",Toast.LENGTH_SHORT ).show();
         }
         else
         {
-            loadingBar.setTitle("Creating New Account");
-            loadingBar.setMessage("Please wait, while we are creating your new Account...");
+            loadingBar.setTitle("Creating account");
+            loadingBar.setMessage("Please wait, account is being created");
             loadingBar.show();
             loadingBar.setCanceledOnTouchOutside(true);
 
@@ -98,7 +98,7 @@ public class CreateAccountActivity extends AppCompatActivity
                             if(task.isSuccessful())
                             {
                                 SendUserToMainActivity();
-                                Toast.makeText(CreateAccountActivity.this, "you are authenticated successfully...", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(CreateAccountActivity.this, "Authentication successful!", Toast.LENGTH_SHORT).show();
                                 loadingBar.dismiss();
                             }
                             else
