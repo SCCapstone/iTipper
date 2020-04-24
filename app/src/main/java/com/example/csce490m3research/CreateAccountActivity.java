@@ -30,7 +30,7 @@ public class CreateAccountActivity extends AppCompatActivity
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_register);
+        setContentView(R.layout.activity_create_account);
 
         mAuth = FirebaseAuth.getInstance();
         UserEmail = (EditText) findViewById(R.id.register_email);
