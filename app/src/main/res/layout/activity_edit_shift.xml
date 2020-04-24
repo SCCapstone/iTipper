@@ -30,8 +30,8 @@
         android:layout_height="wrap_content"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/shift_start_text_view"
-        android:scaleY="0.6"
-        android:scaleX="0.6"
+        android:scaleY="0.75"
+        android:scaleX="0.75"
         />
 
     <TimePicker
@@ -42,8 +42,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/startDatePicker"
         app:layout_constraintTop_toTopOf="@+id/startDatePicker"
-        android:scaleY="0.6"
-        android:scaleX="0.6"
+        android:scaleY="0.75"
+        android:scaleX="0.75"
         />
 
     <TextView
@@ -65,8 +65,8 @@
         android:layout_height="wrap_content"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/shift_end_text_view"
-        android:scaleY="0.6"
-        android:scaleX="0.6"/>
+        android:scaleY="0.75"
+        android:scaleX="0.75"/>
 
     <TimePicker
         android:id="@+id/endTimePicker"
@@ -76,8 +76,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/endDatePicker"
         app:layout_constraintTop_toTopOf="@+id/endDatePicker"
-        android:scaleY="0.6"
-        android:scaleX="0.6"/>
+        android:scaleY="0.75"
+        android:scaleX="0.75"/>
 
     <Button
         android:id="@+id/done_editing_shift_button"
