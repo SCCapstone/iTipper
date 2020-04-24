@@ -37,10 +37,6 @@ public class CreateAccountActivity extends ToolbarActivity
 
         setTitle("Create Account");
 
-        Toolbar toolbar = findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
-        Objects.requireNonNull(getSupportActionBar()).setTitle("Create Account");
-
         mAuth = FirebaseAuth.getInstance();
         UserEmail = (EditText) findViewById(R.id.register_email);
         UserPassword = (EditText) findViewById(R.id.register_password);
