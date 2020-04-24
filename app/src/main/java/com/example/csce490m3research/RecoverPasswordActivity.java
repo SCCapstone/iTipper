@@ -39,6 +39,10 @@ public class RecoverPasswordActivity extends ToolbarActivity {
 
         setTitle("Recover Password");
 
+        Toolbar toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        Objects.requireNonNull(getSupportActionBar()).setTitle("Recover Password");
+
         mAuth = FirebaseAuth.getInstance();
 
         recoveryEmail = findViewById(R.id.recovery_email);
