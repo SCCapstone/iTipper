@@ -17,7 +17,7 @@ import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.Query;
 
-public class ShiftListActivity extends AppCompatActivity {
+public class ShiftListActivity extends ToolbarActivity {
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
     private CollectionReference shiftRef = db.collection("shifts");
 
@@ -25,17 +25,12 @@ public class ShiftListActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_shift_list);
+        super.onCreate(savedInstanceState);
+
         setTitle("Shifts");
 
         setUpRecyclerView();
-
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
-        getSupportActionBar().setTitle("Shift History");
-
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     }
 
     private void setUpRecyclerView() {

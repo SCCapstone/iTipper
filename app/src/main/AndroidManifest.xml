@@ -17,22 +17,27 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".RecoverPasswordActivity"/>
+        <activity android:name=".ToolbarActivity" />
+        <activity android:name=".RecoverPasswordActivity" />
         <activity android:name=".EditTipActivity" />
         <activity android:name=".EditShiftActivity" />
-        <activity android:name=".TipsListActivity"
-            android:parentActivityName=".HomeFragment"/>
-        <activity android:name=".ShiftListActivity"
-            android:parentActivityName=".HomeFragment"/>
+        <activity
+            android:name=".TipsListActivity"
+            android:parentActivityName=".HomeFragment" />
+        <activity
+            android:name=".ShiftListActivity"
+            android:parentActivityName=".HomeFragment" />
         <activity android:name=".ViewTipsActivity" />
         <activity android:name=".CreateAccountActivity" />
         <activity android:name=".DisplayMessageActivity" />
-        <activity android:name=".HomeFragment"/>
-        <activity android:name=".EnterTipScreenActivity"
-            android:parentActivityName=".HomeFragment"/>
+        <activity android:name=".HomeFragment" />
+        <activity
+            android:name=".EnterTipScreenActivity"
+            android:parentActivityName=".HomeFragment" />
         <activity android:name=".TipScreenActivity" />
-        <activity android:name=".MapsActivity"
-            android:parentActivityName=".EnterTipScreenActivity"/>
+        <activity
+            android:name=".MapsActivity"
+            android:parentActivityName=".EnterTipScreenActivity" />
         <activity android:name=".MapsDialogActivity" />
         <activity android:name=".DisplayTipsGraphActivity" />
         <activity android:name=".ChooseGraphActivity" />

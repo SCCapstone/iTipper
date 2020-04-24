@@ -17,7 +17,7 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
-public class CreateAccountActivity extends AppCompatActivity
+public class CreateAccountActivity extends ToolbarActivity
 {
 
 
@@ -29,8 +29,10 @@ public class CreateAccountActivity extends AppCompatActivity
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
-        super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_account);
+        super.onCreate(savedInstanceState);
+
+        setTitle("Create Account");
 
         mAuth = FirebaseAuth.getInstance();
         UserEmail = (EditText) findViewById(R.id.register_email);

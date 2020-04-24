@@ -7,6 +7,10 @@
     tools:context=".CreateAccountActivity"
     android:background="@drawable/gradient">
 
+    <include
+        android:id="@+id/toolbar"
+        layout="@layout/toolbar"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
         android:id="@+id/register_icon"

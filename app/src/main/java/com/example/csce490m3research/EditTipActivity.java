@@ -18,7 +18,7 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import java.util.Date;
 import java.util.Objects;
 
-public class EditTipActivity extends AppCompatActivity {
+public class EditTipActivity extends ToolbarActivity {
     String path;
 
     DatePicker tipDatePicker;
@@ -31,12 +31,10 @@ public class EditTipActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_tip);
+        super.onCreate(savedInstanceState);
 
-        Toolbar toolbar = findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
-        Objects.requireNonNull(getSupportActionBar()).setTitle("Edit Tip");
+        setTitle("Edit Tip");
 
         Intent intent = getIntent();
 
