@@ -75,7 +75,7 @@
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
         android:text="Create New Acount"
-        android:textColor="@android:color/black"
+        android:textColor="@android:color/primary_text_light_nodisable"
         android:textSize="18sp"
         android:textStyle="normal|italic"
         android:layout_marginBottom="10dp"
@@ -93,7 +93,7 @@
         android:textColor="@color/ap_black"
         android:textSize="18sp"
         android:textStyle="normal|italic"
-        android:layout_marginBottom="100dp"
+        android:layout_marginBottom="150dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
