@@ -17,7 +17,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".RecoverPasswordActivity"></activity>
+        <activity android:name=".RecoverPasswordActivity"/>
         <activity android:name=".EditTipActivity" />
         <activity android:name=".EditShiftActivity" />
         <activity android:name=".TipsListActivity"
