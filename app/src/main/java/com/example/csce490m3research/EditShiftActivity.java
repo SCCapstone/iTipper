@@ -18,7 +18,7 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import java.util.Date;
 import java.util.Objects;
 
-public class EditShiftActivity extends AppCompatActivity {
+public class EditShiftActivity extends ToolbarActivity {
     // Path in database to shift reference that is being edited
     String path;
     DatePicker startDatePicker, endDatePicker;
@@ -29,12 +29,10 @@ public class EditShiftActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_shift);
+        super.onCreate(savedInstanceState);
 
-        Toolbar toolbar = findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
-        Objects.requireNonNull(getSupportActionBar()).setTitle("Edit Shift");
+        setTitle("Edit Shift");
 
         Intent intent = getIntent();
 

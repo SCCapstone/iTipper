@@ -27,17 +27,17 @@ import java.util.Objects;
  * to grab the contexts of that box to attempt to use for password recovery.
  * Written by: Tyler Chambers
  */
-public class RecoverPasswordActivity extends AppCompatActivity {
+public class RecoverPasswordActivity extends ToolbarActivity {
     private EditText recoveryEmail;
     private Button sendEmailButton;
     private FirebaseAuth mAuth;
 
-    Toolbar toolbar;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_recover_password);
+        super.onCreate(savedInstanceState);
+
+        setTitle("Recover Password");
 
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -48,13 +48,6 @@ public class RecoverPasswordActivity extends AppCompatActivity {
         recoveryEmail = findViewById(R.id.recovery_email);
         sendEmailButton = findViewById(R.id.send_recovery_email_button);
 
-        toolbar = findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
-
-        ActionBar actionBar = getSupportActionBar();
-        Objects.requireNonNull(actionBar).setDisplayHomeAsUpEnabled(true);
-        actionBar.setTitle("Recover Password");
-
         final Context context = this;
 
         sendEmailButton.setOnClickListener(new View.OnClickListener() {
@@ -63,7 +56,8 @@ public class RecoverPasswordActivity extends AppCompatActivity {
                 String email = recoveryEmail.getText().toString();
 
                 if (email.isEmpty()) {
-                    finish();
+                    Toast.makeText(context, "Please enter an email.", Toast.LENGTH_LONG)
+                            .show();
                 }
                 else {
                     mAuth.sendPasswordResetEmail(email).addOnCompleteListener(new OnCompleteListener<Void>() {
@@ -88,19 +82,5 @@ public class RecoverPasswordActivity extends AppCompatActivity {
                 }
             }
         });
-    }
-
-    /**
-     * Define actions to perform when an item on the screen's action bar is selected by the user.
-     * @param item The element on the action bar that the user selected
-     * @return true if successful, false otherwise
-     */
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        if (item.getItemId() == android.R.id.home) {
-            finish();
-            return true;
-        }
-        return super.onOptionsItemSelected(item);
     }
 }

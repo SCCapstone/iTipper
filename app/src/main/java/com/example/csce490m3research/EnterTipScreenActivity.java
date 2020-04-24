@@ -38,7 +38,7 @@ import java.util.Objects;
  *
  *  Authors: Paolo Milan, Tyler Chambers
  */
-public class EnterTipScreenActivity extends AppCompatActivity {
+public class EnterTipScreenActivity extends ToolbarActivity {
     public static final String EXTRA_MESSAGE = "com.example.myfirstapp.MESSAGE";
 
     TextView responseText;
@@ -48,9 +48,10 @@ public class EnterTipScreenActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-
-        super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_enter_tip_screen);
+        super.onCreate(savedInstanceState);
+
+        setTitle("Shift Screen");
 
         Button quickTip1 = findViewById(R.id.quicktip1);
         Button quickTip2 = findViewById(R.id.quicktip2);
@@ -62,13 +63,6 @@ public class EnterTipScreenActivity extends AppCompatActivity {
         final Button endShift = findViewById(R.id.endShiftButton);
 
         responseText = findViewById(R.id.responseTextView);
-
-        Toolbar toolbar = findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
-
-        Objects.requireNonNull(getSupportActionBar()).setTitle("Shift Screen");
-
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         quickTip1.setText("+ $1");
         quickTip2.setText("+ $2");

@@ -17,7 +17,7 @@ import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.Query;
 
-public class TipsListActivity extends AppCompatActivity {
+public class TipsListActivity extends ToolbarActivity {
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
     private CollectionReference tipsRef = db.collection("tips");
 
@@ -27,15 +27,10 @@ public class TipsListActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tips_list);
-        setTitle("Tips (All)");
+        super.onCreate(savedInstanceState);
 
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
-        getSupportActionBar().setTitle("Tip History");
-
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        setTitle("Tips History");
 
         // Check if the intent was passed shift data, and if so extract it.
         Intent intent = getIntent();
@@ -56,7 +51,7 @@ public class TipsListActivity extends AppCompatActivity {
                 shift.setEnd(end);
             }
             // Display information for the shift at the start of the screen, to help the user.
-            setTitle("Tips: " + shift.toString());
+            setTitle(shift.toString());
         }
 
         // Get reference ID for the shift item in the database that was brought to this activity
