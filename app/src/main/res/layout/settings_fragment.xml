@@ -11,8 +11,8 @@
         android:id="@+id/myAccount"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:layout_marginBottom="550dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="500dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -28,16 +28,25 @@
                 android:id="@+id/myAccountText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="My Account" />
+                android:text="My Account"
+                android:textSize="20dp" />
 
             <Button
                 android:id="@+id/logout_button"
-                android:layout_width="108dp"
+                android:layout_width="148dp"
                 android:layout_height="39dp"
                 android:layout_marginTop="8dp"
                 android:text="Logout" />
 
+            <Button
+                android:id="@+id/reset_password_buton"
+                android:layout_width="wrap_content"
+                android:layout_height="39dp"
+                android:layout_marginTop="8dp"
+                android:text="Reset Password" />
+
         </LinearLayout>
 
     </androidx.cardview.widget.CardView>
+
 </androidx.constraintlayout.widget.ConstraintLayout>
