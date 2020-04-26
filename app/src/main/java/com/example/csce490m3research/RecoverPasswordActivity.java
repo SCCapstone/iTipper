@@ -37,11 +37,11 @@ public class RecoverPasswordActivity extends ToolbarActivity {
         setContentView(R.layout.activity_recover_password);
         super.onCreate(savedInstanceState);
 
-        setTitle("Recover Password");
+        setTitle("Reset Password");
 
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        Objects.requireNonNull(getSupportActionBar()).setTitle("Recover Password");
+        Objects.requireNonNull(getSupportActionBar()).setTitle("Reset Password");
 
         mAuth = FirebaseAuth.getInstance();
 

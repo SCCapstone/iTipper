@@ -36,6 +36,19 @@ public class SettingsFragment extends Fragment {
         getActivity().setTitle("Settings");
 
         Button logoutButton = getView().findViewById(R.id.logout_button);
+        Button changePasswordButton = getView().findViewById(R.id.reset_password_buton);
+
+        changePasswordButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Context context = getContext();
+                Intent intent = new Intent(context, RecoverPasswordActivity.class);
+                Toast.makeText(context, "Log in again after you've reset your password", Toast.LENGTH_SHORT).show();
+                FirebaseAuth.getInstance().signOut();
+                startActivity(intent);
+            }
+        });
+
         logoutButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -46,8 +59,5 @@ public class SettingsFragment extends Fragment {
                 startActivity(new Intent(context, LoginActivity.class));
             }
         });
-
-        ;
-
     }
 }
