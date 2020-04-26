@@ -171,6 +171,9 @@ public class  GraphFragment extends Fragment {
                         }
                     }
 
+                    if (v == null) {
+                        return;
+                    }
                     plot = v.findViewById(R.id.plot);
                     // set bounds to the plot
                     plot.setRangeLowerBoundary(0, BoundaryMode.FIXED);
@@ -193,6 +196,9 @@ public class  GraphFragment extends Fragment {
 
                         // create the arrays
                     for (int i = 0; i < startTimes.size(); i++) {
+                        if (aList.size() == 0) {
+                            break;
+                        }
                         // only allow up to seven to be graphed
                         if (i == 0) {
                             list1 = aList.get(i);
@@ -288,7 +294,9 @@ public class  GraphFragment extends Fragment {
                                 Log.d("touch stopped on : " + seekBar.getProgress()," ");
                                 plot.clear();
                                 ArrayList<Number> listSeekBar = new ArrayList<Number>();
-                                listSeekBar = aList.get(seekBar.getProgress() - 1);
+                                if (aList.size() != 0) {
+                                    listSeekBar = aList.get(seekBar.getProgress() - 1);
+                                }
                                 XYSeries series = new SimpleXYSeries(
                                         listSeekBar, SimpleXYSeries.ArrayFormat.Y_VALS_ONLY, shiftNames.get(seekBar.getProgress() - 1));
                                 plot.addSeries(series, formatter1);
