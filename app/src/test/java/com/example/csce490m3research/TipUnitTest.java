@@ -1,19 +1,10 @@
 package com.example.csce490m3research;
 
-import android.content.Context;
-
-import androidx.test.core.app.ApplicationProvider;
-
-import com.google.firebase.FirebaseApp;
 import com.google.firebase.Timestamp;
-import com.google.firebase.auth.FirebaseAuth;
 
-import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.JUnit4;
-import org.mockito.Mock;
-import org.mockito.runners.MockitoJUnitRunner;
 
 import java.text.SimpleDateFormat;
 import java.util.HashMap;
@@ -26,12 +17,6 @@ import static org.junit.Assert.fail;
 
 @RunWith(JUnit4.class)
 public class TipUnitTest {
-    private Context context;
-
-    @Before
-    public void setUp() {
-        context = ApplicationProvider.getApplicationContext();
-    }
 
     @Test
     public void tipCreatedCorrectly() {
@@ -44,8 +29,8 @@ public class TipUnitTest {
             testTip = new Tip();
             testTip.setValue(testTipValue);
             testTip.setTime(testTime);
-            assertTrue(testTip.getTime().equals(testTime));
-            assertTrue(testTip.getValue() == testTipValue);
+            assertEquals(testTip.getTime(), testTime);
+            assertEquals(testTip.getValue(), testTipValue, 0.0);
         } catch (InvalidTipException e) {
             e.printStackTrace();
             fail();
@@ -53,12 +38,12 @@ public class TipUnitTest {
     }
 
     @Test(expected = InvalidTipException.class)
-    public void throwsExceptionOnNegativeTip() throws InvalidTipException, NullUsernameException {
+    public void throwsExceptionOnNegativeTip() throws InvalidTipException {
         Tip testTip = new Tip("-5");
     }
 
     @Test(expected = InvalidTipException.class)
-    public void throwsExceptionOnZeroTip() throws InvalidTipException, NullUsernameException {
+    public void throwsExceptionOnZeroTip() throws InvalidTipException {
         Tip testTip = new Tip("0.00");
     }
 
@@ -107,17 +92,4 @@ public class TipUnitTest {
         assertEquals(tip.toString(), nowFormatted + " : $" + value);
 
     }
-
-    @Test
-    public void uid_test() throws InvalidTipException {
-        FirebaseApp.initializeApp(context);
-
-        String uid = FirebaseAuth.getInstance().getUid();
-
-        Tip tip = new Tip(5.00);
-
-        assertEquals(uid, tip.getUid());
-
-    }
-
 }
