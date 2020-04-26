@@ -43,6 +43,9 @@ public class SettingsFragment extends Fragment {
             public void onClick(View v) {
                 Context context = getContext();
                 Intent intent = new Intent(context, RecoverPasswordActivity.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
+                        Intent.FLAG_ACTIVITY_CLEAR_TASK |
+                        Intent.FLAG_ACTIVITY_NEW_TASK);
                 Toast.makeText(context, "Log in again after you've reset your password", Toast.LENGTH_SHORT).show();
                 FirebaseAuth.getInstance().signOut();
                 startActivity(intent);
@@ -53,10 +56,13 @@ public class SettingsFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 Context context = getContext();
-
+                Intent intent = new Intent(context, LoginActivity.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
+                        Intent.FLAG_ACTIVITY_CLEAR_TASK |
+                        Intent.FLAG_ACTIVITY_NEW_TASK);
                 Toast.makeText(context, "Logging you out...", Toast.LENGTH_SHORT).show();
                 FirebaseAuth.getInstance().signOut();
-                startActivity(new Intent(context, LoginActivity.class));
+                startActivity(intent);
             }
         });
     }
