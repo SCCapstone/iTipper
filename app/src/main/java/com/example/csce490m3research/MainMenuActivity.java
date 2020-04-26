@@ -48,7 +48,7 @@ public class MainMenuActivity extends AppCompatActivity {
 
         UID = FirebaseAuth.getInstance().getUid();
 
-        DocumentReference userDoc = db.collection("users").document(UID);
+        DocumentReference userDoc = Database.userReference();
 
         Map<String, Object> loginTimeStamp = new HashMap<>();
 

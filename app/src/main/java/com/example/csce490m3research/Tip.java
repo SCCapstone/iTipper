@@ -19,8 +19,6 @@ public class Tip {
      */
     private static final double MAX_TIP = 1024.00;
 
-    private static final double CENTS = 0.01;
-
     /**
      * The dollar value for the tip.
      */
