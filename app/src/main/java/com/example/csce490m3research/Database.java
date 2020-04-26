@@ -96,6 +96,43 @@ public class Database {
             }
         });
     }
+    public static void getShifts(final ShiftCallBack callback) {
+        Query shiftsRef = shiftsReference()
+                .whereEqualTo("uid", getUID())
+                .orderBy("start", Query.Direction.DESCENDING);
+        final Query tipsRef = FirebaseFirestore.getInstance()
+                .collection("tips")
+                .whereEqualTo("uid", getUID())
+                .orderBy("time", Query.Direction.ASCENDING);
+
+        shiftsRef.get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                if (task.isSuccessful()) {
+                    final List<Shift> shiftList = new ArrayList<>(1);
+                    for (QueryDocumentSnapshot document : task.getResult()) {
+                        Shift shift = new Shift(document.getData());
+                        shiftList.add(shift);
+
+                    }
+                    tipsRef.get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                        @Override
+                        public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                            if (task.isSuccessful()) {
+                                List<Tip> tipsList = new ArrayList<>();
+                                for (QueryDocumentSnapshot document : task.getResult()) {
+                                    Tip tip = new Tip(document.getData());
+                                    tipsList.add(tip);
+                                }
+                                callback.onCallback(tipsList,shiftList);
+                            }
+                        }
+                    });
+                }
+            }
+        });
+
+    }
 
     public static void getMostRecentShift(final ListCallback callback) {
         Query shiftsRef = shiftsReference()
@@ -117,7 +154,6 @@ public class Database {
             }
         });
     }
-
     /**
      * @return Database reference for the signed in user's document
      */

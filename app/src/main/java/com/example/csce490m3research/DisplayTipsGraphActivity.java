@@ -115,7 +115,10 @@ public class DisplayTipsGraphActivity extends Activity {
                 plot = findViewById(R.id.plot);
                 // set bounds to the plot
                 plot.setRangeLowerBoundary(0, BoundaryMode.FIXED);
-                plot.setRangeUpperBoundary(30,BoundaryMode.AUTO);
+                plot.setRangeUpperBoundary(30,BoundaryMode.FIXED);
+
+                //plot.setDomainLowerBoundary(0, BoundaryMode.FIXED));
+               // plot.setRangeUpperBoundary(30, BoundaryMode.AUTO);
                 // create a couple arrays of y-values to plot:
                 // (Y_VALS_ONLY means use the element index as the x value)
                 XYSeries series1 = new SimpleXYSeries(
@@ -125,7 +128,13 @@ public class DisplayTipsGraphActivity extends Activity {
                 LineAndPointFormatter series1Format =
                         new LineAndPointFormatter(Color.RED, Color.GREEN, Color.BLUE, null);
                 BarFormatter bf = new BarFormatter(Color.GREEN, Color.BLACK);
+
+                //bf.setMarginLeft(PixelUtils.dpToPix(1));
+                //bf.setMarginRight(PixelUtils.dpToPix(10));
+
                 BarRenderer renderer = plot.getRenderer(BarRenderer.class);
+                renderer.setBarGroupWidth(BarRenderer.BarGroupWidthMode.FIXED_WIDTH, PixelUtils.dpToPix(25));
+
                 // increment each axis by 1
                 plot.setDomainStep(StepMode.INCREMENT_BY_VAL, 1.0);
                 plot.setRangeStep(StepMode.INCREMENT_BY_VAL, 1.0);
@@ -138,4 +147,6 @@ public class DisplayTipsGraphActivity extends Activity {
             }
         });
     }
+
+
 }

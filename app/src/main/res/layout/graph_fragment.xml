@@ -5,21 +5,57 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".DisplayTipsGraphActivity">
-    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:ap="http://schemas.android.com/apk/res-auto"
-        android:layout_height="match_parent"
-        android:layout_width="match_parent">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
         <com.androidplot.xy.XYPlot
-            style="@style/APDefacto.Light"
-            ap:backgroundColor="@color/colorPrimary"
-            ap:graphBackgroundColor="@color/colorPrimary"
             android:id="@+id/plot"
-            android:layout_width="fill_parent"
-            android:layout_height="fill_parent"
-            ap:title="Tip History"
-            ap:rangeTitle="Tip Amount"
-            ap:domainTitle="Tip Order"
-            ap:lineLabels="left|bottom"
-            ap:lineLabelRotationBottom="-45"/>
+            style="@style/APDefacto.Light"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+
+            app:backgroundColor="@color/colorPrimary"
+            app:domainLineColor="@color/ap_transparent"
+            app:domainTitle="Tip Order"
+            app:graphBackgroundColor="@color/colorPrimary"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:lineLabelRotationBottom="-45"
+            app:lineLabels="left|bottom"
+            app:rangeTitle="Tip Amount $"
+            tools:layout_conversion_absoluteHeight="659dp"
+            tools:layout_conversion_absoluteWidth="411dp" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="70dp"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <SeekBar
+            android:id="@+id/seekBar"
+            android:layout_width="250dp"
+            android:layout_height="wrap_content"
+            android:min="1"
+            android:progress="1"
+            android:thumb="@drawable/car"
+            android:theme="@style/Widget.AppCompat.SeekBar.Discrete"
+            tools:layout_editor_absoluteX="184dp"
+            tools:layout_editor_absoluteY="244dp" />
     </LinearLayout>
+
+
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>
