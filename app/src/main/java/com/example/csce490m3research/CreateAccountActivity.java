@@ -19,19 +19,19 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
+/**
+ * This class handles account creation with Firebase
+ */
 
 public class CreateAccountActivity extends ToolbarActivity
 {
-
-
     private EditText UserEmail, UserPassword, UserConfirmPassword;
     private Button CreateAccountButton;
     private ProgressDialog loadingBar;
     private FirebaseAuth mAuth;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState)
-    {
+    protected void onCreate(Bundle savedInstanceState) {
         setContentView(R.layout.activity_create_account);
         super.onCreate(savedInstanceState);
 
@@ -48,26 +48,25 @@ public class CreateAccountActivity extends ToolbarActivity
             @Override
             public void onClick(View view)
             {
-
                 CreateNewAccount();
-
             }
         });
     }
 
-
-
-    private void SendUserToMainActivity()
-    {
+    /**
+     * Sends user to the login activity after account creation
+     */
+    private void SendUserToMainActivity() {
         Intent mainIntent = new Intent(CreateAccountActivity.this, LoginActivity.class);
         mainIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
         startActivity(mainIntent);
         finish();
     }
 
-
-    private void CreateNewAccount()
-    {
+    /**
+     * Handles input checking and creates an account with firebase
+     */
+    private void CreateNewAccount() {
         String email = UserEmail.getText().toString();
         String password = UserPassword.getText().toString();
         String confirmPassword = UserConfirmPassword.getText().toString();
@@ -116,6 +115,4 @@ public class CreateAccountActivity extends ToolbarActivity
                     });
         }
     }
-
-
 }

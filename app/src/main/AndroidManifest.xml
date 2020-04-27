@@ -40,7 +40,6 @@
             android:parentActivityName=".EnterTipScreenActivity" />
         <activity android:name=".MapsDialogActivity" />
         <activity android:name=".DisplayTipsGraphActivity" />
-        <activity android:name=".ChooseGraphActivity" />
         <activity android:name=".DisplayGraphActivity" />
         <activity android:name=".MainMenuActivity" />
         <activity android:name=".LoginActivity">

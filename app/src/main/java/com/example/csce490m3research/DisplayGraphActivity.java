@@ -18,6 +18,9 @@ import java.text.Format;
 import java.text.ParsePosition;
 import java.util.*;
 
+/**
+ * Class displays the tip history graph using androidplot
+ */
 public class DisplayGraphActivity extends Activity {
 
     private XYPlot plot;
