@@ -5,14 +5,15 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@android:color/white">
 
     <androidx.cardview.widget.CardView
         android:id="@+id/myAccount"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
-        android:layout_marginBottom="500dp"
+        android:layout_marginBottom="700dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
@@ -21,11 +22,12 @@
         android:id="@+id/myAccountText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="76dp"
         android:text="My Account"
         android:textSize="20dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:layout_marginStart="16dp"/>
+        app:layout_constraintTop_toTopOf="parent" />
 
     <Button
         android:id="@+id/logout_button"
@@ -38,7 +40,7 @@
 
     <Button
         android:id="@+id/reset_password_buton"
-        android:layout_width="wrap_content"
+        android:layout_width="148dp"
         android:layout_height="39dp"
         android:layout_marginTop="16dp"
         android:text="Reset Password"
