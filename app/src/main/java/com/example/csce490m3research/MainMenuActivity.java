@@ -37,8 +37,28 @@ public class MainMenuActivity extends AppCompatActivity {
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        BottomNavigationView bottomNav = findViewById(R.id.bottom_navigation);
-        bottomNav.setOnNavigationItemSelectedListener(navListener);
+        BottomNavigationView bottomNavigationView = (BottomNavigationView) findViewById(R.id.bottom_navigation);
+        bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                switch (item.getItemId()) {
+                    case R.id.nav_home:
+                        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
+                                new HomeFragment()).commit();
+                        break;
+                    case R.id.nav_graph:
+                        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
+                                new GraphFragment()).commit();
+                        break;
+                    case R.id.nav_settings:
+                        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
+                                new SettingsFragment()).commit();
+                        break;
+                }
+                return true;
+            }
+        });
+
 
         FirebaseFirestore db = FirebaseFirestore.getInstance();
         FirebaseFirestoreSettings settings = new FirebaseFirestoreSettings.Builder()
@@ -61,28 +81,7 @@ public class MainMenuActivity extends AppCompatActivity {
                 new HomeFragment()).commit();
     }
 
-    //Handles bottom navigation routing
-    private BottomNavigationView.OnNavigationItemSelectedListener navListener =
-            new BottomNavigationView.OnNavigationItemSelectedListener() {
-                @Override
-                public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-                    Fragment selectedFragment = null;
-                    switch (item.getItemId()) {
-                        case R.id.nav_home:
-                            selectedFragment = new HomeFragment();
-                            break;
-                        case R.id.nav_settings:
-                            selectedFragment = new SettingsFragment();
-                            break;
-                        case R.id.nav_graph:
-                            selectedFragment = new GraphFragment();
-                            break;
-                    }
-                    getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
-                            selectedFragment).commit();
-                    return true;
-                }
-            };
+
     // Called when user taps "Maps" button
     public void mapDialog(View view) {
         Intent intent = new Intent(this, MapsActivity.class);
