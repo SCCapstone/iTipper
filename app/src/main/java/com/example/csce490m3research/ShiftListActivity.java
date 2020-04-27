@@ -9,11 +9,9 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.MenuItem;
 import android.view.View;
 
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
-import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -33,31 +31,6 @@ public class ShiftListActivity extends ToolbarActivity {
         setTitle("Shifts");
 
         setUpRecyclerView();
-
-
-        BottomNavigationView bottomNavigationView = (BottomNavigationView) findViewById(R.id.bottom_navigation);
-        bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
-            @Override
-            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-                switch (item.getItemId()) {
-                    case R.id.nav_home:
-                        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
-                                new HomeFragment()).commit();
-                        break;
-                    case R.id.nav_graph:
-                        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
-                                new GraphFragment()).commit();
-                        break;
-                    case R.id.nav_settings:
-                        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
-                                new SettingsFragment()).commit();
-                        break;
-                }
-                return true;
-            }
-        });
-
-
     }
 
     private void setUpRecyclerView() {
