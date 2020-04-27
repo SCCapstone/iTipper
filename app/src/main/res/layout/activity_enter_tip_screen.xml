@@ -118,6 +118,7 @@
         android:id="@+id/endShiftButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
         android:onClick="endShift"
         android:text="@string/end_shift_button"
         app:layout_constraintBottom_toBottomOf="@+id/startShiftButton"
@@ -127,6 +128,7 @@
         android:id="@+id/startShiftButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="60dp"
         android:onClick="startShift"
         android:text="@string/start_shift_button"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -144,6 +146,15 @@
         app:layout_constraintStart_toEndOf="@+id/quicktip4"
         app:layout_constraintTop_toBottomOf="@+id/quicktip2"
         android:src="@android:drawable/ic_dialog_map" />
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bottom_navigation"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:background="?android:attr/windowBackground"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:menu="@menu/bottom_navigation" />
 
 
     <!--    <FrameLayout-->
