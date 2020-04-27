@@ -34,7 +34,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 
-/** Screen where the user can input tips.
+/** Screen where the user can input tips and start/end shifts
  *
  *  Authors: Paolo Milan, Tyler Chambers
  */
