@@ -18,6 +18,9 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import java.util.Date;
 import java.util.Objects;
 
+/**
+ * Class allows user to edit the time a shift started or ended and updates firestore with the new data
+ */
 public class EditShiftActivity extends ToolbarActivity {
     // Path in database to shift reference that is being edited
     String path;

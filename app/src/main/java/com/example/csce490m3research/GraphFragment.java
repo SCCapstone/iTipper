@@ -51,6 +51,10 @@ import com.androidplot.xy.*;
 
 
 import static androidx.constraintlayout.widget.Constraints.TAG;
+
+/**
+ * Graph fragment is shown on the bottom navigation screen and allows user to view graph of past tips
+ */
 public class  GraphFragment extends Fragment {
     private List<Tip> tips;
     private XYPlot plot;

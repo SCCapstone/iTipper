@@ -12,6 +12,11 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 
+/**
+ * Home fragment appears on the bottom navigation screen and has buttons to view past tips, past shifts,
+ * and view the shift dashboard
+ */
+
 public class HomeFragment extends Fragment {
     private Button button;
     @Nullable

@@ -6,6 +6,9 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.widget.TextView;
 
+/**
+ * Allows a predefined message to be displayed on any screen
+ */
 public class DisplayMessageActivity extends AppCompatActivity {
 
     @Override

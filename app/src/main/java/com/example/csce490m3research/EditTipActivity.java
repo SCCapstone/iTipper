@@ -18,6 +18,9 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import java.util.Date;
 import java.util.Objects;
 
+/**
+ * Class allows user to edit the tip values and updates firestore with the new data
+ */
 public class EditTipActivity extends ToolbarActivity {
     String path;
 

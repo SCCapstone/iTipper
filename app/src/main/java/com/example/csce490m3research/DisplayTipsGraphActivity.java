@@ -46,6 +46,10 @@ import android.app.Fragment;
 
 import static androidx.constraintlayout.widget.Constraints.TAG;
 
+
+/**
+ * Class displays the tip graph activity
+ */
 public class DisplayTipsGraphActivity extends Activity {
 
     private List<Tip> tips;
@@ -63,13 +67,10 @@ public class DisplayTipsGraphActivity extends Activity {
     public void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
-        //setContentView(R.layout.activity_display_graph);
 
-        // plot = findViewById(R.id.plot);
         Database.loadTips(new ListCallback() {
             @Override
             public void onCallback(List tipsList) {
-                //plot = findViewById(R.id.plot);
 
                 // New Code
                 // get size of tipsList
@@ -78,8 +79,6 @@ public class DisplayTipsGraphActivity extends Activity {
                 // domain is just the tip number but should become timestamp...
                 final Number[] domainLabels = new Number[listSize];
                 Number[] rangeLabels = new Number[listSize];
-                //domainLabels = new Number[listSize];
-                //rangeLabels = new Number[listSize];
                 // populate with values
 
                 for (int i = 0; i < listSize; i++) {
@@ -102,23 +101,12 @@ public class DisplayTipsGraphActivity extends Activity {
                     // increment counter
                     counter++;
                 }
-                /*
-                Log.d("List Size: ", Integer.toString(listSize));
-                Log.d("Value 1: ", rangeLabels[0].toString());
-                Log.d("Value 2: ", rangeLabels[1].toString());
-                Log.d("Value 3: ", rangeLabels[2].toString());
-                Log.d("Value 4: ", rangeLabels[3].toString());
-                Log.d("Value 5: ", rangeLabels[4].toString());
-                Log.d("Value 6: ", rangeLabels[5].toString());
-                 */
                 setContentView(R.layout.activity_display_graph);
                 plot = findViewById(R.id.plot);
                 // set bounds to the plot
                 plot.setRangeLowerBoundary(0, BoundaryMode.FIXED);
                 plot.setRangeUpperBoundary(30,BoundaryMode.FIXED);
 
-                //plot.setDomainLowerBoundary(0, BoundaryMode.FIXED));
-               // plot.setRangeUpperBoundary(30, BoundaryMode.AUTO);
                 // create a couple arrays of y-values to plot:
                 // (Y_VALS_ONLY means use the element index as the x value)
                 XYSeries series1 = new SimpleXYSeries(
