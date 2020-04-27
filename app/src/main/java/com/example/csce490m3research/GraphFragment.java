@@ -66,6 +66,9 @@ public class  GraphFragment extends Fragment {
 
     public GraphFragment() {
     }
+    /*
+    Inflate view on Creation since this extends fragment
+     */
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -74,6 +77,7 @@ public class  GraphFragment extends Fragment {
         getActivity().setTitle("Tips History");
         return v;
     }
+    // when activity starts, the data is retrieved and plotted
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
@@ -120,8 +124,6 @@ public class  GraphFragment extends Fragment {
                         counter++;
                     }
                     View v = getView();
-
-
                     // get size of tipsList
                     int listSize = tipsList.size();
                     // initialize the arrays
@@ -184,12 +186,9 @@ public class  GraphFragment extends Fragment {
                             new LineAndPointFormatter(Color.RED, Color.GREEN, Color.BLUE, null);
                     BarFormatter bf = new BarFormatter(Color.GREEN, Color.BLACK);
                     BarFormatter bf1 = new BarFormatter(Color.CYAN, Color.BLACK);
-
                     formatter1 = new MyBarFormatter(Color.GREEN, Color.BLACK);
                     formatter2 = new MyBarFormatter(Color.CYAN, Color.BLACK);
 
-
-                    //MyBarRenderer renderer = plot.getRenderer(MyBarRenderer.class);
                     // increment each axis by 1
                     plot.setDomainStep(StepMode.INCREMENT_BY_VAL, 1.0);
                     plot.setRangeStep(StepMode.INCREMENT_BY_VAL, 1.0);
@@ -265,15 +264,14 @@ public class  GraphFragment extends Fragment {
                         else
                             break;
                     }
-
-                    // (Y_VALS_ONLY means use the element index as the x value)
-
+                    // initialize seekbar used to change the shift's tips
                     SeekBar seekBar = (SeekBar) v.findViewById(R.id.seekBar);
                     if (startTimes.size() <= 10)
                         seekBar.setMax(startTimes.size());
                     else
                         seekBar.setMax(10);
                     seekBar.setMin(1);
+                    // listener for seekbar changes
                     if (seekBar != null) {
                         seekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
                             @Override
@@ -281,13 +279,12 @@ public class  GraphFragment extends Fragment {
                                 // Write code to perform some action when progress is changed.
                                 Log.d("Progress Changed: " ," ");
                             }
-
                             @Override
                             public void onStartTrackingTouch(SeekBar seekBar) {
                                 // Write code to perform some action when touch is started.
                                 Log.d("Start Tracking touch: " ," ");
                             }
-
+                            // when user releases touch, the selected series is plotted
                             @Override
                             public void onStopTrackingTouch(SeekBar seekBar) {
                                 // Write code to perform some action when touch is stopped.
@@ -304,35 +301,19 @@ public class  GraphFragment extends Fragment {
                             }
                         });
                     }
-
-
-
-
-
-
-                    // add a new series' to the xyplot:
-                    //plot.addSeries(series1, bf);
-                    //plot.addSeries(series1, formatter1);
-                    //plot.addSeries(series2, bf1);
-
-
-                    //plot.addSeries(series2, formatter2);
-
-
-                    //BarRenderer barRenderer = (BarRenderer) plot.getRenderer(BarRenderer.class);
+                    // use custom renderer for XYPlot -> Bar graph
                     MyBarRenderer renderer = ((MyBarRenderer) plot.getRenderer(MyBarRenderer.class));
                     if (renderer != null) {
                         renderer.setBarOrientation(BarRenderer.BarOrientation.SIDE_BY_SIDE);
                         renderer.setBarGroupWidth(BarRenderer.BarGroupWidthMode.FIXED_GAP,0.1f);
                     }
-
+                    // refresh view
                     plot.redraw();
                 }
             }
         });
     }
-
-
+    // set up barformatter and renderer for XYPlot
     class MyBarFormatter extends BarFormatter {
         public MyBarFormatter(int fillColor, int borderColor) {
             super(fillColor, borderColor);

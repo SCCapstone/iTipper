@@ -104,6 +104,10 @@ class Database {
             }
         });
     }
+    /**
+     * Read tips and shifts that the user has input to the database.
+     * @param callback A ShiftCallback interface, which must be implemented when this is called.
+     */
     public static void getShifts(final ShiftCallBack callback) {
         Query shiftsRef = shiftsReference()
                 .whereEqualTo("uid", getUID())

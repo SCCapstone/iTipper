@@ -4,5 +4,4 @@ import java.util.List;
 
 public interface ShiftCallBack {
     void onCallback(List tipList, List shiftList);
-
 }
