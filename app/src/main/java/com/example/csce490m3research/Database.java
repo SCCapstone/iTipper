@@ -192,7 +192,7 @@ class Database {
      * Get a reference to the tips collection in the Firestore database.
      * @return A CollectionReference to the "tips" collection at the database root.
      */
-    private static CollectionReference tipsReference() {
+    static CollectionReference tipsReference() {
         FirebaseFirestore mFirestore = FirebaseFirestore.getInstance();
         FirebaseFirestoreSettings settings = new FirebaseFirestoreSettings.Builder()
                 .build();

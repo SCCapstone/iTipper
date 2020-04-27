@@ -10,6 +10,10 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
+/**
+ * Separate from unit tests, since an instrumented test is required to test the FirebaseAuth
+ * functionality.
+ */
 @RunWith(AndroidJUnit4.class)
 public class TipInstrumentedTest {
 

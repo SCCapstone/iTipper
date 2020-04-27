@@ -56,6 +56,7 @@ dependencies {
     androidTestImplementation 'androidx.test:rules:1.2.0'
     // Optional -- Hamcrest library
     androidTestImplementation 'org.hamcrest:hamcrest-library:1.3'
+    testImplementation 'org.hamcrest:hamcrest:2.2'
     // Optional -- UI testing with Espresso
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
     // Optional -- UI testing with UI Automator
